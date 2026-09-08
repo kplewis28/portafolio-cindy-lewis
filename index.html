@@ -767,15 +767,16 @@
 
       var portrait = vh >= vw;
       if (vw <= 640 || (vw <= 900 && portrait)) {
-        // ---- mobile / portrait tablet: eye near the top, then a LEFT-ALIGNED
-        //      stack — headline, tagline, then the two CTAs as buttons below it.
-        //      Everything is positioned relative to the eye so the rhythm holds
-        //      at any viewport height. ----
-        var EDGE = 20;
+        // ---- mobile / portrait tablet: centered eye near the top, then a
+        //      headline / tagline / button-row stack whose LEFT edge lines up
+        //      with the eye's left edge (text stays left-aligned, but the whole
+        //      column reads as one composition under the centered eye) ----
         var mcx = vw / 2;
-        var diam = Math.min(IRIS_D * scale, vw - 56, vh * 0.34, 300);
+        var diam = Math.min(IRIS_D * scale, vw - 44, vh * 0.42, 330);
+        var EDGE = Math.max(18, Math.round(mcx - diam / 2));   // = the eye's left edge
+        var RIGHT_EDGE = EDGE;                                  // keep the column symmetric
         var eyeGap = 26, blurbGap = 12, ctaGap = 22;
-        var estH1 = 70, estBlurb = 112, estCta = 44;
+        var estH1 = 70, estBlurb = 128, estCta = 44;
         var stackH = diam + eyeGap + estH1 + blurbGap + estBlurb + ctaGap + estCta;
         var topStart = Math.max(84, Math.min(vh * 0.16, (vh - stackH) / 2));
         var mcy = Math.round(topStart + diam / 2);
@@ -803,13 +804,13 @@
         if (ctaInner) { ctaInner.style.animation = 'none'; ctaInner.style.opacity = '1'; }
         if (ctaOuter) { ctaOuter.style.animation = 'none'; ctaOuter.style.opacity = '1'; }
 
-        // headline + tagline, left-aligned, right under the eye
+        // headline + tagline: left-aligned text, column edges matching the eye
         var eyeBottom = mcy + diam / 2;
         if (h1El) {
           h1El.style.setProperty('bottom', 'auto', 'important');
           h1El.style.setProperty('top', Math.round(eyeBottom + eyeGap) + 'px', 'important');
           h1El.style.setProperty('left', EDGE + 'px', 'important');
-          h1El.style.setProperty('right', EDGE + 'px', 'important');
+          h1El.style.setProperty('right', RIGHT_EDGE + 'px', 'important');
           h1El.style.setProperty('text-align', 'left', 'important');
         }
         var h1b = h1El ? h1El.getBoundingClientRect().bottom : (eyeBottom + eyeGap + estH1);
@@ -817,7 +818,7 @@
           blurbEl.style.setProperty('bottom', 'auto', 'important');
           blurbEl.style.setProperty('top', Math.round(h1b + blurbGap) + 'px', 'important');
           blurbEl.style.setProperty('left', EDGE + 'px', 'important');
-          blurbEl.style.setProperty('right', EDGE + 'px', 'important');
+          blurbEl.style.setProperty('right', RIGHT_EDGE + 'px', 'important');
           blurbEl.style.setProperty('text-align', 'left', 'important');
         }
 
