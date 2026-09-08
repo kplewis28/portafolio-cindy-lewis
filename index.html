@@ -420,13 +420,29 @@
 
     .hero-decor { display: none !important; }
     #pathOuter { pointer-events: none !important; }
-    .path-cta-text { font-size: 14px !important; }
-    .bottom-text { position: fixed !important; max-width: none !important; text-align: center !important; z-index: 4 !important; }
-    h1.bottom-text { font-size: clamp(24px, 7vw, 31px) !important; line-height: 1.12 !important; }
-    div.bottom-text p { font-size: 13px !important; line-height: 1.58 !important; margin: 0 auto !important; max-width: 360px; }
+
+    /* headline + tagline: left-aligned (positionEye() sets the exact top) */
+    .bottom-text { position: fixed !important; max-width: none !important; text-align: left !important; z-index: 4 !important; }
+    h1.bottom-text { font-size: clamp(24px, 7vw, 31px) !important; line-height: 1.14 !important; }
+    div.bottom-text p { font-size: 13px !important; line-height: 1.58 !important; margin: 0 !important; max-width: 420px; }
+
+    /* the two eye CTAs become pill buttons on their own row below the tagline.
+       #ctaInnerText / #ctaInnerLine are position:fixed spans on desktop — pull
+       them back into flow so #ctaInner sizes to its label */
+    #ctaInnerText, #ctaInnerLine { position: static !important; }
+    #ctaInnerLine { display: none !important; }
+    #ctaInner.path-cta, #ctaOuter.path-cta {
+      gap: 0 !important; z-index: 6 !important;
+      padding: 10px 17px; border: 1px solid rgba(150,190,255,0.45); border-radius: 999px;
+      background: rgba(18,26,54,0.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+      text-decoration: none;
+    }
+    #ctaInner.path-cta:active, #ctaOuter.path-cta:active { background: rgba(30,44,86,0.8); }
+    .path-cta-text { font-size: 13.5px !important; text-shadow: none !important; }
   }
   @media (max-width: 400px) {
-    .path-cta-text { font-size: 13px !important; }
+    #ctaInner.path-cta, #ctaOuter.path-cta { padding: 9px 15px; }
+    .path-cta-text { font-size: 12.5px !important; }
     h1.bottom-text { font-size: clamp(21px, 6.6vw, 26px) !important; }
     div.bottom-text p { font-size: 12.5px !important; }
   }
@@ -751,16 +767,17 @@
 
       var portrait = vh >= vw;
       if (vw <= 640 || (vw <= 900 && portrait)) {
-        // ---- mobile / portrait tablet: the eye + CTAs + taglines become one
-        //      centered vertical stack, all positioned relative to the eye so the
-        //      rhythm holds at any viewport height ----
+        // ---- mobile / portrait tablet: eye near the top, then a LEFT-ALIGNED
+        //      stack — headline, tagline, then the two CTAs as buttons below it.
+        //      Everything is positioned relative to the eye so the rhythm holds
+        //      at any viewport height. ----
+        var EDGE = 20;
         var mcx = vw / 2;
-        var diam = Math.min(IRIS_D * scale, vw - 56, vh * 0.40, 330);
-        var ctaGap = 22, h1Gap = 40, blurbGap = 14;
-        var estH1 = 74, estBlurb = 96;
-        var stackH = diam + ctaGap + 20 + h1Gap + estH1 + blurbGap + estBlurb;
-        var topStart = Math.max(vh * 0.13, 84);
-        topStart = Math.max(topStart, Math.min(topStart + 60, (vh - stackH) / 2 + diam * 0.12));
+        var diam = Math.min(IRIS_D * scale, vw - 56, vh * 0.34, 300);
+        var eyeGap = 26, blurbGap = 12, ctaGap = 22;
+        var estH1 = 70, estBlurb = 112, estCta = 44;
+        var stackH = diam + eyeGap + estH1 + blurbGap + estBlurb + ctaGap + estCta;
+        var topStart = Math.max(84, Math.min(vh * 0.16, (vh - stackH) / 2));
         var mcy = Math.round(topStart + diam / 2);
 
         var mrw = IMG_W * scale, mrh = IMG_H * scale;
@@ -780,40 +797,49 @@
         if (innerEl) { innerEl.style.left = mcx + 'px'; innerEl.style.top = mcy + 'px'; innerEl.style.width = miD + 'px'; innerEl.style.height = miD + 'px'; innerEl.style.marginLeft = (-miD / 2) + 'px'; innerEl.style.marginTop = (-miD / 2) + 'px'; }
         if (outerEl) { outerEl.style.left = mcx + 'px'; outerEl.style.top = mcy + 'px'; outerEl.style.width = moD + 'px'; outerEl.style.height = moD + 'px'; outerEl.style.marginLeft = (-moD / 2) + 'px'; outerEl.style.marginTop = (-moD / 2) + 'px'; }
 
-        var belowY = Math.round(mcy + diam / 2 + ctaGap);
-        var half = Math.round(mcx - 16);
         if (ctaInnerLine) ctaInnerLine.style.display = 'none';
         if (outerLine) outerLine.style.display = 'none';
         // the intro fade has a 4.3s delay on desktop — skip it on mobile
         if (ctaInner) { ctaInner.style.animation = 'none'; ctaInner.style.opacity = '1'; }
         if (ctaOuter) { ctaOuter.style.animation = 'none'; ctaOuter.style.opacity = '1'; }
-        if (ctaInnerText) {
-          ctaInnerText.style.top = belowY + 'px';
-          ctaInnerText.style.left = '0px';
-          ctaInnerText.style.width = half + 'px';
-          ctaInnerText.style.textAlign = 'right';
-          ctaInnerText.style.transform = 'none';
-        }
-        if (ctaOuter) {
-          ctaOuter.style.top = belowY + 'px';
-          ctaOuter.style.left = (mcx + 16) + 'px';
-          ctaOuter.style.width = half + 'px';
-          ctaOuter.style.textAlign = 'left';
-          ctaOuter.style.transform = 'none';
-        }
 
+        // headline + tagline, left-aligned, right under the eye
+        var eyeBottom = mcy + diam / 2;
         if (h1El) {
           h1El.style.setProperty('bottom', 'auto', 'important');
-          h1El.style.setProperty('top', (belowY + h1Gap) + 'px', 'important');
-          h1El.style.setProperty('left', '20px', 'important');
-          h1El.style.setProperty('right', '20px', 'important');
+          h1El.style.setProperty('top', Math.round(eyeBottom + eyeGap) + 'px', 'important');
+          h1El.style.setProperty('left', EDGE + 'px', 'important');
+          h1El.style.setProperty('right', EDGE + 'px', 'important');
+          h1El.style.setProperty('text-align', 'left', 'important');
         }
+        var h1b = h1El ? h1El.getBoundingClientRect().bottom : (eyeBottom + eyeGap + estH1);
         if (blurbEl) {
-          var h1b = h1El ? h1El.getBoundingClientRect().bottom : (belowY + h1Gap + estH1);
           blurbEl.style.setProperty('bottom', 'auto', 'important');
           blurbEl.style.setProperty('top', Math.round(h1b + blurbGap) + 'px', 'important');
-          blurbEl.style.setProperty('left', '20px', 'important');
-          blurbEl.style.setProperty('right', '20px', 'important');
+          blurbEl.style.setProperty('left', EDGE + 'px', 'important');
+          blurbEl.style.setProperty('right', EDGE + 'px', 'important');
+          blurbEl.style.setProperty('text-align', 'left', 'important');
+        }
+
+        // the two CTAs become buttons on their own row, below the tagline, left-aligned
+        var blurbB = blurbEl ? blurbEl.getBoundingClientRect().bottom : (h1b + blurbGap + estBlurb);
+        var ctaTop = Math.round(blurbB + ctaGap);
+        if (ctaInnerText) {
+          ctaInnerText.style.width = ''; ctaInnerText.style.textAlign = '';
+          ctaInnerText.style.transform = ''; ctaInnerText.style.top = ''; ctaInnerText.style.left = '';
+        }
+        if (ctaInner) {
+          ctaInner.style.top = ctaTop + 'px';
+          ctaInner.style.left = EDGE + 'px';
+          ctaInner.style.transform = 'none';
+        }
+        if (ctaOuter) {
+          var innerRight = ctaInner ? ctaInner.getBoundingClientRect().right : (EDGE + 120);
+          ctaOuter.style.top = ctaTop + 'px';
+          ctaOuter.style.left = Math.round(innerRight + 12) + 'px';
+          ctaOuter.style.width = '';
+          ctaOuter.style.textAlign = '';
+          ctaOuter.style.transform = 'none';
         }
         return;
       }
@@ -824,8 +850,10 @@
       if (ctaInnerText) { ctaInnerText.style.width = ''; ctaInnerText.style.textAlign = ''; }
       if (ctaOuter) { ctaOuter.style.width = ''; ctaOuter.style.textAlign = ''; ctaOuter.style.animation = ''; ctaOuter.style.opacity = ''; }
       if (ctaInner) { ctaInner.style.animation = ''; ctaInner.style.opacity = ''; }
-      if (h1El) { h1El.style.removeProperty('top'); h1El.style.setProperty('bottom', '60px'); h1El.style.setProperty('left', '56px'); h1El.style.setProperty('right', 'auto'); }
-      if (blurbEl) { blurbEl.style.removeProperty('top'); blurbEl.style.setProperty('bottom', '60px'); blurbEl.style.setProperty('left', 'auto'); blurbEl.style.setProperty('right', '56px'); }
+      if (h1El) { h1El.style.removeProperty('top'); h1El.style.removeProperty('text-align'); h1El.style.setProperty('bottom', '60px'); h1El.style.setProperty('left', '56px'); h1El.style.setProperty('right', 'auto'); }
+      if (blurbEl) { blurbEl.style.removeProperty('top'); blurbEl.style.removeProperty('text-align'); blurbEl.style.setProperty('bottom', '60px'); blurbEl.style.setProperty('left', 'auto'); blurbEl.style.setProperty('right', '56px'); }
+      if (ctaInner) { ctaInner.style.left = ''; ctaInner.style.top = ''; ctaInner.style.transform = ''; }
+      if (ctaInnerText) { ctaInnerText.style.top = ''; ctaInnerText.style.left = ''; }
 
       var photoLeft = cx - IRIS_X * scale;
       var photoTop = cy - IRIS_Y * scale;
