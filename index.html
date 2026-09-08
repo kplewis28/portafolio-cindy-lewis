@@ -443,10 +443,12 @@
       text-decoration: none;
     }
     #ctaInner.path-cta { z-index: 6 !important; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-    /* NB: no filter/backdrop-filter/transform on #ctaOuter — it would make the
-       position:fixed bottom sheet inside it anchor to the button instead of the
-       viewport. Lift its z-index so the sheet + backdrop cover the whole screen. */
-    #ctaOuter.path-cta { z-index: 60 !important; }
+    /* NB: no filter/backdrop-filter/transform on #ctaOuter — it would re-anchor
+       the fixed bottom sheet to the button. Keep the button at the same low
+       stacking level as the other hero bits so #about covers it on scroll; only
+       lift it (so the sheet clears everything) while the sheet is actually open. */
+    #ctaOuter.path-cta { z-index: 6 !important; }
+    #ctaOuter.path-cta[aria-expanded="true"] { z-index: 9997 !important; }
     #ctaInner.path-cta:active, #ctaOuter.path-cta:active { background: rgba(30,44,86,0.85); }
     .path-cta-text { font-size: 13.5px !important; text-shadow: none !important; }
 
