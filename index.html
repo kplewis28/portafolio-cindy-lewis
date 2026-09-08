@@ -348,27 +348,24 @@
   .proj-title { font-size: 19px; letter-spacing: -0.005em; font-weight: 600; }
   .proj-desc { font-size: 12px; line-height: 1.4; opacity: 0.8; margin-top: 8px; }
 
-  /* ---- mobile hero: navbar wraps, decorative stats/lines hidden, "Sobre mí"/"Mi trabajo" and the
-     taglines get stacked below the eye (positionEye() has a matching mobile branch) ---- */
-  @media (max-width: 720px) {
-    .hero-topbar { padding: 16px 18px !important; align-items: flex-start !important; }
-    .hero-topbar-links { gap: 15px !important; flex-wrap: wrap; justify-content: flex-end; row-gap: 10px; }
+  /* ---- mobile / portrait-tablet hero: navbar becomes a compact stacked bar,
+     decorative stats/lines are hidden, and positionEye()'s matching branch lays
+     the eye + "Sobre mí"/"Mi trabajo" + taglines out as one centered stack ---- */
+  @media (max-width: 720px), (max-width: 900px) and (orientation: portrait) {
+    .hero-topbar { padding: 18px 20px !important; flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+    .hero-topbar-links { width: 100%; gap: 18px !important; row-gap: 12px; flex-wrap: wrap; justify-content: flex-start !important; align-items: center; }
+    .hero-topbar-links .lang-toggle { margin-left: auto; }
     .hero-decor { display: none !important; }
     #pathOuter { pointer-events: none !important; }
-    .path-cta-text { font-size: 13.5px !important; }
-    .bottom-text { position: absolute !important; left: 20px !important; right: 20px !important; max-width: none !important; text-align: center !important; z-index: 4 !important; }
-    h1.bottom-text { bottom: 140px !important; font-size: clamp(23px, 7.6vw, 30px) !important; line-height: 1.12 !important; }
-    div.bottom-text { bottom: 38px !important; }
-    div.bottom-text p { font-size: 12.5px !important; line-height: 1.55 !important; margin: 0 auto !important; max-width: 340px; }
+    .path-cta-text { font-size: 14px !important; }
+    .bottom-text { position: fixed !important; max-width: none !important; text-align: center !important; z-index: 4 !important; }
+    h1.bottom-text { font-size: clamp(24px, 7vw, 31px) !important; line-height: 1.12 !important; }
+    div.bottom-text p { font-size: 13px !important; line-height: 1.58 !important; margin: 0 auto !important; max-width: 360px; }
   }
-  @media (max-width: 460px) {
-    .hero-topbar { flex-direction: column; gap: 12px !important; }
-    .hero-topbar-links { width: 100%; justify-content: flex-start; gap: 14px !important; }
-    h1.bottom-text { bottom: 128px !important; }
-  }
-  @media (max-height: 700px) and (max-width: 720px) {
-    h1.bottom-text { bottom: 116px !important; }
-    div.bottom-text { bottom: 30px !important; }
+  @media (max-width: 400px) {
+    .path-cta-text { font-size: 13px !important; }
+    h1.bottom-text { font-size: clamp(21px, 6.6vw, 26px) !important; }
+    div.bottom-text p { font-size: 12.5px !important; }
   }
 
   /* ---- first-visit language gate ---- */
@@ -678,15 +675,28 @@
 
       var innerEl = document.getElementById('pathInner');
       var outerEl = document.getElementById('pathOuter');
+      var ctaInner = document.getElementById('ctaInner');
       var ctaInnerLine = document.getElementById('ctaInnerLine');
       var ctaInnerText = document.getElementById('ctaInnerText');
       var ctaOuter = document.getElementById('ctaOuter');
       var outerLine = ctaOuter && ctaOuter.querySelector('.path-line');
+      var h1El = document.querySelector('h1.bottom-text');
+      var blurbEl = document.querySelector('div.bottom-text');
 
-      if (vw <= 720) {
-        // ---- mobile: shrink the eye so it fits with room for the CTAs + taglines below ----
-        var mcx = vw / 2, mcy = Math.round(vh * 0.40);
-        var diam = Math.min(IRIS_D * scale, vw - 40, vh * 0.42);
+      var portrait = vh >= vw;
+      if (vw <= 640 || (vw <= 900 && portrait)) {
+        // ---- mobile / portrait tablet: the eye + CTAs + taglines become one
+        //      centered vertical stack, all positioned relative to the eye so the
+        //      rhythm holds at any viewport height ----
+        var mcx = vw / 2;
+        var diam = Math.min(IRIS_D * scale, vw - 56, vh * 0.40, 330);
+        var ctaGap = 22, h1Gap = 40, blurbGap = 14;
+        var estH1 = 74, estBlurb = 96;
+        var stackH = diam + ctaGap + 20 + h1Gap + estH1 + blurbGap + estBlurb;
+        var topStart = Math.max(vh * 0.13, 84);
+        topStart = Math.max(topStart, Math.min(topStart + 60, (vh - stackH) / 2 + diam * 0.12));
+        var mcy = Math.round(topStart + diam / 2);
+
         var mrw = IMG_W * scale, mrh = IMG_H * scale;
         var mpl = mcx - IRIS_X * scale, mpt = mcy - IRIS_Y * scale;
         photoEl.style.width = mrw + 'px'; photoEl.style.height = mrh + 'px';
@@ -703,10 +713,14 @@
         var miD = diam * 0.3024, moD = diam * 0.84 + 26;
         if (innerEl) { innerEl.style.left = mcx + 'px'; innerEl.style.top = mcy + 'px'; innerEl.style.width = miD + 'px'; innerEl.style.height = miD + 'px'; innerEl.style.marginLeft = (-miD / 2) + 'px'; innerEl.style.marginTop = (-miD / 2) + 'px'; }
         if (outerEl) { outerEl.style.left = mcx + 'px'; outerEl.style.top = mcy + 'px'; outerEl.style.width = moD + 'px'; outerEl.style.height = moD + 'px'; outerEl.style.marginLeft = (-moD / 2) + 'px'; outerEl.style.marginTop = (-moD / 2) + 'px'; }
-        var belowY = Math.round(mcy + diam / 2 + 26);
+
+        var belowY = Math.round(mcy + diam / 2 + ctaGap);
         var half = Math.round(mcx - 16);
         if (ctaInnerLine) ctaInnerLine.style.display = 'none';
         if (outerLine) outerLine.style.display = 'none';
+        // the intro fade has a 4.3s delay on desktop — skip it on mobile
+        if (ctaInner) { ctaInner.style.animation = 'none'; ctaInner.style.opacity = '1'; }
+        if (ctaOuter) { ctaOuter.style.animation = 'none'; ctaOuter.style.opacity = '1'; }
         if (ctaInnerText) {
           ctaInnerText.style.top = belowY + 'px';
           ctaInnerText.style.left = '0px';
@@ -721,6 +735,20 @@
           ctaOuter.style.textAlign = 'left';
           ctaOuter.style.transform = 'none';
         }
+
+        if (h1El) {
+          h1El.style.setProperty('bottom', 'auto', 'important');
+          h1El.style.setProperty('top', (belowY + h1Gap) + 'px', 'important');
+          h1El.style.setProperty('left', '20px', 'important');
+          h1El.style.setProperty('right', '20px', 'important');
+        }
+        if (blurbEl) {
+          var h1b = h1El ? h1El.getBoundingClientRect().bottom : (belowY + h1Gap + estH1);
+          blurbEl.style.setProperty('bottom', 'auto', 'important');
+          blurbEl.style.setProperty('top', Math.round(h1b + blurbGap) + 'px', 'important');
+          blurbEl.style.setProperty('left', '20px', 'important');
+          blurbEl.style.setProperty('right', '20px', 'important');
+        }
         return;
       }
       // ---- desktop: full-bleed eye, CTAs at the horizontal edges ----
@@ -728,7 +756,10 @@
       if (outerLine) outerLine.style.display = '';
       if (blurEl) { blurEl.style.webkitMaskImage = ''; blurEl.style.maskImage = ''; }
       if (ctaInnerText) { ctaInnerText.style.width = ''; ctaInnerText.style.textAlign = ''; }
-      if (ctaOuter) { ctaOuter.style.width = ''; ctaOuter.style.textAlign = ''; }
+      if (ctaOuter) { ctaOuter.style.width = ''; ctaOuter.style.textAlign = ''; ctaOuter.style.animation = ''; ctaOuter.style.opacity = ''; }
+      if (ctaInner) { ctaInner.style.animation = ''; ctaInner.style.opacity = ''; }
+      if (h1El) { h1El.style.removeProperty('top'); h1El.style.setProperty('bottom', '60px'); h1El.style.setProperty('left', '56px'); h1El.style.setProperty('right', 'auto'); }
+      if (blurbEl) { blurbEl.style.removeProperty('top'); blurbEl.style.setProperty('bottom', '60px'); blurbEl.style.setProperty('left', 'auto'); blurbEl.style.setProperty('right', '56px'); }
 
       var photoLeft = cx - IRIS_X * scale;
       var photoTop = cy - IRIS_Y * scale;

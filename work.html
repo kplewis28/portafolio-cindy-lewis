@@ -204,6 +204,16 @@
     .statement, .closing, .video-block, .stage-cta { padding-left: 28px; padding-right: 28px; }
   }
 
+  /* ---- mobile: compact stacked navbar; reveal-on-scroll off so content is always visible ---- */
+  @media (max-width: 720px) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .navbar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px; }
+    .navbar > a { align-self: flex-start; }
+    .navbar .nav-links { width: 100%; gap: 16px 18px; row-gap: 12px; justify-content: flex-start; }
+    .navbar .nav-links .lang-toggle { margin-left: auto; }
+    .navbar .nav-links .nav-linkedin { order: 10; }
+  }
+
   /* ---- first-visit language gate ---- */
   .lang-gate[hidden] { display: none !important; }
   .lang-gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; background: rgba(6,10,24,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: langGateIn 0.4s ease both; }

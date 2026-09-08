@@ -448,6 +448,16 @@
   }
   .cta:hover { transform: translateY(-2px); background: rgba(217,72,15,0.32); border-color: rgba(255,170,110,0.7); box-shadow: 0 8px 24px rgba(217,72,15,0.25); }
 
+  /* ---- mobile: compact stacked navbar; reveal-on-scroll off so content is always visible ---- */
+  @media (max-width: 720px) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .navbar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px; }
+    .navbar > a { align-self: flex-start; }
+    .navbar .nav-links { width: 100%; gap: 16px 18px; row-gap: 12px; justify-content: flex-start; }
+    .navbar .nav-links .lang-toggle { margin-left: auto; }
+    .navbar .nav-links .nav-linkedin { order: 10; }
+  }
+
   /* ---- first-visit language gate ---- */
   .lang-gate[hidden] { display: none !important; }
   .lang-gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; background: rgba(6,10,24,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: langGateIn 0.4s ease both; }

@@ -150,6 +150,12 @@
     .hero-text { max-width: 100%; }
     .hero-phones { width: 320px; height: 440px; margin: 0 auto; }
   }
+  @media (max-width: 480px) {
+    .hero-phones { width: 270px; height: 400px; margin: 8px auto 0; }
+    .hero-phone-wrap.admin { width: 138px; right: 0; }
+    .hero-phone-wrap.resident { width: 168px; }
+    .hero-phone-tag { font-size: 9.5px; padding: 4px 10px; }
+  }
 
   /* Real screenshot frames — presented as phone mockups, not raw crops */
   .shot {
@@ -376,6 +382,16 @@
     transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .cta:hover { transform: translateY(-2px); background: rgba(60,100,220,0.32); border-color: rgba(160,200,255,0.7); box-shadow: 0 8px 24px rgba(70,120,230,0.25); }
+
+  /* ---- mobile: compact stacked navbar; reveal-on-scroll off so content is always visible ---- */
+  @media (max-width: 720px) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .navbar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px; }
+    .navbar > a { align-self: flex-start; }
+    .navbar .nav-links { width: 100%; gap: 16px 18px; row-gap: 12px; justify-content: flex-start; }
+    .navbar .nav-links .lang-toggle { margin-left: auto; }
+    .navbar .nav-links .nav-linkedin { order: 10; }
+  }
 
   /* ---- first-visit language gate ---- */
   .lang-gate[hidden] { display: none !important; }
