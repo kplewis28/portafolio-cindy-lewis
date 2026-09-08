@@ -152,17 +152,20 @@
 
   @media (max-width: 860px) {
     .hero-content { flex-direction: column; text-align: left; }
-    .hero-text { max-width: 100%; }
-    .hero-browser { max-width: 100%; }
+    /* in the column layout flex-basis becomes a min-HEIGHT — drop it so the
+       text block and the mockup size to their content (no dead space) */
+    .hero-text { max-width: 100%; flex: 0 0 auto; }
+    .hero-browser { max-width: 100%; flex: 0 0 auto; }
   }
   @media (max-width: 640px) {
     /* mobile hero: the -112px pull was sized for the tall desktop navbar; the
        mobile bar is ~71px, and the 40px headline is a wall of text at 390px */
-    .hero-photo { margin-top: -71px; padding: 92px 20px 44px; }
-    .hero-content { gap: 24px; }
+    .hero-photo { margin-top: -71px; padding: 92px 20px 40px; }
+    .hero-content { gap: 26px; }
     h1 { font-size: clamp(24px, 6.7vw, 33px); line-height: 1.16; }
     .eyebrow { font-size: 10.5px; letter-spacing: 0.15em; margin-bottom: 12px; }
     .lede { font-size: 14.5px; line-height: 1.65; }
+    .hero-mac-img { max-width: 440px; margin: 0 auto; }
   }
 
   /* Wireframe placeholder (only used where no real capture exists) */
