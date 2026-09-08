@@ -347,6 +347,71 @@
   }
   .proj-title { font-size: 19px; letter-spacing: -0.005em; font-weight: 600; }
   .proj-desc { font-size: 12px; line-height: 1.4; opacity: 0.8; margin-top: 8px; }
+
+  /* ---- mobile hero: navbar wraps, decorative stats/lines hidden, "Sobre mí"/"Mi trabajo" and the
+     taglines get stacked below the eye (positionEye() has a matching mobile branch) ---- */
+  @media (max-width: 720px) {
+    .hero-topbar { padding: 16px 18px !important; align-items: flex-start !important; }
+    .hero-topbar-links { gap: 15px !important; flex-wrap: wrap; justify-content: flex-end; row-gap: 10px; }
+    .hero-decor { display: none !important; }
+    #pathOuter { pointer-events: none !important; }
+    .path-cta-text { font-size: 13.5px !important; }
+    .bottom-text { position: absolute !important; left: 20px !important; right: 20px !important; max-width: none !important; text-align: center !important; z-index: 4 !important; }
+    h1.bottom-text { bottom: 140px !important; font-size: clamp(23px, 7.6vw, 30px) !important; line-height: 1.12 !important; }
+    div.bottom-text { bottom: 38px !important; }
+    div.bottom-text p { font-size: 12.5px !important; line-height: 1.55 !important; margin: 0 auto !important; max-width: 340px; }
+  }
+  @media (max-width: 460px) {
+    .hero-topbar { flex-direction: column; gap: 12px !important; }
+    .hero-topbar-links { width: 100%; justify-content: flex-start; gap: 14px !important; }
+    h1.bottom-text { bottom: 128px !important; }
+  }
+  @media (max-height: 700px) and (max-width: 720px) {
+    h1.bottom-text { bottom: 116px !important; }
+    div.bottom-text { bottom: 30px !important; }
+  }
+
+  /* ---- first-visit language gate ---- */
+  .lang-gate[hidden] { display: none !important; }
+  .lang-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; box-sizing: border-box;
+    background: rgba(6,10,24,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    animation: langGateIn 0.4s ease both;
+  }
+  @keyframes langGateIn { from { opacity: 0; } to { opacity: 1; } }
+  .lang-gate-card {
+    max-width: 420px; width: 100%; text-align: center;
+    border: 1px solid rgba(140,180,255,0.28); border-radius: 16px;
+    background: rgba(12,18,42,0.92);
+    padding: 40px 34px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .lang-gate-eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(200,215,255,0.5); margin: 0 0 14px;
+  }
+  .lang-gate-card h2 {
+    font-family: 'Inter', sans-serif; font-size: 19px; font-weight: 600;
+    letter-spacing: -0.01em; line-height: 1.4; color: #eaf0ff; margin: 0 0 6px;
+  }
+  .lang-gate-card h2 .alt {
+    display: block; font-size: 15px; font-weight: 400; color: rgba(220,228,255,0.62); margin-top: 4px;
+  }
+  .lang-gate-actions { display: flex; gap: 12px; margin-top: 26px; }
+  .lang-gate-actions button {
+    flex: 1; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+    color: #eaf0ff; background: rgba(140,180,255,0.12);
+    border: 1px solid rgba(140,180,255,0.4); border-radius: 10px;
+    padding: 13px 10px; transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+  .lang-gate-actions button:hover { background: rgba(140,180,255,0.24); border-color: rgba(160,195,255,0.7); transform: translateY(-1px); }
+  @media (max-width: 460px) {
+    .lang-gate-card { padding: 34px 24px; }
+    .lang-gate-actions { flex-direction: column; }
+  }
 </style>
 </helmet>
 
@@ -357,12 +422,26 @@
   <div class="blue-tint"></div>
   <div class="blue-glow"></div>
 
-  <div style="position:absolute; top:0; left:0; right:0; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:36px 48px; box-sizing:border-box;">
+  <div class="lang-gate" id="langGate" hidden>
+    <div class="lang-gate-card">
+      <p class="lang-gate-eyebrow">Cindy Lewis · UX/UI</p>
+      <h2>
+        ¿En qué idioma prefieres ver el contenido?
+        <span class="alt">Which language would you like?</span>
+      </h2>
+      <div class="lang-gate-actions">
+        <button type="button" data-lang-choose="es">Español</button>
+        <button type="button" data-lang-choose="en">English</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-topbar" style="position:absolute; top:0; left:0; right:0; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:36px 48px; box-sizing:border-box; gap:16px; flex-wrap:wrap;">
     <div>
       <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
       <div style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
     </div>
-    <div style="display:flex; align-items:center; gap:36px;">
+    <div class="hero-topbar-links" style="display:flex; align-items:center; gap:36px;">
       <div class="work-dd-wrap" data-dd>
         <button class="work-dd-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
         <div class="work-dropdown">
@@ -379,20 +458,20 @@
     </div>
   </div>
 
-  <div style="position:absolute; top:calc(50% - 280px); left:50%; width:1px; height:38px; background:linear-gradient(to bottom, transparent, rgba(150,190,255,0.55)); transform-origin:50% 100%; opacity:0; animation:lineGrowDown 3.4s ease 0.1s both; z-index:2;"></div>
-  <div style="position:absolute; top:calc(50% - 350px); left:50%; opacity:0; animation:statInTop 3.4s ease 0.35s both; z-index:2;" class="stat">
+  <div class="hero-decor" style="position:absolute; top:calc(50% - 280px); left:50%; width:1px; height:38px; background:linear-gradient(to bottom, transparent, rgba(150,190,255,0.55)); transform-origin:50% 100%; opacity:0; animation:lineGrowDown 3.4s ease 0.1s both; z-index:2;"></div>
+  <div class="hero-decor stat" style="position:absolute; top:calc(50% - 350px); left:50%; opacity:0; animation:statInTop 3.4s ease 0.35s both; z-index:2;">
     <p class="stat-label" data-i18n="stat.practice.label">Práctica</p>
     <p class="stat-value" data-i18n="stat.practice.value">Diseño de Producto e IA</p>
   </div>
 
-  <div style="position:absolute; top:50%; right:calc(50% + 190px); width:130px; height:1px; background:linear-gradient(to left, rgba(150,190,255,0.55), transparent); transform-origin:100% 50%; opacity:0; animation:lineGrowLeft 3.4s ease 0.45s both; z-index:2;"></div>
-  <div style="position:absolute; top:50%; left:calc(50% - 440px); opacity:0; animation:statInLeft 3.4s ease 0.7s both; z-index:2;" class="stat">
+  <div class="hero-decor" style="position:absolute; top:50%; right:calc(50% + 190px); width:130px; height:1px; background:linear-gradient(to left, rgba(150,190,255,0.55), transparent); transform-origin:100% 50%; opacity:0; animation:lineGrowLeft 3.4s ease 0.45s both; z-index:2;"></div>
+  <div class="hero-decor stat" style="position:absolute; top:50%; left:calc(50% - 440px); opacity:0; animation:statInLeft 3.4s ease 0.7s both; z-index:2;">
     <p class="stat-label" data-i18n="stat.focus.label">Enfoque</p>
     <p class="stat-value" data-i18n="stat.focus.value">Comportamiento del usuario</p>
   </div>
 
-  <div style="position:absolute; top:50%; left:calc(50% + 190px); width:130px; height:1px; background:linear-gradient(to right, rgba(150,190,255,0.55), transparent); transform-origin:0% 50%; opacity:0; animation:lineGrowRight 3.4s ease 0.8s both; z-index:2;"></div>
-  <div style="position:absolute; top:50%; right:calc(50% - 440px); opacity:0; animation:statInRight 3.4s ease 1.05s both; z-index:2;" class="stat">
+  <div class="hero-decor" style="position:absolute; top:50%; left:calc(50% + 190px); width:130px; height:1px; background:linear-gradient(to right, rgba(150,190,255,0.55), transparent); transform-origin:0% 50%; opacity:0; animation:lineGrowRight 3.4s ease 0.8s both; z-index:2;"></div>
+  <div class="hero-decor stat" style="position:absolute; top:50%; right:calc(50% - 440px); opacity:0; animation:statInRight 3.4s ease 1.05s both; z-index:2;">
     <p class="stat-label" data-i18n="stat.status.label">Estado</p>
     <p class="stat-value" data-i18n="stat.status.value">Construyendo con IA</p>
   </div>
@@ -596,6 +675,60 @@
       var scale = Math.max(vw / IMG_W, vh / IMG_H);
       var rw = IMG_W * scale, rh = IMG_H * scale;
       var cx = vw / 2, cy = vh / 2;
+
+      var innerEl = document.getElementById('pathInner');
+      var outerEl = document.getElementById('pathOuter');
+      var ctaInnerLine = document.getElementById('ctaInnerLine');
+      var ctaInnerText = document.getElementById('ctaInnerText');
+      var ctaOuter = document.getElementById('ctaOuter');
+      var outerLine = ctaOuter && ctaOuter.querySelector('.path-line');
+
+      if (vw <= 720) {
+        // ---- mobile: shrink the eye so it fits with room for the CTAs + taglines below ----
+        var mcx = vw / 2, mcy = Math.round(vh * 0.40);
+        var diam = Math.min(IRIS_D * scale, vw - 40, vh * 0.42);
+        var mrw = IMG_W * scale, mrh = IMG_H * scale;
+        var mpl = mcx - IRIS_X * scale, mpt = mcy - IRIS_Y * scale;
+        photoEl.style.width = mrw + 'px'; photoEl.style.height = mrh + 'px';
+        photoEl.style.left = mpl + 'px'; photoEl.style.top = mpt + 'px';
+        if (blurEl) {
+          blurEl.style.backgroundSize = mrw + 'px ' + mrh + 'px';
+          blurEl.style.backgroundPosition = mpl + 'px ' + mpt + 'px';
+          var hole = diam / 2;
+          var mk = 'radial-gradient(circle at ' + mcx + 'px ' + mcy + 'px, transparent 0, transparent ' + (hole * 0.5) + 'px, black ' + (hole * 1.08) + 'px)';
+          blurEl.style.webkitMaskImage = mk; blurEl.style.maskImage = mk;
+        }
+        eyeEl.style.left = mcx + 'px'; eyeEl.style.top = mcy + 'px';
+        eyeEl.style.width = diam + 'px'; eyeEl.style.height = diam + 'px';
+        var miD = diam * 0.3024, moD = diam * 0.84 + 26;
+        if (innerEl) { innerEl.style.left = mcx + 'px'; innerEl.style.top = mcy + 'px'; innerEl.style.width = miD + 'px'; innerEl.style.height = miD + 'px'; innerEl.style.marginLeft = (-miD / 2) + 'px'; innerEl.style.marginTop = (-miD / 2) + 'px'; }
+        if (outerEl) { outerEl.style.left = mcx + 'px'; outerEl.style.top = mcy + 'px'; outerEl.style.width = moD + 'px'; outerEl.style.height = moD + 'px'; outerEl.style.marginLeft = (-moD / 2) + 'px'; outerEl.style.marginTop = (-moD / 2) + 'px'; }
+        var belowY = Math.round(mcy + diam / 2 + 26);
+        var half = Math.round(mcx - 16);
+        if (ctaInnerLine) ctaInnerLine.style.display = 'none';
+        if (outerLine) outerLine.style.display = 'none';
+        if (ctaInnerText) {
+          ctaInnerText.style.top = belowY + 'px';
+          ctaInnerText.style.left = '0px';
+          ctaInnerText.style.width = half + 'px';
+          ctaInnerText.style.textAlign = 'right';
+          ctaInnerText.style.transform = 'none';
+        }
+        if (ctaOuter) {
+          ctaOuter.style.top = belowY + 'px';
+          ctaOuter.style.left = (mcx + 16) + 'px';
+          ctaOuter.style.width = half + 'px';
+          ctaOuter.style.textAlign = 'left';
+          ctaOuter.style.transform = 'none';
+        }
+        return;
+      }
+      // ---- desktop: full-bleed eye, CTAs at the horizontal edges ----
+      if (ctaInnerLine) ctaInnerLine.style.display = '';
+      if (outerLine) outerLine.style.display = '';
+      if (blurEl) { blurEl.style.webkitMaskImage = ''; blurEl.style.maskImage = ''; }
+      if (ctaInnerText) { ctaInnerText.style.width = ''; ctaInnerText.style.textAlign = ''; }
+      if (ctaOuter) { ctaOuter.style.width = ''; ctaOuter.style.textAlign = ''; }
 
       var photoLeft = cx - IRIS_X * scale;
       var photoTop = cy - IRIS_Y * scale;
@@ -935,9 +1068,15 @@
       }
     };
 
-    function applyLang(lang) {
+    function applyLang(lang, userChoice) {
       lang = (lang === 'en') ? 'en' : 'es';
       window.__portfolioLang = lang;
+      if (userChoice) {
+        window.__portfolioLangChosen = true;
+        try { localStorage.setItem('portfolioLangChosen', '1'); } catch (e) {}
+        var gate = document.getElementById('langGate');
+        if (gate) gate.hidden = true;
+      }
       document.documentElement.setAttribute('lang', lang);
       var dict = I18N[lang];
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
@@ -962,13 +1101,30 @@
       document.querySelectorAll('.lang-btn').forEach(function (btn) {
         if (btn.dataset.langBound) return;
         btn.dataset.langBound = '1';
-        btn.addEventListener('click', function () { applyLang(btn.dataset.langBtn); });
+        btn.addEventListener('click', function () { applyLang(btn.dataset.langBtn, true); });
       });
     }
 
-    var savedLang = 'es';
+    // First visit: ask the user which language before anything else. The message is
+    // bilingual so it reads either way. Once chosen (here or via the ES/EN toggle)
+    // the choice sticks and the gate never shows again.
+    function bindLangGate() {
+      var gate = document.getElementById('langGate');
+      if (!gate) return;
+      if (window.__portfolioLangChosen) { gate.hidden = true; return; }
+      gate.hidden = false;
+      gate.querySelectorAll('[data-lang-choose]').forEach(function (btn) {
+        if (btn.dataset.gateBound) return;
+        btn.dataset.gateBound = '1';
+        btn.addEventListener('click', function () { applyLang(btn.dataset.langChoose, true); });
+      });
+    }
+
+    var savedLang = 'es', langChosen = false;
     try { savedLang = localStorage.getItem('portfolioLang') || 'es'; } catch (e) {}
+    try { langChosen = !!localStorage.getItem('portfolioLangChosen'); } catch (e) {}
     window.__portfolioLang = (savedLang === 'en') ? 'en' : 'es';
+    window.__portfolioLangChosen = langChosen;
 
     // The x-dc runtime re-renders this whole tree once the canvas finishes mounting
     // (buildFibers -> setState({ready:true})), which replaces the DOM nodes an
@@ -976,7 +1132,8 @@
     // settles, same defensive pattern positionEye() already uses below.
     function bindAbout() {
       bindAboutReveal(); bindRoadReveal(); bindRoadHover(); bindRoleCycler();
-      bindWorkDropdown(); bindWorkChoice(); bindLangToggle(); applyLang(window.__portfolioLang);
+      bindWorkDropdown(); bindWorkChoice(); bindLangToggle(); bindLangGate();
+      applyLang(window.__portfolioLang);
     }
     bindAbout();
     setTimeout(bindAbout, 400);
