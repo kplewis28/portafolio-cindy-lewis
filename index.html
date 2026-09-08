@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.title">Cindy Lewis · Diseñadora de Producto e IA</title>
 <script src="./support.js"></script>
+<script>
+/* if a language was already chosen (localStorage or cookie), hide the first-visit
+   gate before it can ever render — survives reloads and x-dc re-renders */
+(function(){try{var c=false;try{c=!!localStorage.getItem("portfolioLangChosen");}catch(e){}try{c=c||document.cookie.indexOf("plangChosen=1")!==-1;}catch(e){}if(c){var s=document.createElement("style");s.textContent="#langGate{display:none!important}";(document.head||document.documentElement).appendChild(s);}}catch(e){}})();
+</script>
 </head>
 <body>
 <x-dc>

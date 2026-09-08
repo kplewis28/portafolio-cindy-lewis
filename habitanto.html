@@ -455,6 +455,11 @@
   .lang-gate-actions button:hover { background: rgba(140,180,255,0.24); border-color: rgba(160,195,255,0.7); transform: translateY(-1px); }
   @media (max-width: 460px) { .lang-gate-card { padding: 34px 24px; } .lang-gate-actions { flex-direction: column; } }
 </style>
+<script>
+/* if a language was already chosen (localStorage or cookie), hide the first-visit
+   gate before it can ever render — survives reloads and x-dc re-renders */
+(function(){try{var c=false;try{c=!!localStorage.getItem("portfolioLangChosen");}catch(e){}try{c=c||document.cookie.indexOf("plangChosen=1")!==-1;}catch(e){}if(c){var s=document.createElement("style");s.textContent="#langGate{display:none!important}";(document.head||document.documentElement).appendChild(s);}}catch(e){}})();
+</script>
 </head>
 <body>
 <div class="lang-gate" id="langGate" hidden>
