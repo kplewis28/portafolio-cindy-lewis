@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta.title">Sobre mí · Cindy Lewis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: #0a0e1a; color: #eaf0ff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  a { color: inherit; }
+
+  .progress { position: fixed; top: 0; left: 0; height: 2.5px; width: 0%; background: linear-gradient(90deg, #4d78e0, #8cb4ff); z-index: 50; transition: width 0.1s linear; box-shadow: 0 0 12px rgba(140,180,255,0.6); }
+
+  .bg-glow { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 90% 46% at 50% -8%, rgba(70,120,230,0.16) 0%, transparent 62%); }
+
+  .navbar { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 36px 48px; box-sizing: border-box; flex-wrap: wrap; gap: 16px; background: rgba(10,14,26,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .navbar .nav-links { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+  .navbar .nav-links a.nav-link { font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85); text-decoration: none; }
+  .pill-btn { display: inline-block; padding: 11px 22px; border-radius: 999px; border: 1px solid rgba(140,180,255,0.45); background: rgba(60,100,220,0.18); color: #eaf0ff; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; }
+  .nav-linkedin { display: inline-flex; align-items: center; gap: 7px; }
+  .nav-linkedin svg { width: 15px; height: 15px; flex: 0 0 auto; }
+
+  .work-dd-wrap { position: relative; }
+  .work-dd-trigger {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85);
+    background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+  }
+  .wd-caret { font-size: 10px; opacity: 0.7; transition: transform 0.2s ease; }
+  .work-dd-wrap:hover .wd-caret, .work-dd-wrap.wd-open .wd-caret { transform: rotate(180deg); }
+  .work-dropdown {
+    position: absolute; top: 100%; left: 0; margin-top: 14px; min-width: 230px;
+    display: flex; flex-direction: column; gap: 2px;
+    background: rgba(15,20,35,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 8px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 60;
+  }
+  .work-dd-wrap:hover .work-dropdown, .work-dd-wrap.wd-open .work-dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .wd-item {
+    display: block; text-align: left;
+    font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 500;
+    color: rgba(220,228,255,0.8); text-decoration: none;
+    padding: 10px 12px; border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wd-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .wd-item.is-current { color: #fff; background: rgba(60,100,220,0.22); }
+
+  .nav-link.is-current, .work-dd-trigger.is-current {
+    color: #fff;
+    padding-bottom: 4px;
+    border-bottom: 2px solid rgba(140,180,255,0.85);
+  }
+
+  .lang-toggle {
+    display: inline-flex; align-items: center; border: 1px solid rgba(140,180,255,0.35);
+    border-radius: 999px; padding: 3px; gap: 2px; background: rgba(255,255,255,0.03);
+  }
+  .lang-btn {
+    font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em;
+    color: rgba(220,228,255,0.6); background: none; border: none; border-radius: 999px;
+    padding: 6px 12px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
+  }
+  .lang-btn.active { background: rgba(60,100,220,0.32); color: #eaf0ff; }
+  .lang-btn:not(.active):hover { color: rgba(220,228,255,0.85); }
+
+  .content { position: relative; z-index: 2; }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* one reading column for the whole page */
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 28px; }
+
+  /* hero */
+  .hero { padding: 88px 0 20px; text-align: left; }
+  .hero .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,215,255,0.55); margin: 0 0 18px; }
+  .hero h1 { font-size: clamp(34px, 6vw, 46px); letter-spacing: -0.015em; margin: 0 0 22px; line-height: 1.03; }
+  .hero h1 .light { font-weight: 400; }
+  .hero h1 .bold { font-weight: 700; font-style: italic; }
+  .hero .lede { font-size: 17px; line-height: 1.72; color: rgba(220,228,255,0.82); max-width: 560px; margin: 0; }
+
+  /* timeline story */
+  .story { position: relative; padding: 56px 0 8px; }
+  .story::before {
+    content: ''; position: absolute; left: 5px; top: 62px; bottom: 46px; width: 2px;
+    background: linear-gradient(180deg, rgba(140,180,255,0.5) 0%, rgba(140,180,255,0.5) 82%, rgba(140,180,255,0.08) 100%);
+  }
+  .chapter { position: relative; padding: 0 0 46px 34px; }
+  .chapter:last-child { padding-bottom: 0; }
+  .chapter::before {
+    content: ''; position: absolute; left: 0; top: 4px; width: 12px; height: 12px; border-radius: 50%;
+    background: #0a0e1a; border: 2px solid rgba(140,180,255,0.6); box-shadow: 0 0 0 4px #0a0e1a;
+  }
+  .chapter.current::before {
+    background: #8cb4ff; border-color: #8cb4ff;
+    box-shadow: 0 0 0 4px #0a0e1a, 0 0 14px 2px rgba(140,180,255,0.5);
+  }
+  .chapter-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(168,200,255,0.9); margin: 0 0 8px; }
+  .chapter h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: #fff; margin: 0 0 12px; }
+  .chapter p { font-size: 15px; line-height: 1.72; color: rgba(224,231,255,0.8); margin: 0 0 12px; }
+  .chapter p:last-child { margin-bottom: 0; }
+
+  /* pull quote — capstone after the story */
+  .pull { margin: 44px 0 0; padding: 4px 0 4px 22px; border-left: 3px solid rgba(140,180,255,0.55); }
+  .pull blockquote {
+    font-family: 'Inter', sans-serif; font-size: clamp(19px, 2.5vw, 23px); font-weight: 600;
+    line-height: 1.45; letter-spacing: -0.01em; color: #fff; margin: 0;
+  }
+
+  /* toolkit — icon chips, same language as the home page */
+  .toolkit { padding: 60px 0 0; }
+  .toolkit-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(200,215,255,0.5); margin: 0 0 18px; }
+  .tools-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .tools-list li {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 15px 8px 12px; border-radius: 999px;
+    border: 1px solid rgba(140,180,255,0.22); background: rgba(255,255,255,0.03);
+    font-size: 13.5px; font-weight: 500; color: rgba(224,231,255,0.9);
+  }
+  .tools-list svg { width: 15px; height: 15px; flex: 0 0 auto; fill: rgba(180,205,255,0.92); }
+
+  /* closing */
+  .closing { margin-top: 60px; padding: 44px 0 130px; border-top: 1px solid rgba(140,180,255,0.14); }
+  .closing .epilogue { font-size: 15px; line-height: 1.72; color: rgba(220,228,255,0.7); margin: 0 0 22px; }
+  .closing h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.4; margin: 0 0 22px; color: #fff; }
+  .closing .sign { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: rgba(200,215,255,0.5); letter-spacing: 0.06em; margin: 0 0 26px; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 0 22px; }
+    .hero { padding: 60px 0 12px; }
+    .navbar { padding: 24px 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="bg-glow"></div>
+
+<div class="content">
+<div class="navbar">
+  <a href="./El%20Ojo.dc.html" style="text-decoration:none; color:inherit; display:block;">
+    <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
+    <div style="font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
+  </a>
+  <div class="nav-links">
+    <div class="work-dd-wrap" data-dd>
+      <button class="nav-link work-dd-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
+      <div class="work-dropdown">
+        <a class="wd-item" href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
+        <a class="wd-item" href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
+      </div>
+    </div>
+    <a class="nav-link is-current" href="./about.html" data-i18n="nav.about">Sobre mí</a>
+    <div class="lang-toggle">
+      <button class="lang-btn" type="button" data-lang-btn="es">ES</button>
+      <button class="lang-btn" type="button" data-lang-btn="en">EN</button>
+    </div>
+    <a class="pill-btn nav-linkedin" href="https://www.linkedin.com/in/cindy-lewis-uxdesigner/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/></svg><span>LinkedIn</span></a>
+  </div>
+</div>
+
+<header class="hero wrap reveal">
+  <p class="eyebrow" data-i18n="hero.eyebrow">Mi historia</p>
+  <h1><span class="light">Cindy </span><span class="bold">Lewis</span></h1>
+  <p class="lede" data-i18n="hero.lede">Antes de diseñar productos de IA, diseñaba cosas que se podían tocar. Resulta que el instinto detrás de ambas es el mismo: seis roles, tres disciplinas, un mismo hilo.</p>
+</header>
+
+<div class="wrap">
+  <div class="story">
+    <article class="chapter reveal" id="ch0">
+      <p class="chapter-meta" data-i18n="ch0.meta">2006 – 2011</p>
+      <h2 data-i18n="ch0.h2">Dónde empezó</h2>
+      <p data-i18n="ch0.p1">Estudié diseño industrial en la Universidad del Norte: no pantallas, sino objetos, materiales y la forma en que la gente realmente manipula las cosas con las manos. Todavía no lo sabía, pero el instinto que definiría todo lo que vino después ya estaba ahí: mirar cómo alguien usa algo de verdad y luego hacerlo mejor.</p>
+      <p data-i18n="ch0.p2">El diseño industrial te enseña a tratar un problema como algo con más de una respuesta válida: lo bocetas desde varios ángulos antes de confiar en alguno, y después empujas el que funciona hasta que se convierte en algo que alguien puede sostener, usar y lanzar. Ese hábito nunca se fue. Sigue siendo la forma en que abro cada flujo de IA que diseño hoy: varios ángulos, un producto que funciona.</p>
+    </article>
+
+    <article class="chapter reveal" id="ch1">
+      <p class="chapter-meta" data-i18n="ch1.meta">2014 – 2015</p>
+      <h2 data-i18n="ch1.h2">Hecho para desaparecer</h2>
+      <p data-i18n="ch1.p1">Durante un año diseñé arquitectura efímera: escenarios y estructuras que se levantaban para un solo evento y se desmontaban días después. Todo tenía que funcionar a la primera, en vivo, frente a la gente, sin segunda toma. En ese entonces no lo llamaba "pruebas de usuario". Era simplemente lo que pasaba cuando algo aguantaba o no.</p>
+    </article>
+
+    <article class="chapter reveal" id="ch2">
+      <p class="chapter-meta" data-i18n="ch2.meta">2015 – 2019</p>
+      <h2 data-i18n="ch2.h2">Manejar el negocio yo misma</h2>
+      <p data-i18n="ch2.p1">Después manejé mi propia empresa, Reserva Nevada, durante tres años. Nadie te entrega un brief cuando el negocio es tuyo: decides, vives con la decisión y ajustas. Me enseñó más sobre cómo las restricciones reales le dan forma a un producto que cualquier curso de diseño.</p>
+      <p data-i18n="ch2.p2">Cuando ese capítulo se cerró, me di cuenta de que lo que de verdad quería conservar era la parte de decidir, solo que apuntada de nuevo hacia el diseño, esta vez a propósito.</p>
+    </article>
+
+    <article class="chapter reveal" id="ch3">
+      <p class="chapter-meta" data-i18n="ch3.meta">2023</p>
+      <h2 data-i18n="ch3.h2">De vuelta al diseño, esta vez en pantallas</h2>
+      <p data-i18n="ch3.p1">Volví como freelance, construyendo el sitio de Nativo Foods desde cero: sentándome con el cliente, entendiendo lo que de verdad necesitaba en vez de lo que pedía primero. Proyecto pequeño, pero confirmó lo que sospechaba: quería diseñar productos, no solo manejar un negocio alrededor de ellos.</p>
+    </article>
+
+    <article class="chapter reveal" id="ch4">
+      <p class="chapter-meta" data-i18n="ch4.meta">Feb – Sep 2024 · Habitanto</p>
+      <h2 data-i18n="ch4.h2">Aprender qué significa de verdad "producto"</h2>
+      <p data-i18n="ch4.p1">Diseñé dos apps a la vez: una para administradores que manejan pagos, cobranza y reservas de zonas comunes, y otra para residentes que solo intentan que un mensaje llegue. Hice las pruebas de usuario yo misma y me senté con marketing para que el producto y el mensaje nunca se separaran. Fue la primera vez que me llamé diseñadora de producto en vez de diseñadora UX, y se quedó.</p>
+    </article>
+
+    <article class="chapter current reveal" id="ch5">
+      <p class="chapter-meta" data-i18n="ch5.meta">Jun 2024 – Presente · Tangering AI</p>
+      <h2 data-i18n="ch5.h2">Dónde estoy ahora</h2>
+      <p data-i18n="ch5.p1">Diseño la plataforma que les permite a equipos no técnicos construir, probar y desplegar sus propios agentes de IA: convertir flujos que son genuinamente difíciles de explicar en algo que se siente obvio. Sigo trabajando como siempre lo he hecho: prototipo rápido en Figma y Make, valido con usuarios reales y entrego flujos listos para desarrollo en V0 para que nada se pierda entre el diseño y el código.</p>
+    </article>
+  </div>
+
+  <div class="pull reveal">
+    <blockquote data-i18n="pull.quote">"Cada restricción dentro de la que he diseñado (un escenario construido para una sola noche, un negocio que tuve que manejar yo misma) me enseñó la misma lección antes de que la llamara diseño: hacer que lo complicado se sienta obvio."</blockquote>
+  </div>
+
+  <div class="toolkit reveal">
+    <p class="toolkit-label" data-i18n="toolkit.label">Herramientas y formas de trabajar</p>
+    <ul class="tools-list">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.015-4.49-4.491S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.491 4.49-4.491h4.588v8.981zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.02s1.354 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.491 4.49-4.491h4.588v4.441c0 2.503-2.047 4.54-4.563 4.54zm-.025-7.51a3.023 3.023 0 0 0-3.019 3.02c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.971H8.147zm7.705 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.098-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg>Figma</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l1.9 7.2 5.2-3.1-3.1 5.2 7.2 1.9-7.2 1.9 3.1 5.2-5.2-3.1L12 22.4l-1.9-7.2-5.2 3.1 3.1-5.2L.8 12.8l7.2-1.9-3.1-5.2 5.2 3.1z"/></svg>Claude</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.6 17L4 11.5 9.6 6 8.1 4.5 1 11.5l7.1 7zM14.4 17l5.6-5.5L14.4 6l1.5-1.5 7.1 7-7.1 7z"/></svg>Claude Code</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.887l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.542-1.632z"/></svg>Notion</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0z"/></svg>Jira</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Slack</li>
+    </ul>
+  </div>
+
+  <div class="closing reveal">
+    <p class="epilogue" data-i18n="closing.epilogue">He sido la persona que construye la cosa y la persona que tuvo que vivir con lo que se construyó. Esa sigue siendo la mayor ventaja que llevo a una sala: diseño como si las restricciones fueran reales, porque he estado en ambos lados de ellas.</p>
+    <h2 data-i18n="closing.h2">Productos de IA que se sienten humanos, resuelven problemas reales y generan resultados medibles.</h2>
+    <p class="sign" data-i18n="closing.sign">Radicada en Bogotá</p>
+    <a class="pill-btn" href="./work.html" data-i18n="closing.cta">Ver el trabajo →</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  var bar = document.getElementById('progress');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var height = h.scrollHeight - h.clientHeight;
+    bar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  document.querySelectorAll('[data-dd]').forEach(function(dd) {
+    var trigger = dd.querySelector('.work-dd-trigger');
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      var open = dd.classList.toggle('wd-open');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.work-dd-wrap.wd-open').forEach(function(dd) {
+      if (!dd.contains(e.target)) {
+        dd.classList.remove('wd-open');
+        dd.querySelector('.work-dd-trigger').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  var I18N = {
+    es: {
+      'meta.title': 'Sobre mí · Cindy Lewis',
+      'nav.work': 'Trabajo',
+      'nav.about': 'Sobre mí',
+      'nav.payments': 'Pagos',
+      'nav.aiAgents': 'Agentes de IA',
+      'hero.eyebrow': 'Mi historia',
+      'hero.lede': 'Antes de diseñar productos de IA, diseñaba cosas que se podían tocar. Resulta que el instinto detrás de ambas es el mismo: seis roles, tres disciplinas, un mismo hilo.',
+      'ch0.meta': '2006 – 2011',
+      'ch0.h2': 'Dónde empezó',
+      'ch0.p1': 'Estudié diseño industrial en la Universidad del Norte: no pantallas, sino objetos, materiales y la forma en que la gente realmente manipula las cosas con las manos. Todavía no lo sabía, pero el instinto que definiría todo lo que vino después ya estaba ahí: mirar cómo alguien usa algo de verdad y luego hacerlo mejor.',
+      'ch0.p2': 'El diseño industrial te enseña a tratar un problema como algo con más de una respuesta válida: lo bocetas desde varios ángulos antes de confiar en alguno, y después empujas el que funciona hasta que se convierte en algo que alguien puede sostener, usar y lanzar. Ese hábito nunca se fue. Sigue siendo la forma en que abro cada flujo de IA que diseño hoy: varios ángulos, un producto que funciona.',
+      'ch1.meta': '2014 – 2015',
+      'ch1.h2': 'Hecho para desaparecer',
+      'ch1.p1': 'Durante un año diseñé arquitectura efímera: escenarios y estructuras que se levantaban para un solo evento y se desmontaban días después. Todo tenía que funcionar a la primera, en vivo, frente a la gente, sin segunda toma. En ese entonces no lo llamaba "pruebas de usuario". Era simplemente lo que pasaba cuando algo aguantaba o no.',
+      'ch2.meta': '2015 – 2019',
+      'ch2.h2': 'Manejar el negocio yo misma',
+      'ch2.p1': 'Después manejé mi propia empresa, Reserva Nevada, durante tres años. Nadie te entrega un brief cuando el negocio es tuyo: decides, vives con la decisión y ajustas. Me enseñó más sobre cómo las restricciones reales le dan forma a un producto que cualquier curso de diseño.',
+      'ch2.p2': 'Cuando ese capítulo se cerró, me di cuenta de que lo que de verdad quería conservar era la parte de decidir, solo que apuntada de nuevo hacia el diseño, esta vez a propósito.',
+      'ch3.meta': '2023',
+      'ch3.h2': 'De vuelta al diseño, esta vez en pantallas',
+      'ch3.p1': 'Volví como freelance, construyendo el sitio de Nativo Foods desde cero: sentándome con el cliente, entendiendo lo que de verdad necesitaba en vez de lo que pedía primero. Proyecto pequeño, pero confirmó lo que sospechaba: quería diseñar productos, no solo manejar un negocio alrededor de ellos.',
+      'ch4.meta': 'Feb – Sep 2024 · Habitanto',
+      'ch4.h2': 'Aprender qué significa de verdad "producto"',
+      'ch4.p1': 'Diseñé dos apps a la vez: una para administradores que manejan pagos, cobranza y reservas de zonas comunes, y otra para residentes que solo intentan que un mensaje llegue. Hice las pruebas de usuario yo misma y me senté con marketing para que el producto y el mensaje nunca se separaran. Fue la primera vez que me llamé diseñadora de producto en vez de diseñadora UX, y se quedó.',
+      'ch5.meta': 'Jun 2024 – Presente · Tangering AI',
+      'ch5.h2': 'Dónde estoy ahora',
+      'ch5.p1': 'Diseño la plataforma que les permite a equipos no técnicos construir, probar y desplegar sus propios agentes de IA: convertir flujos que son genuinamente difíciles de explicar en algo que se siente obvio. Sigo trabajando como siempre lo he hecho: prototipo rápido en Figma y Make, valido con usuarios reales y entrego flujos listos para desarrollo en V0 para que nada se pierda entre el diseño y el código.',
+      'pull.quote': '"Cada restricción dentro de la que he diseñado (un escenario construido para una sola noche, un negocio que tuve que manejar yo misma) me enseñó la misma lección antes de que la llamara diseño: hacer que lo complicado se sienta obvio."',
+      'toolkit.label': 'Herramientas y formas de trabajar',
+      'closing.epilogue': 'He sido la persona que construye la cosa y la persona que tuvo que vivir con lo que se construyó. Esa sigue siendo la mayor ventaja que llevo a una sala: diseño como si las restricciones fueran reales, porque he estado en ambos lados de ellas.',
+      'closing.h2': 'Productos de IA que se sienten humanos, resuelven problemas reales y generan resultados medibles.',
+      'closing.sign': 'Radicada en Bogotá',
+      'closing.cta': 'Ver el trabajo →'
+    },
+    en: {
+      'meta.title': 'About · Cindy Lewis',
+      'nav.work': 'Work',
+      'nav.about': 'About Me',
+      'nav.payments': 'Payments',
+      'nav.aiAgents': 'AI Agents',
+      'hero.eyebrow': 'My story',
+      'hero.lede': 'Before I designed AI products, I designed things you could touch. Turns out the instinct behind both is the same one: six roles, three disciplines, one thread.',
+      'ch0.meta': '2006 – 2011',
+      'ch0.h2': 'Where it started',
+      'ch0.p1': "I studied industrial design at Universidad del Norte: not screens, but objects, materials, and how people actually handle things with their hands. I didn't know it yet, but the instinct that would define everything after was already there: watch how someone really uses a thing, then make it better.",
+      'ch0.p2': "Industrial design trains you to treat a problem as something with more than one valid answer: you sketch it from several angles before you trust any of them, then push the one that works until it becomes something someone can actually hold, use, ship. That habit never left. It's still how I open every AI workflow I design today: several angles, one working product.",
+      'ch1.meta': '2014 – 2015',
+      'ch1.h2': 'Built to disappear',
+      'ch1.p1': 'For a year I designed ephemeral architecture: stages and structures raised for a single event and taken down days later. Everything had to work the first time, live, in front of people, with no second take. I didn\'t call it "user testing" back then. It was just what happened when something either held up or it didn\'t.',
+      'ch2.meta': '2015 – 2019',
+      'ch2.h2': 'Running the thing myself',
+      'ch2.p1': 'Then I ran my own company, Reserva Nevada, for three years. Nobody hands you a spec when it\'s your own business: you decide, you live with the decision, you adjust. It taught me more about how real constraints actually shape a product than any design course did.',
+      'ch2.p2': 'When that chapter closed, I realized what I actually wanted to keep was the deciding part, just pointed back at design, this time on purpose.',
+      'ch3.meta': '2023',
+      'ch3.h2': 'Back to design, this time on screens',
+      'ch3.p1': "I came back as a freelancer, building Nativo Foods' website from scratch: sitting with the client, figuring out what they actually needed rather than what they asked for first. Small project, but it confirmed the thing I'd suspected: I wanted to design products, not just run a business around them.",
+      'ch4.meta': 'Feb – Sep 2024 · Habitanto',
+      'ch4.h2': 'Learning what "product" really means',
+      'ch4.p1': 'I designed two apps at once: one for admins running payments, collections and common-area reservations, one for residents just trying to get a message through. I ran the user testing myself and sat with marketing so the product and the message never drifted apart. It was the first time I called myself a product designer instead of a UX designer, and it stuck.',
+      'ch5.meta': 'Jun 2024 – Present · Tangering AI',
+      'ch5.h2': 'Where I am now',
+      'ch5.p1': 'I design the platform that lets non-technical teams build, test and deploy their own AI agents: turning workflows that are genuinely hard to explain into something that feels obvious. I still work the way I always have: prototype fast in Figma and Make, validate with real users, then hand off developer-ready flows in V0 so nothing gets lost between design and code.',
+      'pull.quote': '"Every constraint I\'ve designed inside (a stage built for one night, a business I had to run myself) taught me the same lesson before I ever called it design: make the complicated thing feel obvious."',
+      'toolkit.label': 'Tools & ways of working',
+      'closing.epilogue': "I've been the person building the thing, and the person who had to live with what got built. That's still the biggest advantage I bring into a room: I design like the constraints are real, because I've been on both sides of them.",
+      'closing.h2': 'AI products that feel human, solve real problems, and generate measurable results.',
+      'closing.sign': 'Based in Bogotá',
+      'closing.cta': 'See the work →'
+    }
+  };
+
+  function applyLang(lang) {
+    document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'es');
+    var dict = I18N[lang] || I18N.es;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    var titleEl = document.querySelector('title[data-i18n]');
+    if (titleEl) document.title = dict[titleEl.getAttribute('data-i18n')] || document.title;
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.langBtn === lang);
+    });
+    try { localStorage.setItem('portfolioLang', lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { applyLang(btn.dataset.langBtn); });
+  });
+
+  var savedLang = 'es';
+  try { savedLang = localStorage.getItem('portfolioLang') || 'es'; } catch (e) {}
+  applyLang(savedLang);
+</script>
+</body>
+</html>

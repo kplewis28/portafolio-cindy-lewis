@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Helvetica:wght@400;500&display=swap" rel="stylesheet">
+<meta name="design_doc_mode" content="canvas">
+<style>
+  body { margin:0; background: oklch(0.98 0.005 80); }
+  a { color: oklch(0.32 0.01 50); text-decoration: none; }
+  a:hover { color: oklch(0.45 0.09 40); }
+</style>
+</helmet>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="charcoal" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise" seed="7"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2"/>
+    </filter>
+  </defs>
+</svg>
+
+<section id="1a" style="width:1000px; padding:48px 40px 64px; font-family:'Helvetica',Arial,sans-serif; color:oklch(0.22 0.01 50); background:oklch(0.98 0.005 80); box-sizing:border-box;">
+  <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+    <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; padding:3px 8px; border:1px solid oklch(0.25 0.01 50); border-radius:3px;">1a</span>
+    <h2 style="font-family:'Lora',serif; font-size:20px; font-weight:600; margin:0;">Rayos desde el ojo</h2>
+  </div>
+  <p style="font-size:13px; opacity:0.65; margin:0 0 28px; max-width:520px;">El ojo es el centro fijo; cuatro trazos irradian hacia cada sector. Al pasar el cursor sobre un rayo, se engrosa y la tarjeta se levanta.</p>
+
+  <div style="position:relative; width:920px; height:680px; margin:0 auto;">
+    <svg width="920" height="680" style="position:absolute; inset:0;">
+      <path d="{{ rayA1 }}" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1.4" filter="url(#charcoal)" style-hover="stroke-width:3"/>
+      <path d="{{ rayA2 }}" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1.4" filter="url(#charcoal)" style-hover="stroke-width:3"/>
+      <path d="{{ rayA3 }}" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1.4" filter="url(#charcoal)" style-hover="stroke-width:3"/>
+      <path d="{{ rayA4 }}" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1.4" filter="url(#charcoal)" style-hover="stroke-width:3"/>
+    </svg>
+
+    <div style="position:absolute; left:340px; top:270px; width:240px; text-align:center;" onMouseMove="{{ onEyeMoveA }}" onMouseLeave="{{ onEyeLeaveA }}">
+      <svg viewBox="0 0 200 120" width="240" height="144" style="overflow:visible;">
+        <path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="3" stroke-linecap="round" filter="url(#charcoal)" stroke-dasharray="620" style="stroke-dashoffset:{{ revealDash }}; transition: stroke-dashoffset 2.2s cubic-bezier(.16,.84,.44,1);"/>
+        <circle cx="100" cy="60" r="30" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="2.2" filter="url(#charcoal)"/>
+        <g style="{{ pupilAStyle }}">
+          <circle cx="100" cy="60" r="15" fill="oklch(0.2 0.01 50)"/>
+          <circle cx="94" cy="54" r="4" fill="oklch(0.98 0.005 80)"/>
+        </g>
+      </svg>
+      <p style="font-family:'Lora',serif; font-style:italic; font-size:13px; margin:4px 0 0; opacity:0.6;">observa, no escuches</p>
+    </div>
+
+    <div style="position:absolute; left:20px; top:20px; width:230px;">
+      <h3 style="font-size:15px; margin:0 0 6px; font-family:'Lora',serif;">Condominios</h3>
+      <p style="font-size:12.5px; line-height:1.5; margin:0 0 8px; opacity:0.75;">Herramientas para administradores: gestión de operaciones, decisiones con datos, menos fricción diaria.</p>
+      <a href="#" style="font-size:12px;">Ver caso →</a>
+    </div>
+    <div style="position:absolute; right:20px; top:20px; width:230px; text-align:right;">
+      <h3 style="font-size:15px; margin:0 0 6px; font-family:'Lora',serif;">IA · Agentes SaaS</h3>
+      <p style="font-size:12.5px; line-height:1.5; margin:0 0 8px; opacity:0.75;">De app para aprender inglés a plataforma de agentes IA — cada pivote nació de observar usuarios reales.</p>
+      <a href="#" style="font-size:12px;">Ver caso →</a>
+    </div>
+    <div style="position:absolute; left:20px; bottom:20px; width:230px;">
+      <h3 style="font-size:15px; margin:0 0 6px; font-family:'Lora',serif;">Freelance · Suiza</h3>
+      <p style="font-size:12.5px; line-height:1.5; margin:0 0 8px; opacity:0.75;">Sistema interno para una empresa de tallado de piedras: pedidos, estadísticas y facturación de envíos.</p>
+      <a href="#" style="font-size:12px;">Ver caso →</a>
+    </div>
+    <div style="position:absolute; right:20px; bottom:20px; width:230px; text-align:right;">
+      <h3 style="font-size:15px; margin:0 0 6px; font-family:'Lora',serif;">ProfitPeek</h3>
+      <p style="font-size:12.5px; line-height:1.5; margin:0 0 8px; opacity:0.75;">Muchos venden y no saben cuánto ganan. Claridad sobre costos, márgenes y rentabilidad real.</p>
+      <a href="#" style="font-size:12px;">Ver caso →</a>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:24px;">
+    <a href="mailto:hola@ejemplo.com" style="font-size:13px; border-bottom:1px solid currentColor; padding-bottom:2px;">Hablemos →</a>
+  </div>
+</section>
+
+<section id="1b" style="width:640px; height:900px; padding:0; font-family:'Helvetica',Arial,sans-serif; color:oklch(0.22 0.01 50); background:oklch(0.98 0.005 80); box-sizing:border-box; overflow:hidden; position:relative;">
+  <div style="position:absolute; top:16px; left:16px; z-index:2; display:flex; align-items:center; gap:10px;">
+    <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; padding:3px 8px; border:1px solid oklch(0.25 0.01 50); border-radius:3px; background:oklch(0.98 0.005 80);">1b</span>
+    <h2 style="font-family:'Lora',serif; font-size:16px; font-weight:600; margin:0;">La cámara se aleja</h2>
+  </div>
+
+  <div style="width:100%; height:100%; overflow-y:auto; scroll-snap-type:y mandatory;">
+    <div style="height:900px; scroll-snap-align:start; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 60px; box-sizing:border-box;">
+      <div style="width:200px; text-align:center;" onMouseMove="{{ onEyeMoveB }}" onMouseLeave="{{ onEyeLeaveB }}">
+        <svg viewBox="0 0 200 120" width="200" height="120" style="overflow:visible;">
+          <path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="3" stroke-linecap="round" filter="url(#charcoal)" stroke-dasharray="620" style="stroke-dashoffset:{{ revealDash }}; transition: stroke-dashoffset 2.2s cubic-bezier(.16,.84,.44,1);"/>
+          <circle cx="100" cy="60" r="30" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="2.2" filter="url(#charcoal)"/>
+          <g style="{{ pupilBStyle }}">
+            <circle cx="100" cy="60" r="15" fill="oklch(0.2 0.01 50)"/>
+            <circle cx="94" cy="54" r="4" fill="oklch(0.98 0.005 80)"/>
+          </g>
+        </svg>
+      </div>
+      <p style="font-family:'Lora',serif; font-size:19px; line-height:1.5; text-align:center; max-width:420px; margin:20px 0 0;">Observa, no escuches. Las personas dicen muchas cosas, pero sus comportamientos muestran los verdaderos problemas.</p>
+      <p style="font-size:12px; opacity:0.5; margin-top:28px; letter-spacing:0.05em;">desliza para alejarte ↓</p>
+    </div>
+
+    <div style="height:700px; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 60px; box-sizing:border-box; border-top:1px solid oklch(0.85 0.005 80);">
+      <svg width="34" height="20" viewBox="0 0 200 120" style="opacity:0.35; margin-bottom:18px;"><path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="6"/><circle cx="100" cy="60" r="16" fill="oklch(0.22 0.01 50)"/></svg>
+      <h3 style="font-family:'Lora',serif; font-size:22px; margin:0 0 10px;">Condominios</h3>
+      <p style="font-size:14px; line-height:1.6; max-width:440px; opacity:0.75; margin:0 0 12px;">Herramientas para administradores: gestión de operaciones, decisiones con datos, menos fricción diaria.</p>
+      <a href="#" style="font-size:13px;">Ver caso →</a>
+    </div>
+
+    <div style="height:700px; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 60px; box-sizing:border-box; border-top:1px solid oklch(0.85 0.005 80);">
+      <svg width="34" height="20" viewBox="0 0 200 120" style="opacity:0.35; margin-bottom:18px;"><path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="6"/><circle cx="100" cy="60" r="16" fill="oklch(0.22 0.01 50)"/></svg>
+      <h3 style="font-family:'Lora',serif; font-size:22px; margin:0 0 10px;">IA · Agentes SaaS</h3>
+      <p style="font-size:14px; line-height:1.6; max-width:440px; opacity:0.75; margin:0 0 12px;">De app para aprender inglés a plataforma de agentes IA — cada pivote nació de observar usuarios reales.</p>
+      <a href="#" style="font-size:13px;">Ver caso →</a>
+    </div>
+
+    <div style="height:700px; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 60px; box-sizing:border-box; border-top:1px solid oklch(0.85 0.005 80);">
+      <svg width="34" height="20" viewBox="0 0 200 120" style="opacity:0.35; margin-bottom:18px;"><path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="6"/><circle cx="100" cy="60" r="16" fill="oklch(0.22 0.01 50)"/></svg>
+      <h3 style="font-family:'Lora',serif; font-size:22px; margin:0 0 10px;">Freelance · Suiza</h3>
+      <p style="font-size:14px; line-height:1.6; max-width:440px; opacity:0.75; margin:0 0 12px;">Sistema interno para una empresa de tallado de piedras: pedidos, estadísticas y facturación de envíos.</p>
+      <a href="#" style="font-size:13px;">Ver caso →</a>
+    </div>
+
+    <div style="height:700px; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:0 60px; box-sizing:border-box; border-top:1px solid oklch(0.85 0.005 80);">
+      <svg width="34" height="20" viewBox="0 0 200 120" style="opacity:0.35; margin-bottom:18px;"><path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="6"/><circle cx="100" cy="60" r="16" fill="oklch(0.22 0.01 50)"/></svg>
+      <h3 style="font-family:'Lora',serif; font-size:22px; margin:0 0 10px;">ProfitPeek</h3>
+      <p style="font-size:14px; line-height:1.6; max-width:440px; opacity:0.75; margin:0 0 12px;">Muchos venden y no saben cuánto ganan. Claridad sobre costos, márgenes y rentabilidad real.</p>
+      <a href="#" style="font-size:13px;">Ver caso →</a>
+    </div>
+
+    <div style="height:400px; scroll-snap-align:start; display:flex; flex-direction:column; align-items:center; justify-content:center; border-top:1px solid oklch(0.85 0.005 80);">
+      <a href="mailto:hola@ejemplo.com" style="font-family:'Lora',serif; font-size:18px; border-bottom:1px solid currentColor; padding-bottom:3px;">Hablemos →</a>
+    </div>
+  </div>
+</section>
+
+<section id="1c" style="width:1000px; padding:48px 40px 64px; font-family:'Helvetica',Arial,sans-serif; color:oklch(0.22 0.01 50); background:oklch(0.98 0.005 80); box-sizing:border-box;">
+  <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+    <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; padding:3px 8px; border:1px solid oklch(0.25 0.01 50); border-radius:3px;">1c</span>
+    <h2 style="font-family:'Lora',serif; font-size:20px; font-weight:600; margin:0;">Constelación arrastrable</h2>
+  </div>
+  <p style="font-size:13px; opacity:0.65; margin:0 0 20px; max-width:520px;">Arrastra el lienzo y usa la rueda del mouse para acercarte o alejarte. El ojo permanece fijo como origen; los sectores están dispersos como recuerdos.</p>
+
+  <div style="position:relative; width:920px; height:620px; margin:0 auto; overflow:hidden; border:1px solid oklch(0.88 0.005 80); cursor:{{ cursorC }};" onMouseDown="{{ onDownC }}" onMouseMove="{{ onMoveC }}" onMouseUp="{{ onUpC }}" onMouseLeave="{{ onUpC }}" onWheel="{{ onWheelC }}">
+    <div style="position:absolute; left:0; top:0; width:920px; height:620px; transform:{{ stageTransformC }}; transform-origin: 460px 310px;">
+      <svg width="920" height="620" style="position:absolute; inset:0;">
+        <path d="M460,310 L160,140" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1" filter="url(#charcoal)"/>
+        <path d="M460,310 L780,120" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1" filter="url(#charcoal)"/>
+        <path d="M460,310 L140,470" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1" filter="url(#charcoal)"/>
+        <path d="M460,310 L790,500" fill="none" stroke="oklch(0.3 0.01 50)" stroke-width="1" filter="url(#charcoal)"/>
+      </svg>
+
+      <div style="position:absolute; left:360px; top:250px; width:200px; text-align:center; pointer-events:none;">
+        <svg viewBox="0 0 200 120" width="200" height="120" style="overflow:visible;">
+          <path d="M10,60 C50,10 150,10 190,60 C150,110 50,110 10,60 Z" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="3" stroke-linecap="round" filter="url(#charcoal)" stroke-dasharray="620" style="stroke-dashoffset:{{ revealDash }};"/>
+          <circle cx="100" cy="60" r="30" fill="none" stroke="oklch(0.22 0.01 50)" stroke-width="2.2" filter="url(#charcoal)"/>
+          <circle cx="100" cy="60" r="15" fill="oklch(0.2 0.01 50)"/>
+          <circle cx="94" cy="54" r="4" fill="oklch(0.98 0.005 80)"/>
+        </svg>
+      </div>
+
+      <div style="position:absolute; left:40px; top:70px; width:200px; pointer-events:none;">
+        <h3 style="font-size:14px; margin:0 0 4px; font-family:'Lora',serif;">Condominios</h3>
+        <p style="font-size:11.5px; line-height:1.4; margin:0; opacity:0.75;">Gestión de operaciones y decisiones con datos para administradores.</p>
+      </div>
+      <div style="position:absolute; left:680px; top:50px; width:200px; text-align:right; pointer-events:none;">
+        <h3 style="font-size:14px; margin:0 0 4px; font-family:'Lora',serif;">IA · Agentes SaaS</h3>
+        <p style="font-size:11.5px; line-height:1.4; margin:0; opacity:0.75;">De app de inglés a plataforma de agentes, iteración tras iteración.</p>
+      </div>
+      <div style="position:absolute; left:20px; top:480px; width:200px; pointer-events:none;">
+        <h3 style="font-size:14px; margin:0 0 4px; font-family:'Lora',serif;">Freelance · Suiza</h3>
+        <p style="font-size:11.5px; line-height:1.4; margin:0; opacity:0.75;">Pedidos, estadísticas y facturación para tallado de piedras.</p>
+      </div>
+      <div style="position:absolute; left:690px; top:510px; width:200px; text-align:right; pointer-events:none;">
+        <h3 style="font-size:14px; margin:0 0 4px; font-family:'Lora',serif;">ProfitPeek</h3>
+        <p style="font-size:11.5px; line-height:1.4; margin:0; opacity:0.75;">Claridad sobre costos, márgenes y rentabilidad real.</p>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:20px;">
+    <a href="mailto:hola@ejemplo.com" style="font-size:13px; border-bottom:1px solid currentColor; padding-bottom:2px;">Hablemos →</a>
+  </div>
+</section>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f6f4ee"/>
+    <path d="M10,50 C30,20 70,20 90,50 C70,80 30,80 10,50 Z" fill="none" stroke="#2a2622" stroke-width="3"/>
+    <circle cx="50" cy="50" r="12" fill="#2a2622"/>
+  </svg>
+</template>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+class Component extends DCLogic {
+  state = {
+    revealed: false,
+    eyeA: { x: 0, y: 0 },
+    eyeB: { x: 0, y: 0 },
+    stageC: { panX: 0, panY: 0, scale: 1, dragging: false, startX: 0, startY: 0 }
+  };
+
+  componentDidMount() {
+    setTimeout(() => this.setState({ revealed: true }), 250);
+  }
+
+  makeEyeMove(key) {
+    return (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      let dx = e.clientX - (rect.left + rect.width / 2);
+      let dy = e.clientY - (rect.top + rect.height / 2);
+      const mag = Math.sqrt(dx * dx + dy * dy) || 1;
+      const capped = Math.min(mag, 24);
+      dx = (dx / mag) * capped * 0.4;
+      dy = (dy / mag) * capped * 0.4;
+      this.setState({ [key]: { x: dx, y: dy } });
+    };
+  }
+
+  makeEyeLeave(key) {
+    return () => this.setState({ [key]: { x: 0, y: 0 } });
+  }
+
+  onDownC = (e) => {
+    this.setState((s) => ({ stageC: { ...s.stageC, dragging: true, startX: e.clientX - s.stageC.panX, startY: e.clientY - s.stageC.panY } }));
+  };
+  onMoveC = (e) => {
+    if (!this.state.stageC.dragging) return;
+    this.setState((s) => ({ stageC: { ...s.stageC, panX: e.clientX - s.stageC.startX, panY: e.clientY - s.stageC.startY } }));
+  };
+  onUpC = () => {
+    if (this.state.stageC.dragging) this.setState((s) => ({ stageC: { ...s.stageC, dragging: false } }));
+  };
+  onWheelC = (e) => {
+    e.preventDefault();
+    this.setState((s) => ({ stageC: { ...s.stageC, scale: clamp(s.stageC.scale - e.deltaY * 0.001, 0.6, 1.8) } }));
+  };
+
+  renderVals() {
+    const revealDash = this.state.revealed ? 0 : 620;
+    const { eyeA, eyeB, stageC } = this.state;
+    return {
+      revealDash,
+      pupilAStyle: `transform: translate(${eyeA.x}px, ${eyeA.y}px); transition: transform 0.12s ease-out;`,
+      pupilBStyle: `transform: translate(${eyeB.x}px, ${eyeB.y}px); transition: transform 0.12s ease-out;`,
+      onEyeMoveA: this.makeEyeMove('eyeA'),
+      onEyeLeaveA: this.makeEyeLeave('eyeA'),
+      onEyeMoveB: this.makeEyeMove('eyeB'),
+      onEyeLeaveB: this.makeEyeLeave('eyeB'),
+      rayA1: 'M460,340 L110,80',
+      rayA2: 'M460,340 L810,80',
+      rayA3: 'M460,340 L110,600',
+      rayA4: 'M460,340 L810,600',
+      stageTransformC: `translate(${stageC.panX}px, ${stageC.panY}px) scale(${stageC.scale})`,
+      cursorC: stageC.dragging ? 'grabbing' : 'grab',
+      onDownC: this.onDownC,
+      onMoveC: this.onMoveC,
+      onUpC: this.onUpC,
+      onWheelC: this.onWheelC
+    };
+  }
+}
+
+</script>
+</body>
+</html>

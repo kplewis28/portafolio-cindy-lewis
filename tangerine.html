@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta.title">De la libertad a la precisión · Tangering AI · Cindy Lewis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0a0e1a; color: #eaf0ff; font-family: 'Inter', sans-serif; }
+  a { color: inherit; }
+  img, .ph { display: block; width: 100%; }
+
+  .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #ff8a4c, #d9480f); z-index: 50; transition: width 0.1s linear; }
+
+  .back { display: block; padding: 28px 24px 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; text-decoration: none; }
+  .back:hover { opacity: 1; }
+
+  .navbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 36px 48px; box-sizing: border-box; flex-wrap: wrap; gap: 16px;
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(10,14,26,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .navbar .nav-links { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+  .navbar .nav-links a.nav-link { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85); text-decoration: none; }
+  .nav-pill {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(140,180,255,0.45);
+    background: rgba(60,100,220,0.18);
+    color: #eaf0ff;
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-linkedin { display: inline-flex; align-items: center; gap: 7px; }
+  .nav-linkedin svg { width: 15px; height: 15px; flex: 0 0 auto; }
+
+  .work-dd-wrap { position: relative; }
+  .work-dd-trigger {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85);
+    background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+  }
+  .wd-caret { font-size: 10px; opacity: 0.7; transition: transform 0.2s ease; }
+  .work-dd-wrap:hover .wd-caret, .work-dd-wrap.wd-open .wd-caret { transform: rotate(180deg); }
+  .work-dropdown {
+    position: absolute; top: 100%; left: 0; margin-top: 14px; min-width: 230px;
+    display: flex; flex-direction: column; gap: 2px;
+    background: rgba(15,20,35,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 8px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 60;
+  }
+  .work-dd-wrap:hover .work-dropdown, .work-dd-wrap.wd-open .work-dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .wd-item {
+    display: block; text-align: left;
+    font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 500;
+    color: rgba(220,228,255,0.8); text-decoration: none;
+    padding: 10px 12px; border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wd-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .wd-item.is-current { color: #fff; background: rgba(60,100,220,0.22); }
+
+  .nav-link.is-current, .work-dd-trigger.is-current {
+    color: #fff;
+    padding-bottom: 4px;
+    border-bottom: 2px solid rgba(140,180,255,0.85);
+  }
+
+  .lang-toggle {
+    display: inline-flex; align-items: center; border: 1px solid rgba(140,180,255,0.35);
+    border-radius: 999px; padding: 3px; gap: 2px; background: rgba(255,255,255,0.03);
+  }
+  .lang-btn {
+    font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em;
+    color: rgba(220,228,255,0.6); background: none; border: none; border-radius: 999px;
+    padding: 6px 12px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
+  }
+  .lang-btn.active { background: rgba(60,100,220,0.32); color: #eaf0ff; }
+  .lang-btn:not(.active):hover { color: rgba(220,228,255,0.85); }
+
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(28px) scale(0.98); transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* Hero — foto de fondo (bodega/última milla) + captura real flotando, mismo patrón que habitanto */
+  .hero-photo {
+    position: relative;
+    margin-top: -112px;
+    padding: 168px 48px 76px;
+    overflow: hidden;
+  }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) contrast(1.1) saturate(0.9); }
+  .hero-tint { position: absolute; inset: 0; background: linear-gradient(165deg, rgba(56,20,8,0.42) 0%, rgba(92,32,8,0.3) 55%, rgba(48,16,6,0.46) 100%); }
+  .hero-glow { position: absolute; inset: 0; background: radial-gradient(circle at 68% 50%, rgba(255,150,90,0.24) 0%, rgba(217,72,15,0.1) 35%, transparent 65%); }
+  .hero-topfade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(4,3,2,0.45) 0%, transparent 26%, transparent 68%, rgba(4,3,2,0.65) 90%, #0a0e1a 100%); }
+  .hero-sidefade { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(2,2,2,0.92) 0%, rgba(2,2,2,0.86) 22%, rgba(2,2,2,0.66) 40%, rgba(2,2,2,0.32) 56%, transparent 74%); }
+
+  .hero-content {
+    position: relative; z-index: 2; isolation: isolate;
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  }
+  .hero-text { flex: 1 1 460px; max-width: 540px; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.9; margin: 0 0 16px; color: rgba(215,226,255,0.98); text-shadow: 0 2px 4px rgba(0,4,16,1), 0 4px 18px rgba(0,4,16,0.9); }
+  h1 { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.12; margin: 0 0 20px; color: #ffffff; text-shadow: 0 2px 6px rgba(0,4,16,1), 0 6px 26px rgba(0,4,16,0.9); }
+  .lede { font-size: 16px; line-height: 1.7; color: rgba(234,240,255,1); max-width: 520px; margin: 0; text-shadow: 0 2px 5px rgba(0,4,16,1), 0 4px 18px rgba(0,4,16,0.85); }
+  .lede strong { color: #ffb37a; font-weight: 700; }
+
+  /* Captura real flotando, en marco de navegador en vez de teléfono — es producto de escritorio */
+  .hero-browser {
+    position: relative; flex: 1 1 560px; max-width: 620px;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-browser-glow {
+    position: absolute; inset: -30px;
+    background: radial-gradient(circle at 50% 46%, rgba(255,150,90,0.38) 0%, rgba(217,72,15,0.14) 45%, transparent 74%);
+    z-index: 0; pointer-events: none;
+  }
+  /* Mockup real (foto de MacBook, fondo transparente) en vez de un marco dibujado en CSS */
+  .hero-mac-img {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 620px; height: auto; display: block;
+    filter: drop-shadow(0 30px 55px rgba(0,0,0,0.55)) drop-shadow(0 0 40px rgba(217,72,15,0.15));
+  }
+  .hero-browser-tag {
+    position: relative; z-index: 1;
+    display: inline-block; margin-top: 16px;
+    font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    color: #eaf0ff; background: rgba(10,14,26,0.6); border: 1px solid rgba(255,150,90,0.4);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    padding: 5px 13px; border-radius: 999px; white-space: nowrap;
+  }
+
+  @media (max-width: 860px) {
+    .hero-content { flex-direction: column; text-align: left; }
+    .hero-text { max-width: 100%; }
+    .hero-browser { max-width: 100%; }
+  }
+
+  /* Wireframe placeholder (only used where no real capture exists) */
+  .ph {
+    border: 1px dashed rgba(255,255,255,0.22);
+    border-radius: 12px;
+    background: repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 12px, transparent 12px 24px);
+    aspect-ratio: 16 / 10;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    transition: transform 0.4s ease;
+  }
+  .ph:hover { transform: scale(1.015); }
+  .ph-label { font-size: 12px; letter-spacing: 0.04em; color: rgba(200,215,255,0.55); padding: 12px 20px; max-width: 420px; line-height: 1.5; }
+  .caption { font-size: 11.5px; opacity: 0.6; margin: 14px 4px 0; line-height: 1.5; color: rgba(200,215,255,0.85); }
+  /* keep screenshot captions consistent everywhere — size, and a clear gap from the image, even
+     inside a .section where the generic ".section p { font-size:15px; margin:0 0 16px }" would win. */
+  .section p.caption, .section .caption { font-size: 11.5px; line-height: 1.5; max-width: none; margin: 14px 4px 0; }
+
+  /* Small monospace caption above a real screenshot, e.g. "Conversacion real de creacion" */
+  .mock-label { display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; opacity: 0.5; margin: 0 0 16px; }
+  .mock-label .dot { width: 6px; height: 6px; border-radius: 50%; background: #d9480f; flex: 0 0 auto; }
+
+  /* Real product screenshots — light UI framed as a card on the dark page. A small window-chrome
+     bar (traffic-light dots, no invented URL text) sits above every screenshot so a raw crop reads
+     as "a window into the product" instead of a pasted-in image — same framing language as the
+     Sustain mockup below, applied consistently everywhere a real screen appears on this page. */
+  .shot { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 24px 50px rgba(0,0,0,0.35); background: #fff; }
+  .shot-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #ececef; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .shot-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .shot-dot:nth-child(1) { background: #ff5f57; }
+  .shot-dot:nth-child(2) { background: #ffbd2e; }
+  .shot-dot:nth-child(3) { background: #28c840; }
+  .shot img { display: block; width: 100%; }
+  /* Diagrama de flujo: las 5 capturas del panel de auditoría enhebradas por una línea vertical con paradas numeradas,
+     para que se lean como parte del mismo flujo del agente (no como pestañas sueltas). El círculo de cada parada es
+     border-radius:50% sobre un cuadrado fijo — siempre perfectamente circular sin importar el ancho de pantalla. */
+  .audit-flow { position: relative; }
+  .audit-flow-line {
+    position: absolute; top: 18px; bottom: 18px; left: 17px; width: 2px;
+    background: linear-gradient(180deg, rgba(255,150,90,0.55), rgba(217,72,15,0.15));
+  }
+  .audit-step { position: relative; display: flex; gap: 20px; align-items: flex-start; }
+  .audit-step + .audit-step { margin-top: 36px; }
+  .audit-dot {
+    position: relative; z-index: 1; flex: 0 0 auto;
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600;
+    background: #d9480f; border: 2px solid #ff9a5c; color: #fff;
+  }
+  .audit-step-body { flex: 1; min-width: 0; }
+  .audit-step-label {
+    display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,154,92,0.85); margin: 4px 0 10px;
+  }
+  .audit-step-num { opacity: 0.6; }
+  /* Frase puente entre la intro de la sección y el diagrama — nombra al agente concreto (Julieta) para que el
+     lector no tenga que adivinar qué representan los 5 puntos numerados antes de verlos. */
+  .audit-intro {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: rgba(224,232,255,0.75);
+    margin: 0 0 28px; padding-left: 56px;
+  }
+  @media (max-width: 480px) { .audit-intro { padding-left: 40px; } }
+  /* El scroll de 5 capturas completas apiladas quedaba demasiado largo — se recorta la vista a la parte de arriba
+     (barra de tabs + lo primero que importa de cada pantalla) con un degradado que avisa que sigue más abajo,
+     en vez de reducir el ancho/legibilidad de la captura. Solo aplica en pantallas anchas: si la imagen ya
+     renderiza más angosta que este alto (mobile), el recorte simplemente no entra en juego. */
+  .audit-step .shot { position: relative; max-height: 320px; }
+  .audit-step .shot::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 64px;
+    background: linear-gradient(180deg, transparent, rgba(255,255,255,0.97));
+    pointer-events: none;
+  }
+  @media (max-width: 480px) {
+    .audit-flow-line { left: 13px; }
+    .audit-step { gap: 12px; }
+    .audit-dot { width: 28px; height: 28px; font-size: 10.5px; }
+  }
+  .mock-templates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  .mock-tcard { border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 14px; background: rgba(255,255,255,0.02); }
+  .mock-tcard.highlight { border-color: rgba(255,150,90,0.5); background: rgba(217,72,15,0.1); }
+  .mock-tcard .tt { font-size: 12.5px; font-weight: 600; margin: 0 0 4px; color: #eaf0ff; }
+  .mock-tcard .td { font-size: 11px; line-height: 1.5; color: rgba(224,232,255,0.65); margin: 0; }
+  @media (max-width: 700px) { .mock-templates { grid-template-columns: 1fr; } }
+
+  /* Timeline strip */
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 36px 0 8px; }
+  .strip-item { display: block; text-decoration: none; cursor: pointer; border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 16px 14px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease; background: rgba(255,255,255,0.03); }
+  .strip-item.active { border-color: rgba(255,150,90,0.7); box-shadow: 0 0 0 2px rgba(217,72,15,0.22); background: rgba(217,72,15,0.14); }
+  .strip-item:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,0.35); border-color: rgba(255,255,255,0.3); }
+  .strip-item .n { font-size: 11px; opacity: 0.55; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,215,255,0.75); }
+  .strip-item .t { font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; font-weight: 600; margin: 6px 0 8px; line-height: 1.3; color: #eaf0ff; }
+  .strip-item .mark { font-size: 15px; }
+  .strip-item.fail { background: rgba(255,255,255,0.03); }
+  .strip-item.win { background: rgba(217,72,15,0.14); border-color: rgba(255,150,90,0.4); }
+  @media (max-width: 700px) { .strip { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Section */
+  .section { padding: 64px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+  .section-tag { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6; margin: 0 0 10px; color: rgba(200,215,255,0.8); }
+  .section h2 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.01em; color: #eaf0ff; }
+  .section p { font-size: 15px; line-height: 1.72; margin: 0 0 16px; max-width: 620px; color: rgba(224,232,255,0.92); }
+  .section p:last-of-type { margin-bottom: 0; }
+
+  /* Staggered child reveal inside a .section, driven by the section's own .is-visible class */
+  .section .section-tag, .section h2, .section p:not(.detail-text), .section .verdict {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section.is-visible .section-tag { transition-delay: 0s; }
+  .section.is-visible h2 { transition-delay: 0.08s; }
+  .section.is-visible p:not(.detail-text):nth-of-type(1) { transition-delay: 0.16s; }
+  .section.is-visible p:not(.detail-text):nth-of-type(2) { transition-delay: 0.24s; }
+  .section.is-visible .verdict { transition-delay: 0.4s; }
+  .section.is-visible .section-tag,
+  .section.is-visible h2,
+  .section.is-visible p:not(.detail-text),
+  .section.is-visible .verdict { opacity: 1; transform: translateY(0); }
+
+  .detail-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: none; padding: 0; margin: 4px 0 4px;
+    font-size: 12.5px; font-weight: 500;
+    color: #ff9a5c; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+  }
+  .detail-toggle:hover { opacity: 0.75; }
+  .detail-text {
+    font-size: 14px; line-height: 1.65; opacity: 0; max-width: 620px; margin: 0;
+    max-height: 0; overflow: hidden; color: rgba(224,232,255,0.9);
+    transition: opacity 0.35s ease, max-height 0.4s ease, margin 0.4s ease;
+  }
+  .detail-text.open { opacity: 0.82; max-height: 220px; margin: 8px 0 16px; }
+
+  .verdict {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px; padding: 8px 14px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 500;
+  }
+  .verdict.fail { background: rgba(255,255,255,0.08); color: rgba(224,232,255,0.8); border: 1px solid rgba(255,255,255,0.1); }
+  .verdict.win { background: rgba(217,72,15,0.28); color: #fff; border: 1px solid rgba(255,150,90,0.4); }
+
+  .media { margin: 28px 0; }
+
+  /* Alternating attempt layout — text and screenshot top-aligned so the section label and the top
+     of the image sit on the same line (align-items:center used to float the shorter column). */
+  .attempt { display: flex; gap: 48px; align-items: flex-start; }
+  .attempt.reverse { flex-direction: row-reverse; }
+  .attempt-text { flex: 1; min-width: 0; }
+  .attempt-media { flex: 1; min-width: 0; }
+  .attempt-media .media { margin: 0 0 14px; }
+  .attempt-media .media:last-child { margin-bottom: 0; }
+  @media (max-width: 820px) {
+    .attempt, .attempt.reverse { flex-direction: column; gap: 34px; }
+  }
+
+  /* Sustain: la pieza (mockup de computador) va centrada, como foco único de la sección. Debajo,
+     un bloque de texto que cambia (con fundido) en sincronía con la pantalla activa, y debajo de
+     eso, tabs + puntos compactos para elegir qué capacidad/momento mostrar (con mouse, touch o
+     teclado). #sustain's own section wrapper never gets .is-visible (unlike every other section,
+     it isn't the element carrying .reveal, that's on the inner container instead), so the generic
+     ".section.is-visible ... { opacity:1 }" stagger rule never matches here and its tag/h2/p
+     children stay permanently opacity:0. Force them visible directly instead of relying on that
+     rule. */
+  #sustain .section-tag, #sustain > .container h2, #sustain > .container p, #sustain .sustain-text-panel p, #sustain .caption { opacity: 1; transform: none; }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  /* One 712px column (= .container's content width, centered inside .wide) so the whole widget
+     lines up exactly with the section header above it; everything inside is left-aligned to it. */
+  .sustain-interactive { max-width: 712px; margin: 8px auto 0; }
+
+  .sustain-stage { margin-top: 28px; }
+  .sustain-mockup { margin: 0; }
+  .sustain-laptop-screen {
+    background: #1c1e24; border-radius: 12px; padding: 10px 10px 6px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 40px rgba(217,72,15,0.08);
+  }
+  .sustain-browser-bar { display: flex; align-items: center; gap: 6px; padding: 0 2px 8px; }
+  .sustain-browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .sustain-browser-dot:nth-child(1) { background: #ff5f57; }
+  .sustain-browser-dot:nth-child(2) { background: #ffbd2e; }
+  .sustain-browser-dot:nth-child(3) { background: #28c840; }
+  .sustain-browser-url {
+    flex: 1; margin-left: 8px; background: rgba(255,255,255,0.08); border-radius: 5px; padding: 4px 10px;
+    font-size: 10.5px; color: rgba(255,255,255,0.45); font-family: 'IBM Plex Mono', monospace;
+  }
+  .sustain-screen-wrap { position: relative; background: #fff; border-radius: 8px; overflow: hidden; aspect-ratio: 1.97; }
+  .sustain-screen { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.4s ease; }
+  .sustain-screen.is-active { opacity: 1; }
+  .sustain-screen img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .sustain-laptop-base { height: 12px; margin: 0 -20px; background: linear-gradient(180deg,#2c2e36,#1a1c22); border-radius: 0 0 8px 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+
+  /* Números justo debajo del compu: uno por captura de la capacidad activa (3 para Llamadas, 2
+     para Campañas/Reportes), clicables para navegar directo a esa captura — reemplazan las
+     flechas que antes vivían en las tabs. Solo se muestra la fila del grupo activo. Debajo, el
+     nombre de lo que se está viendo en la captura activa, en naranja. */
+  .sustain-nav { margin-top: 14px; }
+  .sustain-nav-dots { display: none; align-items: center; justify-content: flex-start; gap: 8px; }
+  .sustain-nav-dots.is-active-group { display: flex; }
+  .sustain-nav-dot {
+    width: 24px; height: 24px; border-radius: 50%; padding: 0; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.03);
+    color: rgba(224,232,255,0.55); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; line-height: 1;
+    cursor: pointer; transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .sustain-nav-dot:hover, .sustain-nav-dot:focus-visible, .sustain-nav-dot.is-active {
+    color: #fff; border-color: rgba(255,150,90,0.5); background: rgba(217,72,15,0.16);
+  }
+  .sustain-nav-dot:focus-visible { outline: 2px solid rgba(255,150,90,0.6); outline-offset: 2px; }
+  .sustain-legend { position: relative; margin: 12px 0 0; min-height: 22px; text-align: left; }
+  .sustain-legend-item {
+    position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease;
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #ff9a5c;
+  }
+  .sustain-legend-item.is-active { opacity: 1; }
+
+  /* Texto que "va apareciendo" en sincronía con la pantalla activa: los 8 paneles se apilan uno
+     sobre otro (position:absolute) dentro de un contenedor con min-height fijo, y solo cambia su
+     opacidad/posición, así el fundido es suave y no empuja el layout. */
+  /* min-height cubre el panel más alto medido en el momento más angosto (mobile, ~342px de
+     columna, donde el texto se envuelve en más líneas que en desktop) para que ningún panel se
+     desborde y se monte sobre los tabs de abajo. */
+  .sustain-textzone { position: relative; max-width: 620px; margin: 26px 0 0; min-height: 236px; text-align: left; }
+  .sustain-text-panel {
+    position: absolute; inset: 0; opacity: 0; transform: translateY(8px); pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .sustain-text-panel.is-active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .sustain-text-panel h3 { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700; margin: 0 0 8px; color: #eaf0ff; }
+  .sustain-text-panel p { font-size: 14.5px; line-height: 1.68; margin: 0 0 10px; color: rgba(224,232,255,0.85); }
+  /* Match the standard .caption look (11.5px, ~0.5 effective alpha). #sustain forces opacity:1 on
+     these via the override rule below, so the dimness is baked into the color instead. */
+  .sustain-text-panel p.caption { font-size: 11.5px; line-height: 1.5; color: rgba(200,215,255,0.5); margin: 8px 0 0; }
+  .sustain-text-panel p:last-child { margin-bottom: 0; }
+
+  /* Tabs, una por capacidad. Siempre 3 botones del mismo tamaño y en la misma posición, sin nada
+     que se agregue/quite según cuál esté activa, para que la fila nunca "salte". La navegación
+     entre capturas dentro de una capacidad vive abajo del mockup (.sustain-nav-dot), no acá. */
+  .sustain-tabs { display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center; gap: 10px; margin: 26px 0 0; }
+  .sustain-tab {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
+    padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.02);
+    color: rgba(224,232,255,0.65); cursor: pointer; transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+  .sustain-tab:hover, .sustain-tab:focus-visible, .sustain-tab.is-active {
+    color: #fff; border-color: rgba(255,150,90,0.5); background: rgba(217,72,15,0.16);
+  }
+  .sustain-tab:focus-visible { outline: 2px solid rgba(255,150,90,0.6); outline-offset: 2px; }
+
+  /* Closing banner — highlighted section that ties the whole case together */
+  .closing-banner {
+    position: relative; margin-top: 56px; overflow: hidden;
+    border-top: 1px solid rgba(255,150,90,0.28);
+    background:
+      radial-gradient(ellipse 70% 62% at 10% 0%, rgba(217,72,15,0.20) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,150,90,0.06) 0%, rgba(255,150,90,0) 55%),
+      rgba(255,255,255,0.022);
+  }
+  .closing-banner::after {
+    content: ''; position: absolute; right: -140px; top: -140px;
+    width: 360px; height: 360px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(217,72,15,0.18), transparent 70%);
+  }
+  .closing-inner {
+    position: relative; z-index: 1;
+    max-width: 720px; margin: 0 auto; padding: 96px 24px 112px; text-align: left;
+  }
+  .closing-eyebrow {
+    margin: 0 0 22px; font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,170,110,0.9);
+  }
+  .closing-inner blockquote {
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 2.8vw, 30px);
+    font-weight: 600; line-height: 1.4; margin: 0; letter-spacing: -0.01em; color: #ffffff;
+  }
+  .closing-rule {
+    width: 56px; height: 3px; border-radius: 2px; margin: 36px 0;
+    background: linear-gradient(90deg, #ff8a4c, #d9480f);
+  }
+  .closing-body {
+    font-size: 16px; line-height: 1.68; margin: 0 0 32px; max-width: 620px;
+    color: rgba(224,232,255,0.9);
+  }
+  @media (max-width: 640px) { .closing-inner { padding: 68px 22px 84px; } }
+  .cta {
+    display: inline-block; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500;
+    background: rgba(217,72,15,0.18); color: #eaf0ff; border: 1px solid rgba(255,150,90,0.45);
+    padding: 11px 22px; border-radius: 999px; text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cta:hover { transform: translateY(-2px); background: rgba(217,72,15,0.32); border-color: rgba(255,170,110,0.7); box-shadow: 0 8px 24px rgba(217,72,15,0.25); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="navbar">
+  <a href="./El%20Ojo.dc.html" style="text-decoration:none; color:inherit; display:block;">
+    <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
+    <div style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
+  </a>
+  <div class="nav-links">
+    <div class="work-dd-wrap" data-dd>
+      <button class="nav-link work-dd-trigger is-current" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
+      <div class="work-dropdown">
+        <a class="wd-item" href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
+        <a class="wd-item is-current" href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
+      </div>
+    </div>
+    <a class="nav-link" href="./about.html" data-i18n="nav.about">Sobre mí</a>
+    <div class="lang-toggle">
+      <button class="lang-btn" type="button" data-lang-btn="es">ES</button>
+      <button class="lang-btn" type="button" data-lang-btn="en">EN</button>
+    </div>
+    <a class="nav-pill nav-linkedin" href="https://www.linkedin.com/in/cindy-lewis-uxdesigner/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/></svg><span>LinkedIn</span></a>
+  </div>
+</div>
+
+<div class="hero-photo">
+  <img class="hero-img" src="./assets/tangerine-hero.webp" alt="">
+  <div class="hero-tint"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-topfade"></div>
+  <div class="hero-sidefade"></div>
+  <div class="hero-content">
+    <div class="hero-text reveal">
+      <p class="eyebrow" data-i18n="hero.eyebrow">Design case · Tangering AI</p>
+      <h1 data-i18n="hero.h1">De la libertad a la precisión: 4 intentos de enseñarle a una IA su propio trabajo</h1>
+      <p class="lede" data-i18n="hero.lede">Diseño la plataforma donde equipos sin conocimiento técnico crean, prueban y despliegan agentes de IA que llaman por teléfono y escriben por WhatsApp, desde ventas y cobranza hasta soporte. Su versión más pulida confirma entregas y llama por teléfono cuando el cliente no responde el WhatsApp, pensada especialmente para <strong>empresas de last-mile</strong>.</p>
+    </div>
+    <div class="hero-browser reveal">
+      <div class="hero-browser-glow"></div>
+      <img class="hero-mac-img" src="./assets/tangerine-hero-macbook.png?v=3" alt="MacBook mostrando el constructor de agentes de Tangering, con la pantalla de bienvenida y las plantillas de Agente de Ventas, Confirmaciones y Soporte" data-i18n-alt="heroMac.alt">
+      <span class="hero-browser-tag" data-i18n="heroMac.tag">Constructor de agentes</span>
+    </div>
+  </div>
+</div>
+
+<div class="wide reveal" style="margin-top: 56px;">
+  <div class="strip">
+    <a class="strip-item fail" href="#attempt-1" data-jump="attempt-1"><p class="n" data-i18n="strip.1.n">Intento 1</p><p class="t" data-i18n="strip.1.t">El formulario</p><span class="mark" data-i18n="strip.1.mark">❌ Alucinaba</span></a>
+    <a class="strip-item fail" href="#attempt-2" data-jump="attempt-2"><p class="n" data-i18n="strip.2.n">Intento 2</p><p class="t" data-i18n="strip.2.t">El flujo infinito</p><span class="mark" data-i18n="strip.2.mark">❌ Muy complejo</span></a>
+    <a class="strip-item fail" href="#attempt-3" data-jump="attempt-3"><p class="n" data-i18n="strip.3.n">Intento 3</p><p class="t" data-i18n="strip.3.t">Chat + diagrama</p><span class="mark" data-i18n="strip.3.mark">❌ No entendían</span></a>
+    <a class="strip-item win" href="#attempt-4" data-jump="attempt-4"><p class="n" data-i18n="strip.4.n">Intento 4</p><p class="t" data-i18n="strip.4.t">El agente que crea agentes</p><span class="mark" data-i18n="strip.4.mark">✅ Funcionó</span></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section reveal">
+    <p class="section-tag" data-i18n="contexto.tag">El contexto</p>
+    <h2 data-i18n="contexto.h2">Una categoría que todavía no existía</h2>
+    <p data-i18n="contexto.p1">Cuando empezamos, los agentes de IA conversacionales aún no eran una categoría establecida. No había patrones de diseño probados a los que recurrir. Al mismo tiempo, las empresas cargaban con costos altísimos en llamadas y mensajería de atención al cliente, con alta demanda de una solución y prácticamente ninguna madura en el mercado.</p>
+    <p data-i18n="contexto.p2">Ese vacío era la oportunidad, pero también significaba que cada decisión de diseño era, literalmente, una hipótesis sin precedente que validar.</p>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="section reveal" id="attempt-1">
+    <div class="attempt">
+      <div class="attempt-text">
+        <p class="section-tag" data-i18n="a1.tag">Intento 01</p>
+        <h2 data-i18n="a1.h2">El formulario</h2>
+        <p data-i18n="a1.p1">La primera versión dejaba que el usuario describiera su agente con texto libre: qué debía hacer, cómo debía responder. Parecía la forma más simple de empezar.</p>
+        <p data-i18n="a1.p2">No lo fue. Los agentes alucinaban constantemente, por exceso de libertad interpretativa y no por falta de capacidad del modelo.</p>
+        <button class="detail-toggle" type="button"><span class="dt-icon">+</span> <span data-i18n="a1.toggle">Ver el insight que cambió todo</span></button>
+        <p class="detail-text" data-i18n="a1.detail">El insight: un agente de IA se comporta como una persona nueva en un trabajo. Necesita conocimiento y herramientas concretas para hacer su tarea, no una idea general de lo que se espera de él.</p>
+        <span class="verdict fail" data-i18n="a1.verdict">❌ Falló por exceso de libertad interpretativa</span>
+      </div>
+      <div class="attempt-media">
+        <div class="media">
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/formulario-crear-agente.png" alt="Pantalla &quot;Customize Your Own Agent&quot; del primer formulario para crear agentes de Edgen AI, con campos de nombre, imagen, voz, objetivo, mensaje de apertura, base de conocimiento y acciones" data-i18n-alt="a1.alt"></div>
+          <p class="caption" data-i18n="a1.cap">El primer formulario para crear agentes, de cuando el producto se llamaba "Edgen AI": nombre, imagen, voz, objetivo y mensaje de apertura, todo como texto libre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="section reveal" id="attempt-2">
+    <div class="attempt reverse">
+      <div class="attempt-text">
+        <p class="section-tag" data-i18n="a2.tag">Intento 02</p>
+        <h2 data-i18n="a2.h2">El flujo infinito</h2>
+        <p data-i18n="a2.p1">La respuesta al problema anterior fue irse al extremo opuesto: un canvas nodo por nodo, donde cada acción del agente tenía su propia herramienta explícita y conectada.</p>
+        <p data-i18n="a2.p2">Esto sí resolvía la precisión: el agente ya no improvisaba, seguía un flujo definido.</p>
+        <button class="detail-toggle" type="button"><span class="dt-icon">+</span> <span data-i18n="a2.toggle">Ver por qué rompía la usabilidad</span></button>
+        <p class="detail-text" data-i18n="a2.detail">El canvas era demasiado complejo para el usuario promedio, que no pensaba en su negocio como un diagrama de flujo técnico.</p>
+        <span class="verdict fail" data-i18n="a2.verdict">❌ Falló por complejidad: precisión a costa de usabilidad</span>
+      </div>
+      <div class="attempt-media">
+        <div class="media">
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/canvas-flujo-nodos.png" alt="Canvas de flujo nodo por nodo con los nodos Start, Agent Support, Search Directions y Get Chicken Menu conectados, y un menú de Tools en la parte inferior" data-i18n-alt="a2.alt"></div>
+          <p class="caption" data-i18n="a2.cap">El canvas nodo por nodo: cada paso del agente (Agent Support, Search Directions, Get Chicken Menu) era un nodo conectado con sus propias herramientas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="section reveal" id="attempt-3">
+    <div class="attempt">
+      <div class="attempt-text">
+        <p class="section-tag" data-i18n="a3.tag">Intento 03</p>
+        <h2 data-i18n="a3.h2">El chat guiado + diagrama</h2>
+        <p data-i18n="a3.p1">Los usuarios ya "hablaban" con la plataforma de forma natural, así que guiamos la creación del agente por chat en lugar de un canvas o formulario. Un avance real en usabilidad.</p>
+        <button class="detail-toggle" type="button"><span class="dt-icon">+</span> <span data-i18n="a3.toggle">Ver qué seguía sin funcionar</span></button>
+        <p class="detail-text" data-i18n="a3.detail">Al final del proceso, seguíamos mostrando un diagrama técnico como resumen. Los usuarios no entendían diagramas, ni el concepto de "herramientas" como una pieza separada de la conversación. Habíamos arreglado la entrada, pero no la salida.</p>
+        <span class="verdict fail" data-i18n="a3.verdict">❌ Falló porque el resumen final no hablaba el mismo idioma que la conversación</span>
+      </div>
+      <div class="attempt-media">
+        <div class="media">
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/chat-guiado-entrenar-voz.png" alt="Chat guiado de Edgen AI entrenando una voz, con reproductor de audio, calificación por estrellas y un campo para escribir feedback y mejorar la calidad" data-i18n-alt="a3.alt"></div>
+          <p class="caption" data-i18n="a3.cap">El chat guiado entrenando y pidiendo calificar la voz generada, parte del flujo conversacional de creación del agente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="section reveal" id="attempt-4">
+    <div class="attempt reverse">
+      <div class="attempt-text">
+        <p class="section-tag" data-i18n="a4.tag">Intento 04</p>
+        <h2 data-i18n="a4.h2">El agente que crea agentes</h2>
+        <p data-i18n="a4.p1">La versión que finalmente balanceó precisión y simplicidad: 100% conversacional, pero totalmente auditable. El prompt, las herramientas y la voz del agente quedan revisables en todo momento. Nada se esconde detrás de la conversación.</p>
+        <p data-i18n="a4.p2">Así se ve creando "Julieta", un agente de confirmación de entregas, el mismo tipo de agente que sostiene el caso de last-mile:</p>
+        <button class="detail-toggle" type="button"><span class="dt-icon">+</span> <span data-i18n="a4.toggle">Ver cómo cerró el círculo</span></button>
+        <p class="detail-text" data-i18n="a4.detail">Se puede probar el agente en vivo, por voz o por chat, y hacer ajustes guiados sin salir de la conversación a través de un "copiloto de flujos". La libertad que había fallado en el Intento 1 volvía, pero esta vez enmarcada por estructura y visibilidad total del resultado.</p>
+        <span class="verdict win" data-i18n="a4.verdict">✅ Funcionó: precisión + simplicidad, sin sacrificar control</span>
+      </div>
+      <div class="attempt-media">
+        <div class="media">
+          <p class="mock-label"><span class="dot"></span><span data-i18n="a4.mock1.label">Conversación real de creación</span></p>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/conversacion-creacion-agente-full.png" alt="Conversación real de creación en Tangering, de principio a fin: Tangering pregunta qué proceso automatizar, el usuario pide un agente que confirme entregas y disponibilidad con clientes, elige que el agente llame por teléfono, y Tangering propone la voz Sofía (cálida y empática) con un botón para confirmarla" data-i18n-alt="a4.convAlt"></div>
+        </div>
+        <div class="media">
+          <p class="mock-label"><span class="dot"></span><span data-i18n="a4.mock2.label">Resultado: resumen de "Julieta"</span></p>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/julieta-resumen-confirmacion.png" alt="Pantalla de resumen del agente Julieta: canal, voz, tipo, objetivo, flujo de la conversación en 4 pasos, información que recibe y captura, capacidades y tono, con opción de confirmar o cambiar algo" data-i18n-alt="a4.summaryAlt"></div>
+        </div>
+        <p class="caption" data-i18n="a4.cap">Conversación real del constructor de agentes, desde la primera pregunta hasta el resumen final antes de crear el agente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section reveal" id="attempt-4-audit">
+    <p class="section-tag" data-i18n="audit.tag">Intento 04 · el panel de control</p>
+    <h2 data-i18n="audit.h2">Lo que queda auditable, no oculto</h2>
+    <p data-i18n="audit.p1">Una vez creado, cada agente se puede abrir y ajustar: el prompt, las herramientas conectadas, el modelo de IA, la base de conocimiento y la configuración avanzada quedan siempre visibles y editables, nunca escondidos detrás de la conversación.</p>
+  </div>
+</div>
+<div class="wide">
+    <p class="audit-intro" data-i18n="audit.intro">Es el mismo agente, Julieta, visto desde sus 5 pestañas de configuración:</p>
+    <div class="audit-flow">
+      <div class="audit-flow-line"></div>
+      <div class="audit-step reveal">
+        <span class="audit-dot">1</span>
+        <div class="audit-step-body">
+          <span class="audit-step-label"><span class="audit-step-num">01.</span> <span data-i18n="audit.nav.prompt">Prompt</span></span>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/editor-tab-prompt.png" alt="Editor de Julieta, tab Prompt: prompt principal, saludo inicial, variables en contexto y el Copiloto de Flujos disponible a la derecha" data-i18n-alt="audit.promptAlt"></div>
+          <p class="caption" data-i18n="audit.promptCap">Prompt principal, saludo inicial y variables detectadas, con el Copiloto de Flujos siempre disponible para ajustar todo en lenguaje natural.</p>
+        </div>
+      </div>
+      <div class="audit-step reveal">
+        <span class="audit-dot">2</span>
+        <div class="audit-step-body">
+          <span class="audit-step-label"><span class="audit-step-num">02.</span> <span data-i18n="audit.nav.tools">Tools</span></span>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/editor-tab-tools-1.png" alt="Tab Tools del editor de Julieta: herramientas conectadas (CRM, base de conocimiento, IA, sistema de escalamiento) con endpoint y autenticación" data-i18n-alt="audit.toolsAlt"></div>
+          <p class="caption" data-i18n="audit.toolsCap">Herramientas conectadas (CRM, base de conocimiento, IA, sistema de escalamiento) con su endpoint y autenticación.</p>
+        </div>
+      </div>
+      <div class="audit-step reveal">
+        <span class="audit-dot">3</span>
+        <div class="audit-step-body">
+          <span class="audit-step-label"><span class="audit-step-num">03.</span> <span data-i18n="audit.nav.models">Modelos</span></span>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/editor-tab-modelos.png" alt="Tab Modelos del editor de Julieta: proveedor y modelo de IA, temperatura, esfuerzo de razonamiento y tokens máximos" data-i18n-alt="audit.modelsAlt"></div>
+          <p class="caption" data-i18n="audit.modelsCap">Proveedor y modelo de IA, temperatura, esfuerzo de razonamiento y tokens máximos.</p>
+        </div>
+      </div>
+      <div class="audit-step reveal">
+        <span class="audit-dot">4</span>
+        <div class="audit-step-body">
+          <span class="audit-step-label"><span class="audit-step-num">04.</span> <span data-i18n="audit.nav.knowledge">Conocimiento</span></span>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/editor-tab-conocimiento.png" alt="Tab Conocimiento del editor de Julieta: bases de conocimiento conectadas con su número de documentos y estado" data-i18n-alt="audit.knowledgeAlt"></div>
+          <p class="caption" data-i18n="audit.knowledgeCap">Bases de conocimiento conectadas, con su número de documentos y estado.</p>
+        </div>
+      </div>
+      <div class="audit-step reveal">
+        <span class="audit-dot">5</span>
+        <div class="audit-step-body">
+          <span class="audit-step-label"><span class="audit-step-num">05.</span> <span data-i18n="audit.nav.config">Config</span></span>
+          <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/editor-tab-config.png" alt="Tab Config del editor de Julieta: configuración avanzada con sonidos de fondo, mensajes de empuje y frases para mejorar la detección" data-i18n-alt="audit.configAlt"></div>
+          <p class="caption" data-i18n="audit.configCap">Configuración avanzada: sonidos de fondo, frases de espera y frases para mejorar la detección.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="section reveal" id="voice-clone">
+    <p class="section-tag" data-i18n="voice.tag">Un camino explorado y descartado</p>
+    <h2 data-i18n="voice.h2">Al inicio, también propusimos clonar la voz del usuario</h2>
+    <p data-i18n="voice.p1">Dentro del mismo flujo de creación del Intento 4, en una etapa temprana llegamos a plantear que la persona pudiera grabar y clonar su propia voz para el agente, en lugar de elegir entre voces predefinidas, con un paso de calificación para validar la calidad de la grabación antes de entrenar el modelo.</p>
+    <p data-i18n="voice.p2">No llegó a producción: la reemplazamos por el selector de voces predefinidas que terminó en la versión final del constructor de agentes.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section reveal" id="last-mile">
+    <p class="section-tag" data-i18n="lastmile.tag">El caso insignia</p>
+    <h2 data-i18n="lastmile.h2">Por qué last-mile es donde esto se pone a prueba de verdad</h2>
+    <p data-i18n="lastmile.p1">La plataforma sirve para cualquier vertical (ventas, soporte, cobranza, RR.HH.), pero las confirmaciones de entrega para empresas de envío son el caso más exigente: si el agente falla en confirmar, el paquete llega y no hay nadie, o llega al lugar equivocado. No hay margen para una llamada genérica.</p>
+    <p data-i18n="lastmile.p2">Por eso el tipo de campaña "Híbrido" existe: empieza por el canal más barato y menos intrusivo, y solo escala si hace falta.</p>
+  </div>
+  <div class="wide" style="margin-bottom: 64px;">
+    <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/campana-hibrida-flujo.png" alt="Configuración real de una Campaña Híbrida en Tangering, paso &quot;Configurar flujo&quot;: en &quot;Si no responden&quot; el Paso 1 manda un mensaje de WhatsApp con el agente de ventas y espera 2 horas; a la derecha, la Vista en vivo muestra la secuencia por contacto: mensaje de WhatsApp, si no hay respuesta escala a llamada de voz, reinicia con 24h de espera entre ciclos y sale del flujo tras 5 intentos" data-i18n-alt="lastmile.shotAlt"></div>
+    <p class="caption" data-i18n="lastmile.cap">La interfaz real de configuración: el paso "Si no responden" hace que la campaña empiece por WhatsApp y escale sola a llamada de voz, con tiempos de espera y reglas de transición editables, y la secuencia por contacto se actualiza en vivo a la derecha.</p>
+  </div>
+</div>
+
+<div class="section" style="border-top:1px solid rgba(255,255,255,0.1);" id="sustain">
+  <div class="container reveal">
+    <p class="section-tag" data-i18n="sustain.tag">De crear a sostener</p>
+    <h2 data-i18n="sustain.h2">Una vez el agente existía, los clientes necesitaban confianza continua</h2>
+    <p data-i18n="sustain.p">Crear el agente era solo el principio. Para que las empresas confiaran en delegarle su atención al cliente, necesitaban poder ver, auditar y ajustar cómo operaba día a día. De ahí nacieron estas piezas del sistema. Señala cada una con el mouse (o tócala en el celular) para ver cómo se ve en el producto.</p>
+  </div>
+  <div class="wide">
+    <div class="sustain-interactive reveal">
+      <div class="sustain-tabs">
+        <button class="sustain-tab is-active" type="button" data-screen="call-1" data-group="call" data-i18n="sustain.calls.h3">Llamadas</button>
+        <button class="sustain-tab" type="button" data-screen="chat-1" data-group="chat" data-i18n="sustain.chats.h3">Chats en vivo</button>
+        <button class="sustain-tab" type="button" data-screen="camp-1" data-group="camp" data-i18n="sustain.card2.h3">Campañas</button>
+        <button class="sustain-tab" type="button" data-screen="rep-1" data-group="rep" data-i18n="sustain.card3.h3">Reportes</button>
+      </div>
+
+      <div class="sustain-stage">
+      <div class="sustain-mockup">
+        <div class="sustain-laptop-screen">
+          <div class="sustain-browser-bar">
+            <span class="sustain-browser-dot"></span><span class="sustain-browser-dot"></span><span class="sustain-browser-dot"></span>
+            <span class="sustain-browser-url">app.tangering.ai</span>
+          </div>
+          <div class="sustain-screen-wrap">
+            <div class="sustain-screen is-active" data-screen="call-1"><img src="./assets/tangering/sustain-llamada-modo-escucha.png" alt="Llamada activa en modo escucha, con transcripción en tiempo real y confianza e intención detectada en cada turno" data-i18n-alt="sustain.proofCalls.img1Alt"></div>
+            <div class="sustain-screen" data-screen="call-2"><img src="./assets/tangering/sustain-historial-analisis-ia.png" alt="Historial de una llamada con un análisis generado por IA sobre su estado, y la opción de corregirlo si está mal clasificado" data-i18n-alt="sustain.proofCalls.img2Alt"></div>
+            <div class="sustain-screen" data-screen="chat-1"><img src="./assets/tangering/sustain-chat-vivo-escalamiento.png" alt="Chat en vivo con Ana García: variables de contexto detectadas (intent, plan de interés, descuento) y registro de herramientas usadas por el bot, con una solicitud de agente humano en curso" data-i18n-alt="sustain.proofChats.img1Alt"></div>
+            <div class="sustain-screen" data-screen="chat-2"><img src="./assets/tangering/sustain-chat-tu-en-control.png" alt="Chat con un humano en control de la conversación, con el botón para devolverla al bot" data-i18n-alt="sustain.proofChats.img2Alt"></div>
+            <div class="sustain-screen" data-screen="camp-1"><img src="./assets/tangering/sustain-campanas-lista.png" alt="Lista de campañas activas, con tipo, agente asignado, progreso, vigencia y prioridad arrastrable" data-i18n-alt="sustain.proof2.img1Alt"></div>
+            <div class="sustain-screen" data-screen="camp-2"><img src="./assets/tangering/sustain-nueva-campana-wizard.png" alt="Wizard para crear una nueva campaña, empezando por elegir el agente y la zona horaria de los contactos" data-i18n-alt="sustain.proof2.img2Alt"></div>
+            <div class="sustain-screen" data-screen="rep-1"><img src="./assets/tangering/sustain-reporte-builder.png" alt="Constructor de reportes con columnas de datos generales y datos extraídos por IA, como fecha de pago prometida y motivo de no pago" data-i18n-alt="sustain.proof3.img1Alt"></div>
+          </div>
+        </div>
+        <div class="sustain-laptop-base"></div>
+        <div class="sustain-nav">
+          <div class="sustain-nav-dots" data-group="call">
+            <button class="sustain-nav-dot" type="button" data-screen="call-1" aria-label="1">1</button>
+            <button class="sustain-nav-dot" type="button" data-screen="call-2" aria-label="2">2</button>
+          </div>
+          <div class="sustain-nav-dots" data-group="chat">
+            <button class="sustain-nav-dot" type="button" data-screen="chat-1" aria-label="1">1</button>
+            <button class="sustain-nav-dot" type="button" data-screen="chat-2" aria-label="2">2</button>
+          </div>
+          <div class="sustain-nav-dots" data-group="camp">
+            <button class="sustain-nav-dot" type="button" data-screen="camp-1" aria-label="1">1</button>
+            <button class="sustain-nav-dot" type="button" data-screen="camp-2" aria-label="2">2</button>
+          </div>
+          <div class="sustain-legend">
+            <span class="sustain-legend-item is-active" data-screen="call-1" data-i18n="sustain.proofCalls.img1Badge">Transcripción en vivo</span>
+            <span class="sustain-legend-item" data-screen="call-2" data-i18n="sustain.proofCalls.img2Badge">Análisis con IA</span>
+            <span class="sustain-legend-item" data-screen="chat-1" data-i18n="sustain.proofChats.img1Badge">Solicita agente humano</span>
+            <span class="sustain-legend-item" data-screen="chat-2" data-i18n="sustain.proofChats.img2Badge">Control humano activo</span>
+            <span class="sustain-legend-item" data-screen="camp-1" data-i18n="sustain.proof2.img1Badge">Campañas activas</span>
+            <span class="sustain-legend-item" data-screen="camp-2" data-i18n="sustain.proof2.img2Badge">Nueva campaña</span>
+            <span class="sustain-legend-item" data-screen="rep-1" data-i18n="sustain.proof3.img1Badge">Constructor de reportes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sustain-textzone">
+        <div class="sustain-text-panel is-active" data-screen="call-1">
+          <h3 data-i18n="sustain.calls.h3">Llamadas</h3>
+          <p data-i18n="sustain.calls.p">Transcripción en tiempo real con confianza e intención detectada por turno, para escuchar la llamada en curso sin interrumpirla.</p>
+          <p class="caption" data-i18n="sustain.proofCalls.img1Cap">Una llamada activa en modo escucha: transcripción en tiempo real con confianza e intención detectada en cada turno.</p>
+        </div>
+        <div class="sustain-text-panel" data-screen="call-2">
+          <h3 data-i18n="sustain.calls.h3">Llamadas</h3>
+          <p data-i18n="sustain.calls.p">Transcripción en tiempo real con confianza e intención detectada por turno, para escuchar la llamada en curso sin interrumpirla.</p>
+          <p class="caption" data-i18n="sustain.proofCalls.img2Cap">El historial de llamadas incluye un análisis generado por IA sobre el estado de cada llamada, con la opción de corregirlo si quedó mal clasificado.</p>
+        </div>
+        <div class="sustain-text-panel" data-screen="chat-1">
+          <h3 data-i18n="sustain.chats.h3">Chats en vivo</h3>
+          <p data-i18n="sustain.chats.p">Variables de contexto detectadas en cada turno, registro de qué herramienta usó el agente y cuándo, y un botón para tomar control humano de la conversación sin cortarla.</p>
+          <p class="caption" data-i18n="sustain.proofChats.img1Cap">Chat en vivo: variables de contexto detectadas y registro de qué herramienta usó el bot y cuándo, con una solicitud de agente humano en curso.</p>
+        </div>
+        <div class="sustain-text-panel" data-screen="chat-2">
+          <h3 data-i18n="sustain.chats.h3">Chats en vivo</h3>
+          <p data-i18n="sustain.chats.p">Variables de contexto detectadas en cada turno, registro de qué herramienta usó el agente y cuándo, y un botón para tomar control humano de la conversación sin cortarla.</p>
+          <p class="caption" data-i18n="sustain.proofChats.img2Cap">El botón para tomar control humano de la conversación sin cortarla, y devolverla al bot cuando ya no hace falta.</p>
+        </div>
+        <div class="sustain-text-panel" data-screen="camp-1">
+          <h3 data-i18n="sustain.card2.h3">Campañas</h3>
+          <p data-i18n="sustain.card2.p">Priorización arrastrable entre campañas activas, tipo Voz o Híbrido según el caso, base de contactos por CSV y reglas de marcación configurables por campaña.</p>
+          <p class="caption" data-i18n="sustain.proof2.img1Cap">Todas las campañas activas, con tipo (Voz o Híbrida), agente asignado, progreso y prioridad arrastrable.</p>
+        </div>
+        <div class="sustain-text-panel" data-screen="camp-2">
+          <h3 data-i18n="sustain.card2.h3">Campañas</h3>
+          <p data-i18n="sustain.card2.p">Priorización arrastrable entre campañas activas, tipo Voz o Híbrido según el caso, base de contactos por CSV y reglas de marcación configurables por campaña.</p>
+          <p class="caption" data-i18n="sustain.proof2.img2Cap">Crear una campaña nueva: primero se elige el agente (que define las columnas del CSV) y la zona horaria de los contactos.</p>
+        </div>
+        <div class="sustain-text-panel" data-screen="rep-1">
+          <h3 data-i18n="sustain.card3.h3">Reportes</h3>
+          <p data-i18n="sustain.card3.p">No solo datos generales de la llamada, también datos que el agente extrae de la conversación con IA: fecha de pago prometida, monto, motivo de no pago, calificación del servicio.</p>
+          <p class="caption" data-i18n="sustain.proof3.img1Cap">El constructor de reportes: columnas de datos generales y datos extraídos por IA (fecha de pago prometida, monto, motivo de no pago, calificación del servicio).</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="closing-banner">
+  <div class="closing-inner reveal">
+    <p class="closing-eyebrow" data-i18n="pull.attr">El hilo conductor de los 4 intentos</p>
+    <blockquote data-i18n="pull.quote">Cada vez que le di al usuario más libertad de la que sabía manejar, el producto falló. Mi trabajo como diseñadora fue reemplazar esa libertad por guía estructurada, sin sacrificar control ni transparencia.</blockquote>
+    <div class="closing-rule"></div>
+    <p class="closing-body" data-i18n="close.p">Esto es lo que aporto a un equipo: no asumo que la libertad es buena por defecto, ni que la estructura es buena por defecto. Diseño probando cuál necesita el usuario en cada punto del camino, y lo demuestro con iteraciones reales, no solo con una idea final pulida.</p>
+    <a class="cta" href="mailto:uxclewis@gmail.com" data-i18n="close.cta">Hablemos →</a>
+  </div>
+</section>
+
+<script>
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el) { io.observe(el); });
+
+  var bar = document.getElementById('progress');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var height = h.scrollHeight - h.clientHeight;
+    bar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  document.querySelectorAll('.detail-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var detail = btn.nextElementSibling;
+      var open = detail.classList.toggle('open');
+      btn.querySelector('.dt-icon').textContent = open ? '−' : '+';
+    });
+  });
+
+  var jumpLinks = document.querySelectorAll('.strip-item[data-jump]');
+  var jumpTargets = Array.prototype.map.call(jumpLinks, function(a) {
+    return document.getElementById(a.dataset.jump);
+  });
+  var spy = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      var idx = jumpTargets.indexOf(entry.target);
+      if (idx === -1) return;
+      if (entry.isIntersecting) {
+        jumpLinks.forEach(function(a) { a.classList.remove('active'); });
+        jumpLinks[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  jumpTargets.forEach(function(t) { if (t) spy.observe(t); });
+
+  document.querySelectorAll('[data-dd]').forEach(function(dd) {
+    var trigger = dd.querySelector('.work-dd-trigger');
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      var open = dd.classList.toggle('wd-open');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.work-dd-wrap.wd-open').forEach(function(dd) {
+      if (!dd.contains(e.target)) {
+        dd.classList.remove('wd-open');
+        dd.querySelector('.work-dd-trigger').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  (function() {
+    var sustain = document.getElementById('sustain');
+    if (!sustain) return;
+    var tabs = sustain.querySelectorAll('.sustain-tab');
+    var screens = sustain.querySelectorAll('.sustain-screen');
+    var panels = sustain.querySelectorAll('.sustain-text-panel');
+    var legendItems = sustain.querySelectorAll('.sustain-legend-item');
+    var navDotGroups = sustain.querySelectorAll('.sustain-nav-dots');
+    var navDots = sustain.querySelectorAll('.sustain-nav-dot');
+    var stage = sustain.querySelector('.sustain-stage');
+    // Orden de pantallas por capacidad, para el auto-avance: cuando una capacidad tiene más de
+    // una captura, pasa sola cada pocos segundos en vez de esperar a que el usuario note que hay
+    // más para ver. "call" tiene una sola captura (no le hace falta fila de números ni auto-
+    // avance, ambos ya manejan length<=1 solos). Las tabs solo eligen la capacidad — siempre las
+    // mismas 4, mismo tamaño — nunca cuál captura específica mostrar; eso lo hacen los números de
+    // abajo del mockup.
+    var groupScreens = {
+      call: ['call-1', 'call-2'],
+      chat: ['chat-1', 'chat-2'],
+      camp: ['camp-1', 'camp-2'],
+      rep: ['rep-1']
+    };
+    var currentGroup = 'call';
+    var currentIndex = 0;
+    var autoplayTimer = null;
+
+    function showScreen(key) {
+      screens.forEach(function(el) { el.classList.toggle('is-active', el.getAttribute('data-screen') === key); });
+      panels.forEach(function(el) { el.classList.toggle('is-active', el.getAttribute('data-screen') === key); });
+      legendItems.forEach(function(el) { el.classList.toggle('is-active', el.getAttribute('data-screen') === key); });
+      navDots.forEach(function(el) { el.classList.toggle('is-active', el.getAttribute('data-screen') === key); });
+    }
+    function startAutoplay() {
+      clearInterval(autoplayTimer);
+      var list = groupScreens[currentGroup];
+      if (!list || list.length <= 1) return;
+      autoplayTimer = setInterval(function() {
+        currentIndex = (currentIndex + 1) % list.length;
+        showScreen(list[currentIndex]);
+      }, 4200);
+    }
+    // Los números abajo del mockup son la navegación real: uno por captura de la capacidad
+    // activa, con el nombre de lo que muestra esa captura debajo. Solo se ve la fila de números
+    // del grupo activo, las otras dos quedan ocultas.
+    function updateNav() {
+      navDotGroups.forEach(function(el) {
+        el.classList.toggle('is-active-group', el.getAttribute('data-group') === currentGroup);
+      });
+    }
+    function activate(key, group) {
+      showScreen(key);
+      tabs.forEach(function(el) { el.classList.toggle('is-active', el.getAttribute('data-group') === group); });
+      currentGroup = group;
+      currentIndex = (groupScreens[group] || []).indexOf(key);
+      updateNav();
+      startAutoplay();
+    }
+    navDots.forEach(function(el) {
+      el.addEventListener('click', function() {
+        var key = el.getAttribute('data-screen');
+        currentIndex = groupScreens[currentGroup].indexOf(key);
+        showScreen(key);
+        startAutoplay();
+      });
+    });
+    tabs.forEach(function(el) {
+      var key = el.getAttribute('data-screen');
+      var group = el.getAttribute('data-group');
+      el.addEventListener('mouseenter', function() { activate(key, group); });
+      el.addEventListener('focus', function() { activate(key, group); });
+      el.addEventListener('click', function() { activate(key, group); });
+    });
+    if (stage) {
+      // Pausa el auto-avance mientras el usuario está mirando la pantalla activa, para no
+      // cambiarla justo cuando está leyendo o mirando la captura.
+      stage.addEventListener('mouseenter', function() { clearInterval(autoplayTimer); });
+      stage.addEventListener('mouseleave', function() { startAutoplay(); });
+    }
+    showScreen('call-1');
+    updateNav();
+    startAutoplay();
+  })();
+
+  var I18N = {
+    es: {
+      'meta.title': 'De la libertad a la precisión · Tangering AI · Cindy Lewis',
+      'nav.work': 'Trabajo',
+      'nav.about': 'Sobre mí',
+      'nav.payments': 'Pagos',
+      'nav.aiAgents': 'Agentes de IA',
+      'hero.eyebrow': 'Design case · Tangering AI',
+      'hero.h1': 'De la libertad a la precisión: 4 intentos de enseñarle a una IA su propio trabajo',
+      'hero.lede': 'Diseño la plataforma donde equipos sin conocimiento técnico crean, prueban y despliegan agentes de IA que llaman por teléfono y escriben por WhatsApp, desde ventas y cobranza hasta soporte. Su versión más pulida confirma entregas y llama por teléfono cuando el cliente no responde el WhatsApp, pensada especialmente para <strong>empresas de last-mile</strong>.',
+      'heroMac.alt': 'MacBook mostrando el constructor de agentes de Tangering, con la pantalla de bienvenida y las plantillas de Agente de Ventas, Confirmaciones y Soporte',
+      'heroMac.tag': 'Constructor de agentes',
+      'strip.1.n': 'Intento 1', 'strip.1.t': 'El formulario', 'strip.1.mark': '❌ Alucinaba',
+      'strip.2.n': 'Intento 2', 'strip.2.t': 'El flujo infinito', 'strip.2.mark': '❌ Muy complejo',
+      'strip.3.n': 'Intento 3', 'strip.3.t': 'Chat + diagrama', 'strip.3.mark': '❌ No entendían',
+      'strip.4.n': 'Intento 4', 'strip.4.t': 'El agente que crea agentes', 'strip.4.mark': '✅ Funcionó',
+      'contexto.tag': 'El contexto',
+      'contexto.h2': 'Una categoría que todavía no existía',
+      'contexto.p1': 'Cuando empezamos, los agentes de IA conversacionales aún no eran una categoría establecida. No había patrones de diseño probados a los que recurrir. Al mismo tiempo, las empresas cargaban con costos altísimos en llamadas y mensajería de atención al cliente, con alta demanda de una solución y prácticamente ninguna madura en el mercado.',
+      'contexto.p2': 'Ese vacío era la oportunidad, pero también significaba que cada decisión de diseño era, literalmente, una hipótesis sin precedente que validar.',
+      'a1.tag': 'Intento 01',
+      'a1.h2': 'El formulario',
+      'a1.p1': 'La primera versión dejaba que el usuario describiera su agente con texto libre: qué debía hacer, cómo debía responder. Parecía la forma más simple de empezar.',
+      'a1.p2': 'No lo fue. Los agentes alucinaban constantemente, por exceso de libertad interpretativa y no por falta de capacidad del modelo.',
+      'a1.toggle': 'Ver el insight que cambió todo',
+      'a1.detail': 'El insight: un agente de IA se comporta como una persona nueva en un trabajo. Necesita conocimiento y herramientas concretas para hacer su tarea, no una idea general de lo que se espera de él.',
+      'a1.verdict': '❌ Falló por exceso de libertad interpretativa',
+      'a1.alt': 'Pantalla "Customize Your Own Agent" del primer formulario para crear agentes de Edgen AI, con campos de nombre, imagen, voz, objetivo, mensaje de apertura, base de conocimiento y acciones',
+      'a1.cap': 'El primer formulario para crear agentes, de cuando el producto se llamaba "Edgen AI": nombre, imagen, voz, objetivo y mensaje de apertura, todo como texto libre.',
+      'a2.tag': 'Intento 02',
+      'a2.h2': 'El flujo infinito',
+      'a2.p1': 'La respuesta al problema anterior fue irse al extremo opuesto: un canvas nodo por nodo, donde cada acción del agente tenía su propia herramienta explícita y conectada.',
+      'a2.p2': 'Esto sí resolvía la precisión: el agente ya no improvisaba, seguía un flujo definido.',
+      'a2.toggle': 'Ver por qué rompía la usabilidad',
+      'a2.detail': 'El canvas era demasiado complejo para el usuario promedio, que no pensaba en su negocio como un diagrama de flujo técnico.',
+      'a2.verdict': '❌ Falló por complejidad: precisión a costa de usabilidad',
+      'a2.alt': 'Canvas de flujo nodo por nodo con los nodos Start, Agent Support, Search Directions y Get Chicken Menu conectados, y un menú de Tools en la parte inferior',
+      'a2.cap': 'El canvas nodo por nodo: cada paso del agente (Agent Support, Search Directions, Get Chicken Menu) era un nodo conectado con sus propias herramientas.',
+      'a3.tag': 'Intento 03',
+      'a3.h2': 'El chat guiado + diagrama',
+      'a3.p1': 'Los usuarios ya "hablaban" con la plataforma de forma natural, así que guiamos la creación del agente por chat en lugar de un canvas o formulario. Un avance real en usabilidad.',
+      'a3.toggle': 'Ver qué seguía sin funcionar',
+      'a3.detail': 'Al final del proceso, seguíamos mostrando un diagrama técnico como resumen. Los usuarios no entendían diagramas, ni el concepto de "herramientas" como una pieza separada de la conversación. Habíamos arreglado la entrada, pero no la salida.',
+      'a3.verdict': '❌ Falló porque el resumen final no hablaba el mismo idioma que la conversación',
+      'a3.alt': 'Chat guiado de Edgen AI entrenando una voz, con reproductor de audio, calificación por estrellas y un campo para escribir feedback y mejorar la calidad',
+      'a3.cap': 'El chat guiado entrenando y pidiendo calificar la voz generada, parte del flujo conversacional de creación del agente.',
+      'a4.tag': 'Intento 04',
+      'a4.h2': 'El agente que crea agentes',
+      'a4.p1': 'La versión que finalmente balanceó precisión y simplicidad: 100% conversacional, pero totalmente auditable. El prompt, las herramientas y la voz del agente quedan revisables en todo momento. Nada se esconde detrás de la conversación.',
+      'a4.p2': 'Así se ve creando "Julieta", un agente de confirmación de entregas, el mismo tipo de agente que sostiene el caso de last-mile:',
+      'a4.toggle': 'Ver cómo cerró el círculo',
+      'a4.detail': 'Se puede probar el agente en vivo, por voz o por chat, y hacer ajustes guiados sin salir de la conversación a través de un "copiloto de flujos". La libertad que había fallado en el Intento 1 volvía, pero esta vez enmarcada por estructura y visibilidad total del resultado.',
+      'a4.verdict': '✅ Funcionó: precisión + simplicidad, sin sacrificar control',
+      'a4.mock1.label': 'Conversación real de creación',
+      'a4.convAlt': 'Conversación real de creación en Tangering, de principio a fin: Tangering pregunta qué proceso automatizar, el usuario pide un agente que confirme entregas y disponibilidad con clientes, elige que el agente llame por teléfono, y Tangering propone la voz Sofía (cálida y empática) con un botón para confirmarla',
+      'a4.mock2.label': 'Resultado: resumen de "Julieta"',
+      'a4.summaryAlt': 'Pantalla de resumen del agente Julieta: canal, voz, tipo, objetivo, flujo de la conversación en 4 pasos, información que recibe y captura, capacidades y tono, con opción de confirmar o cambiar algo',
+      'a4.cap': 'Conversación real del constructor de agentes, desde la primera pregunta hasta el resumen final antes de crear el agente.',
+      'audit.tag': 'Intento 04 · el panel de control',
+      'audit.nav.prompt': 'Prompt', 'audit.nav.tools': 'Tools', 'audit.nav.models': 'Modelos', 'audit.nav.knowledge': 'Conocimiento', 'audit.nav.config': 'Config',
+      'audit.intro': 'Es el mismo agente, Julieta, visto desde sus 5 pestañas de configuración:',
+      'audit.h2': 'Lo que queda auditable, no oculto',
+      'audit.p1': 'Una vez creado, cada agente se puede abrir y ajustar: el prompt, las herramientas conectadas, el modelo de IA, la base de conocimiento y la configuración avanzada quedan siempre visibles y editables, nunca escondidos detrás de la conversación.',
+      'audit.promptAlt': 'Tab Prompt del editor de Julieta: prompt principal, saludo inicial, variables en contexto y el Copiloto de Flujos disponible a la derecha',
+      'audit.promptCap': 'Prompt principal, saludo inicial y variables detectadas, con el Copiloto de Flujos siempre disponible para ajustar todo en lenguaje natural.',
+      'audit.toolsAlt': 'Tab Tools del editor de Julieta: herramientas conectadas (CRM, base de conocimiento, IA, sistema de escalamiento) con endpoint y autenticación',
+      'audit.toolsCap': 'Herramientas conectadas (CRM, base de conocimiento, IA, sistema de escalamiento) con su endpoint y autenticación.',
+      'audit.modelsAlt': 'Tab Modelos del editor de Julieta: proveedor y modelo de IA, temperatura, esfuerzo de razonamiento y tokens máximos',
+      'audit.modelsCap': 'Proveedor y modelo de IA, temperatura, esfuerzo de razonamiento y tokens máximos.',
+      'audit.knowledgeAlt': 'Tab Conocimiento del editor de Julieta: bases de conocimiento conectadas con su número de documentos y estado',
+      'audit.knowledgeCap': 'Bases de conocimiento conectadas, con su número de documentos y estado.',
+      'audit.configAlt': 'Tab Config del editor de Julieta: configuración avanzada con sonidos de fondo, mensajes de empuje y frases para mejorar la detección',
+      'audit.configCap': 'Configuración avanzada: sonidos de fondo, frases de espera y frases para mejorar la detección.',
+      'voice.tag': 'Un camino explorado y descartado',
+      'voice.h2': 'Al inicio, también propusimos clonar la voz del usuario',
+      'voice.p1': 'Dentro del mismo flujo de creación del Intento 4, en una etapa temprana llegamos a plantear que la persona pudiera grabar y clonar su propia voz para el agente, en lugar de elegir entre voces predefinidas, con un paso de calificación para validar la calidad de la grabación antes de entrenar el modelo.',
+      'voice.p2': 'No llegó a producción: la reemplazamos por el selector de voces predefinidas que terminó en la versión final del constructor de agentes.',
+      'lastmile.tag': 'El caso insignia',
+      'lastmile.h2': 'Por qué last-mile es donde esto se pone a prueba de verdad',
+      'lastmile.p1': 'La plataforma sirve para cualquier vertical (ventas, soporte, cobranza, RR.HH.), pero las confirmaciones de entrega para empresas de envío son el caso más exigente: si el agente falla en confirmar, el paquete llega y no hay nadie, o llega al lugar equivocado. No hay margen para una llamada genérica.',
+      'lastmile.p2': 'Por eso el tipo de campaña "Híbrido" existe: empieza por el canal más barato y menos intrusivo, y solo escala si hace falta.',
+      'lastmile.shotAlt': 'Configuración real de una Campaña Híbrida en Tangering, paso "Configurar flujo": en "Si no responden" el Paso 1 manda un mensaje de WhatsApp con el agente de ventas y espera 2 horas; a la derecha, la Vista en vivo muestra la secuencia por contacto: mensaje de WhatsApp, si no hay respuesta escala a llamada de voz, reinicia con 24h de espera entre ciclos y sale del flujo tras 5 intentos',
+      'lastmile.cap': 'La interfaz real de configuración: el paso "Si no responden" hace que la campaña empiece por WhatsApp y escale sola a llamada de voz, con tiempos de espera y reglas de transición editables, y la secuencia por contacto se actualiza en vivo a la derecha.',
+      'sustain.tag': 'De crear a sostener',
+      'sustain.h2': 'Una vez el agente existía, los clientes necesitaban confianza continua',
+      'sustain.p': 'Crear el agente era solo el principio. Para que las empresas confiaran en delegarle su atención al cliente, necesitaban poder ver, auditar y ajustar cómo operaba día a día. De ahí nacieron estas piezas del sistema. Señala cada una con el mouse (o tócala en el celular) para ver cómo se ve en el producto.',
+      'sustain.calls.h3': 'Llamadas',
+      'sustain.calls.p': 'Transcripción en tiempo real con confianza e intención detectada por turno, para escuchar la llamada en curso sin interrumpirla.',
+      'sustain.chats.h3': 'Chats en vivo',
+      'sustain.chats.p': 'Variables de contexto detectadas en cada turno, registro de qué herramienta usó el agente y cuándo, y un botón para tomar control humano de la conversación sin cortarla.',
+      'sustain.card2.h3': 'Campañas',
+      'sustain.card2.p': 'Priorización arrastrable entre campañas activas, tipo Voz o Híbrido según el caso, base de contactos por CSV y reglas de marcación configurables por campaña.',
+      'sustain.card3.h3': 'Reportes',
+      'sustain.card3.p': 'No solo datos generales de la llamada, también datos que el agente extrae de la conversación con IA: fecha de pago prometida, monto, motivo de no pago, calificación del servicio.',
+      'sustain.proofCalls.img1Alt': 'Llamada activa en modo escucha, con transcripción en tiempo real y confianza e intención detectada en cada turno',
+      'sustain.proofCalls.img1Cap': 'Una llamada activa en modo escucha: transcripción en tiempo real con confianza e intención detectada en cada turno.',
+      'sustain.proofCalls.img1Badge': 'Transcripción en vivo',
+      'sustain.proofChats.img1Alt': 'Chat en vivo con Ana García: variables de contexto detectadas (intent, plan de interés, descuento) y registro de herramientas usadas por el bot, con una solicitud de agente humano en curso',
+      'sustain.proofChats.img1Cap': 'Chat en vivo: variables de contexto detectadas y registro de qué herramienta usó el bot y cuándo, con una solicitud de agente humano en curso.',
+      'sustain.proofChats.img1Badge': 'Solicita agente humano',
+      'sustain.proofChats.img2Alt': 'Chat con un humano en control de la conversación, con el botón para devolverla al bot',
+      'sustain.proofChats.img2Cap': 'El botón para tomar control humano de la conversación sin cortarla, y devolverla al bot cuando ya no hace falta.',
+      'sustain.proofChats.img2Badge': 'Control humano activo',
+      'sustain.proofCalls.img2Alt': 'Historial de una llamada con un análisis generado por IA sobre su estado, y la opción de corregirlo si está mal clasificado',
+      'sustain.proofCalls.img2Cap': 'El historial de llamadas incluye un análisis generado por IA sobre el estado de cada llamada, con la opción de corregirlo si quedó mal clasificado.',
+      'sustain.proofCalls.img2Badge': 'Análisis con IA',
+      'sustain.proof2.img1Alt': 'Lista de campañas activas, con tipo, agente asignado, progreso, vigencia y prioridad arrastrable',
+      'sustain.proof2.img1Cap': 'Todas las campañas activas, con tipo (Voz o Híbrida), agente asignado, progreso y prioridad arrastrable.',
+      'sustain.proof2.img1Badge': 'Campañas activas',
+      'sustain.proof2.img2Alt': 'Wizard para crear una nueva campaña, empezando por elegir el agente y la zona horaria de los contactos',
+      'sustain.proof2.img2Cap': 'Crear una campaña nueva: primero se elige el agente (que define las columnas del CSV) y la zona horaria de los contactos.',
+      'sustain.proof2.img2Badge': 'Nueva campaña',
+      'sustain.proof3.img1Alt': 'Constructor de reportes con columnas de datos generales y datos extraídos por IA, como fecha de pago prometida y motivo de no pago',
+      'sustain.proof3.img1Cap': 'El constructor de reportes: columnas de datos generales y datos extraídos por IA (fecha de pago prometida, monto, motivo de no pago, calificación del servicio).',
+      'sustain.proof3.img1Badge': 'Constructor de reportes',
+      'pull.quote': 'Cada vez que le di al usuario más libertad de la que sabía manejar, el producto falló. Mi trabajo como diseñadora fue reemplazar esa libertad por guía estructurada, sin sacrificar control ni transparencia.',
+      'pull.attr': 'El hilo conductor de los 4 intentos',
+      'close.p': 'Esto es lo que aporto a un equipo: no asumo que la libertad es buena por defecto, ni que la estructura es buena por defecto. Diseño probando cuál necesita el usuario en cada punto del camino, y lo demuestro con iteraciones reales, no solo con una idea final pulida.',
+      'close.cta': 'Hablemos →'
+    },
+    en: {
+      'meta.title': 'From Freedom to Precision · Tangering AI · Cindy Lewis',
+      'nav.work': 'Work',
+      'nav.about': 'About Me',
+      'nav.payments': 'Payments',
+      'nav.aiAgents': 'AI Agents',
+      'hero.eyebrow': 'Design case · Tangering AI',
+      'hero.h1': 'From freedom to precision: 4 attempts at teaching an AI its own job',
+      'hero.lede': "I design the platform where non-technical teams create, test, and deploy AI agents that call by phone and message over WhatsApp, from sales and collections to support. Its most polished version confirms deliveries and calls by phone when the customer doesn't respond on WhatsApp, built especially for <strong>last-mile companies</strong>.",
+      'heroMac.alt': "MacBook showing Tangering's agent builder, with the welcome screen and the Sales, Confirmations, and Support agent templates",
+      'heroMac.tag': 'Agent builder',
+      'strip.1.n': 'Attempt 1', 'strip.1.t': 'The form', 'strip.1.mark': '❌ Hallucinated',
+      'strip.2.n': 'Attempt 2', 'strip.2.t': 'The infinite flow', 'strip.2.mark': '❌ Too complex',
+      'strip.3.n': 'Attempt 3', 'strip.3.t': 'Chat + diagram', 'strip.3.mark': "❌ Users didn't get it",
+      'strip.4.n': 'Attempt 4', 'strip.4.t': 'The agent that creates agents', 'strip.4.mark': '✅ It worked',
+      'contexto.tag': 'The context',
+      'contexto.h2': "A category that didn't exist yet",
+      'contexto.p1': "When we started, conversational AI agents weren't yet an established category. There were no proven design patterns to fall back on. At the same time, companies were carrying steep costs in customer service calls and messaging, with high demand for a solution and practically nothing mature on the market.",
+      'contexto.p2': 'That gap was the opportunity, but it also meant every design decision was, literally, an unprecedented hypothesis to validate.',
+      'a1.tag': 'Attempt 01',
+      'a1.h2': 'The form',
+      'a1.p1': 'The first version let the user describe their agent in free text: what it should do, how it should respond. It seemed like the simplest way to start.',
+      'a1.p2': "It wasn't. Agents hallucinated constantly, not from a lack of model capability but from too much room for interpretation.",
+      'a1.toggle': 'See the insight that changed everything',
+      'a1.detail': "The insight: an AI agent behaves like someone new on the job. It needs concrete knowledge and tools to do its task, not a general idea of what's expected of it.",
+      'a1.verdict': '❌ Failed from too much interpretive freedom',
+      'a1.alt': '"Customize Your Own Agent" screen from Edgen AI\'s first agent-creation form, with fields for name, image, voice, goal, opening message, knowledge base, and actions',
+      'a1.cap': 'The first agent-creation form, from when the product was called "Edgen AI": name, image, voice, goal, and opening message, all as free text.',
+      'a2.tag': 'Attempt 02',
+      'a2.h2': 'The infinite flow',
+      'a2.p1': 'The answer to that problem was to swing to the opposite extreme: a node-by-node canvas, where every agent action had its own explicit, connected tool.',
+      'a2.p2': 'This did solve precision: the agent no longer improvised, it followed a defined flow.',
+      'a2.toggle': 'See why it broke usability',
+      'a2.detail': "The canvas was too complex for the average user, who didn't think about their business as a technical flowchart.",
+      'a2.verdict': '❌ Failed from complexity: precision at the cost of usability',
+      'a2.alt': 'Node-by-node flow canvas with Start, Agent Support, Search Directions, and Get Chicken Menu nodes connected, and a Tools menu at the bottom',
+      'a2.cap': 'The node-by-node canvas: every agent step (Agent Support, Search Directions, Get Chicken Menu) was a connected node with its own tools.',
+      'a3.tag': 'Attempt 03',
+      'a3.h2': 'Guided chat + diagram',
+      'a3.p1': 'Users were already "talking" to the platform naturally, so we guided agent creation through chat instead of a canvas or a form. A real step forward in usability.',
+      'a3.toggle': "See what still wasn't working",
+      'a3.detail': 'At the end of the process, we still showed a technical diagram as a summary. Users didn\'t understand diagrams, or the concept of "tools" as something separate from the conversation. We had fixed the input, but not the output.',
+      'a3.verdict': "❌ Failed because the final summary didn't speak the same language as the conversation",
+      'a3.alt': "Edgen AI's guided chat training a voice, with an audio player, star rating, and a field to write feedback to improve quality",
+      'a3.cap': "The guided chat training and asking to rate the generated voice, part of the agent's conversational creation flow.",
+      'a4.tag': 'Attempt 04',
+      'a4.h2': 'The agent that creates agents',
+      'a4.p1': "The version that finally balanced precision and simplicity: 100% conversational, but fully auditable. The agent's prompt, tools, and voice stay reviewable at every moment. Nothing hides behind the conversation.",
+      'a4.p2': 'Here\'s what it looks like creating "Julieta," a delivery-confirmation agent, the same kind of agent behind the last-mile case:',
+      'a4.toggle': 'See how it closed the loop',
+      'a4.detail': 'You can test the agent live, by voice or chat, and make guided adjustments without leaving the conversation, through a "flow copilot." The freedom that had failed in Attempt 1 came back, but this time framed by structure and full visibility into the result.',
+      'a4.verdict': '✅ It worked: precision + simplicity, without sacrificing control',
+      'a4.mock1.label': 'Real creation conversation',
+      'a4.convAlt': "The real agent-creation conversation in Tangering, start to finish: Tangering asks what process to automate, the user asks for an agent that confirms deliveries and availability with customers, picks a phone call, and Tangering suggests the Sofía voice (warm and empathetic) with a button to confirm it",
+      'a4.mock2.label': "Result: Julieta's summary",
+      'a4.summaryAlt': "Julieta agent summary screen: channel, voice, type, goal, 4-step conversation flow, information received and captured, capabilities, and tone, with an option to confirm or change something",
+      'a4.cap': "The real conversation from the agent builder, from the first question to the final summary before creating the agent.",
+      'audit.tag': 'Attempt 04 · the control panel',
+      'audit.nav.prompt': 'Prompt', 'audit.nav.tools': 'Tools', 'audit.nav.models': 'Models', 'audit.nav.knowledge': 'Knowledge', 'audit.nav.config': 'Config',
+      'audit.intro': "It's the same agent, Julieta, seen from its 5 configuration tabs:",
+      'audit.h2': 'What stays auditable, not hidden',
+      'audit.p1': "Once created, every agent can be opened and adjusted: the prompt, connected tools, AI model, knowledge base, and advanced configuration stay visible and editable at all times, never hidden behind the conversation.",
+      'audit.promptAlt': "Julieta's editor, Prompt tab: main prompt, opening greeting, context variables, and the Flow Copilot available on the right",
+      'audit.promptCap': 'Main prompt, opening greeting, and detected variables, with the Flow Copilot always available to adjust everything in natural language.',
+      'audit.toolsAlt': "Julieta's editor, Tools tab: connected tools (CRM, knowledge base, AI, escalation system) with their endpoint and authentication",
+      'audit.toolsCap': 'Connected tools (CRM, knowledge base, AI, escalation system) with their endpoint and authentication.',
+      'audit.modelsAlt': "Julieta's editor, Models tab: AI provider and model, temperature, reasoning effort, and max tokens",
+      'audit.modelsCap': 'AI provider and model, temperature, reasoning effort, and max tokens.',
+      'audit.knowledgeAlt': "Julieta's editor, Knowledge tab: connected knowledge bases with their document count and status",
+      'audit.knowledgeCap': 'Connected knowledge bases, with their document count and status.',
+      'audit.configAlt': "Julieta's editor, Config tab: advanced configuration with background sounds, push messages, and detection-boosting phrases",
+      'audit.configCap': 'Advanced configuration: background sounds, hold phrases, and detection-boosting phrases.',
+      'voice.tag': 'A path explored and dropped',
+      'voice.h2': "Early on, we also proposed cloning the user's voice",
+      'voice.p1': 'Within that same Attempt 4 creation flow, at an early stage we proposed letting the person record and clone their own voice for the agent, instead of choosing from preset voices, with a quality-rating step to validate the recording before training the model.',
+      'voice.p2': "It never shipped: we replaced it with the preset-voice picker that made it into the final version of the agent builder.",
+      'lastmile.tag': 'The flagship case',
+      'lastmile.h2': 'Why last-mile is where this really gets tested',
+      'lastmile.p1': "The platform works for any vertical (sales, support, collections, HR), but delivery confirmations for shipping companies are the most demanding case: if the agent fails to confirm, the package arrives to no one, or to the wrong place. There's no room for a generic call.",
+      'lastmile.p2': 'That\'s why the "Hybrid" campaign type exists: it starts with the cheapest, least intrusive channel, and only escalates if it needs to.',
+      'lastmile.shotAlt': 'Real setup of a Hybrid Campaign in Tangering, "Configure flow" step: under "If they don\'t respond", Step 1 sends a WhatsApp message with the sales agent and waits 2 hours; on the right, the Live view shows the per-contact sequence: WhatsApp message, if there\'s no response it escalates to a voice call, restarts with a 24h wait between cycles, and exits the flow after 5 attempts',
+      'lastmile.cap': 'The real configuration interface: the "If they don\'t respond" step makes the campaign start on WhatsApp and escalate on its own to a voice call, with editable wait times and transition rules, and the per-contact sequence updates live on the right.',
+      'sustain.tag': 'From creating to sustaining',
+      'sustain.h2': 'Once the agent existed, clients needed ongoing trust',
+      'sustain.p': "Creating the agent was only the beginning. For companies to trust it with their customer service, they needed to see, audit, and adjust how it operated day to day. That's where these pieces of the system came from. Point at each one with your mouse (or tap it on mobile) to see how it looks in the product.",
+      'sustain.calls.h3': 'Calls',
+      'sustain.calls.p': 'Real-time transcription with confidence and detected intent per turn, to listen in on the live call without interrupting it.',
+      'sustain.chats.h3': 'Live chats',
+      'sustain.chats.p': 'Detected context variables per turn, a log of which tool the agent used and when, and a button to take human control of the conversation without cutting it off.',
+      'sustain.card2.h3': 'Campaigns',
+      'sustain.card2.p': 'Drag-and-drop prioritization across active campaigns, Voice or Hybrid type depending on the case, a CSV contact base, and per-campaign configurable dialing rules.',
+      'sustain.card3.h3': 'Reports',
+      'sustain.card3.p': 'Not just general call data, also data the agent extracts from the conversation with AI: promised payment date, amount, reason for non-payment, service rating.',
+      'sustain.proofCalls.img1Alt': 'An active call in listen mode, with real-time transcription and confidence and detected intent per turn',
+      'sustain.proofCalls.img1Cap': 'An active call in listen mode: real-time transcription with confidence and detected intent per turn.',
+      'sustain.proofCalls.img1Badge': 'Live transcription',
+      'sustain.proofChats.img1Alt': "Live chat with Ana García: detected context variables (intent, plan of interest, discount) and a log of tools the bot used, with a human-agent request in progress",
+      'sustain.proofChats.img1Cap': 'Live chat: detected context variables and a log of which tool the bot used and when, with a human-agent request in progress.',
+      'sustain.proofChats.img1Badge': 'Requests human agent',
+      'sustain.proofChats.img2Alt': 'A chat with a human in control of the conversation, with the button to return it to the bot',
+      'sustain.proofChats.img2Cap': "The button to take human control of the conversation without cutting it off, and hand it back to the bot once it's no longer needed.",
+      'sustain.proofChats.img2Badge': 'Human in control',
+      'sustain.proofCalls.img2Alt': "A call's history with an AI-generated analysis of its status, and the option to correct it if it was misclassified",
+      'sustain.proofCalls.img2Cap': "Call history includes an AI-generated analysis of each call's status, with the option to correct it if it came out misclassified.",
+      'sustain.proofCalls.img2Badge': 'AI-generated analysis',
+      'sustain.proof2.img1Alt': 'List of active campaigns, with type, assigned agent, progress, dates, and drag-and-drop priority',
+      'sustain.proof2.img1Cap': 'All active campaigns, with type (Voice or Hybrid), assigned agent, progress, and drag-and-drop priority.',
+      'sustain.proof2.img1Badge': 'Active campaigns',
+      'sustain.proof2.img2Alt': 'Wizard for creating a new campaign, starting with choosing the agent and the contacts\' time zone',
+      'sustain.proof2.img2Cap': "Creating a new campaign: you choose the agent first (which defines the CSV columns), then the contacts' time zone.",
+      'sustain.proof2.img2Badge': 'New campaign',
+      'sustain.proof3.img1Alt': 'Report builder with general-data columns and AI-extracted columns, like promised payment date and reason for non-payment',
+      'sustain.proof3.img1Cap': 'The report builder: general-data columns and AI-extracted columns (promised payment date, amount, reason for non-payment, service rating).',
+      'sustain.proof3.img1Badge': 'Report builder',
+      'pull.quote': "Every time I gave the user more freedom than they knew how to handle, the product failed. My job as a designer was to replace that freedom with structured guidance, without sacrificing control or transparency.",
+      'pull.attr': 'The throughline across all 4 attempts',
+      'close.p': "This is what I bring to a team: I don't assume freedom is good by default, or that structure is good by default. I design by testing which one the user needs at each point along the way, and I show it through real iterations, not just a polished final idea.",
+      'close.cta': "Let's talk →"
+    }
+  };
+
+  function applyLang(lang) {
+    document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'es');
+    var dict = I18N[lang] || I18N.es;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n-alt');
+      if (dict[key] !== undefined) el.setAttribute('alt', dict[key]);
+    });
+    var titleEl = document.querySelector('title[data-i18n]');
+    if (titleEl) document.title = dict[titleEl.getAttribute('data-i18n')] || document.title;
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.langBtn === lang);
+    });
+    try { localStorage.setItem('portfolioLang', lang); } catch (e) {}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { applyLang(btn.dataset.langBtn); });
+  });
+
+  var savedLang = 'es';
+  try { savedLang = localStorage.getItem('portfolioLang') || 'es'; } catch (e) {}
+  applyLang(savedLang);
+</script>
+</body>
+</html>

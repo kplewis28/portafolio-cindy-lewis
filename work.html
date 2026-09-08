@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta.title">Trabajo · Cindy Lewis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; background: #0a0e1a; color: #eaf0ff; font-family: 'Inter', sans-serif; }
+  a { color: inherit; text-decoration: none; }
+
+  .navbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 36px 48px; box-sizing: border-box; flex-wrap: wrap; gap: 16px;
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(10,14,26,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .navbar .nav-links { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+  .navbar .nav-links a.nav-link { font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85); text-decoration: none; }
+  .pill-btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(140,180,255,0.45);
+    background: rgba(60,100,220,0.18);
+    color: #eaf0ff;
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-linkedin { display: inline-flex; align-items: center; gap: 7px; }
+  .nav-linkedin svg { width: 15px; height: 15px; flex: 0 0 auto; }
+
+  .work-dd-wrap { position: relative; }
+  .work-dd-trigger {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85);
+    background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+  }
+  .wd-caret { font-size: 10px; opacity: 0.7; transition: transform 0.2s ease; }
+  .work-dd-wrap:hover .wd-caret, .work-dd-wrap.wd-open .wd-caret { transform: rotate(180deg); }
+  .work-dropdown {
+    position: absolute; top: 100%; left: 0; margin-top: 14px; min-width: 230px;
+    display: flex; flex-direction: column; gap: 2px;
+    background: rgba(15,20,35,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 8px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; transform: translateY(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 60;
+  }
+  .work-dd-wrap:hover .work-dropdown, .work-dd-wrap.wd-open .work-dropdown {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .wd-item {
+    display: block; text-align: left;
+    font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 500;
+    color: rgba(220,228,255,0.8); text-decoration: none;
+    padding: 10px 12px; border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .wd-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .wd-item.is-current { color: #fff; background: rgba(60,100,220,0.22); }
+
+  .nav-link.is-current, .work-dd-trigger.is-current {
+    color: #fff;
+    padding-bottom: 4px;
+    border-bottom: 2px solid rgba(140,180,255,0.85);
+  }
+
+  .lang-toggle {
+    display: inline-flex; align-items: center; border: 1px solid rgba(140,180,255,0.35);
+    border-radius: 999px; padding: 3px; gap: 2px; background: rgba(255,255,255,0.03);
+  }
+  .lang-btn {
+    font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em;
+    color: rgba(220,228,255,0.6); background: none; border: none; border-radius: 999px;
+    padding: 6px 12px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
+  }
+  .lang-btn.active { background: rgba(60,100,220,0.32); color: #eaf0ff; }
+  .lang-btn:not(.active):hover { color: rgba(220,228,255,0.85); }
+
+
+  .tabs-wrap {
+    position: relative; z-index: 15;
+    padding: 24px 48px 24px;
+  }
+  .tabs-label {
+    text-align: center;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(200,215,255,0.55);
+    text-shadow: 0 2px 10px rgba(0,10,40,0.6);
+    margin: 0 0 12px;
+  }
+  .tabs {
+    display: flex; gap: 10px;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .tab {
+    font-size: 14px; font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 999px;
+    color: rgba(220,228,255,0.75);
+    background: rgba(15,20,35,0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.16);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+  }
+  .tab:hover { color: rgba(220,228,255,0.9); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.22); }
+  .tab:active { transform: scale(0.96); }
+  .tab.active {
+    color: #ffffff;
+    background: rgba(140,180,255,0.15);
+    border-color: rgba(160,200,255,0.5);
+  }
+
+  .ph {
+    border: 1px dashed rgba(255,255,255,0.22);
+    border-radius: 12px;
+    background: repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 12px, transparent 12px 24px);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .ph-label { font-size: 12px; opacity: 0.5; padding: 10px 16px; line-height: 1.5; }
+
+  .stage { opacity: 0; transition: opacity 0.45s ease; }
+  .stage.is-in { opacity: 1; }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    display: flex; align-items: flex-end;
+    padding: 70px 64px;
+    overflow: hidden;
+  }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.6)); }
+  .hero-tag { position: relative; z-index: 1; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.85; margin: 0 0 14px; }
+  .hero h1 { position: relative; z-index: 1; font-size: 56px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin: 0; max-width: 700px; }
+
+  .hero-photo { padding: 0; margin-top: -170px; min-height: calc(56vh + 170px); }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95) grayscale(1) contrast(1.0); }
+  .hero-tint { position: absolute; inset: 0; background: linear-gradient(165deg, #0c1638 0%, #14245c 55%, #0a1230 100%); mix-blend-mode: color; }
+  .hero-glow { position: absolute; inset: 0; background: radial-gradient(circle at 50% 46%, rgba(130,180,255,0.75) 0%, rgba(70,120,230,0.35) 35%, transparent 65%); mix-blend-mode: screen; }
+  .hero-topfade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(4,7,18,0.75) 0%, rgba(4,7,18,0.4) 130px, transparent 260px); }
+  .hero-inner { position: relative; z-index: 2; padding: 70px 64px; padding-top: 240px; }
+
+  .scroll-cue { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 40px 0 20px; opacity: 0.5; }
+  .scroll-cue .line { width: 1px; height: 30px; background: rgba(255,255,255,0.4); }
+  .scroll-cue span { font-size: 11px; letter-spacing: 0.18em; }
+
+  .statement { max-width: 760px; margin: 0 auto; padding: 20px 40px 80px; text-align: center; }
+  .statement h2 { font-size: 34px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 16px; }
+  .statement .italic-line { font-size: 15px; font-style: italic; opacity: 0.55; max-width: 520px; margin: 0 auto; line-height: 1.65; }
+
+  .detail-row { display: flex; gap: 48px; align-items: center; max-width: 1000px; margin: 0 auto; padding: 0 40px 90px; }
+  .detail-row.reverse { flex-direction: row-reverse; }
+  .detail-row .detail-visual { flex: 1; height: 220px; }
+  .detail-row .detail-text { flex: 1; }
+  .detail-row .detail-text h3 { font-size: 19px; font-weight: 600; margin: 0 0 10px; }
+  .detail-row .detail-text p { font-size: 14.5px; line-height: 1.65; opacity: 0.72; margin: 0; }
+
+  .badge-wrap { display: flex; justify-content: center; padding: 20px 40px 90px; }
+  .badge {
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 1px solid rgba(140,180,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 28px;
+    font-size: 14px; line-height: 1.5; opacity: 0.9;
+  }
+
+  .closing { max-width: 640px; margin: 0 auto; padding: 0 40px 80px; text-align: center; }
+  .closing h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.015em; }
+
+  .video-block { max-width: 1000px; margin: 0 auto 70px; padding: 0 40px; }
+  .video-block .ph { height: 340px; position: relative; overflow: hidden; }
+  .play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 60px; height: 60px; border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-btn svg { width: 20px; height: 20px; margin-left: 3px; }
+
+  .stage-cta { text-align: center; padding: 0 40px 110px; }
+
+  @media (max-width: 720px) {
+    .hero { padding: 44px 28px; min-height: 46vh; }
+    .hero h1 { font-size: 34px; }
+    .detail-row, .detail-row.reverse { flex-direction: column; padding: 0 28px 60px; }
+    .statement, .closing, .video-block, .stage-cta { padding-left: 28px; padding-right: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="navbar">
+  <a href="./El%20Ojo.dc.html" style="text-decoration:none; color:inherit; display:block;">
+    <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
+    <div style="font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
+  </a>
+  <div class="nav-links">
+    <div class="work-dd-wrap" data-dd>
+      <button class="nav-link work-dd-trigger is-current" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
+      <div class="work-dropdown">
+        <a class="wd-item" href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
+        <a class="wd-item" href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
+      </div>
+    </div>
+    <a class="nav-link" href="./about.html" data-i18n="nav.about">Sobre mí</a>
+    <div class="lang-toggle">
+      <button class="lang-btn" type="button" data-lang-btn="es">ES</button>
+      <button class="lang-btn" type="button" data-lang-btn="en">EN</button>
+    </div>
+    <a class="pill-btn nav-linkedin" href="https://www.linkedin.com/in/cindy-lewis-uxdesigner/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/></svg><span>LinkedIn</span></a>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <p class="tabs-label" data-i18n="tabs.label">Selecciona un proyecto</p>
+  <div class="tabs" id="tabs">
+    <a class="tab" href="./habitanto.html">Habitanto ✓</a>
+    <div class="tab active" data-id="p1">Tangering</div>
+  </div>
+</div>
+
+<div class="stage is-in" id="stage"></div>
+
+<script>
+  var DATA = {
+    es: {
+      p1: {
+        tag: 'Producto · Agentes de IA',
+        title: 'Tangering',
+        heroImage: './assets/tangerine-hero.webp',
+        statement: 'De una app de idiomas a una plataforma de agentes.',
+        italicLine: 'Ver cómo la gente usaba Tangering de verdad (para trabajar, no para practicar idiomas) mostró hacia dónde tenía que ir.',
+        details: [
+          { title: 'Lo que los usuarios de verdad querían', text: 'La gente le pedía redactar correos y resumir notas, no practicar inglés.' },
+          { title: 'Lo que construimos en su lugar', text: 'Una plataforma para construir agentes de IA que una empresa puede poner a trabajar en sus propios procesos, sin equipo de desarrollo.' }
+        ],
+        badge: 'Caso de estudio completo disponible',
+        closing: 'El giro salió de observar, no de adivinar.',
+        href: './tangerine.html',
+        hrefLabel: 'Leer el caso completo →'
+      }
+    },
+    en: {
+      p1: {
+        tag: 'Product · AI agents',
+        title: 'Tangering',
+        heroImage: './assets/tangerine-hero.webp',
+        statement: 'From a language app to an agent platform.',
+        italicLine: 'Watching how people actually used Tangering (for work, not language practice) revealed where it needed to go.',
+        details: [
+          { title: 'What users really wanted', text: 'People kept asking it to draft emails and summarize notes, not practice English.' },
+          { title: 'What we built instead', text: 'A platform for building AI agents a company can put to work on its own processes, no dev team required.' }
+        ],
+        badge: 'Full case study available',
+        closing: 'The pivot came from watching, not guessing.',
+        href: './tangerine.html',
+        hrefLabel: 'Read the full case →'
+      }
+    }
+  };
+
+  var UI = {
+    es: { imgPending: '[Imagen real pendiente]', scrollDown: 'DESLIZA', videoPending: '[Video / entrevista pendiente]', viewProject: 'Ver proyecto →' },
+    en: { imgPending: '[Real image pending]', scrollDown: 'SCROLL DOWN', videoPending: '[Video / interview pending]', viewProject: 'View project →' }
+  };
+
+  var I18N = {
+    es: { 'meta.title': 'Trabajo · Cindy Lewis', 'tabs.label': 'Selecciona un proyecto', 'nav.work': 'Trabajo', 'nav.about': 'Sobre mí', 'nav.payments': 'Pagos', 'nav.aiAgents': 'Agentes de IA' },
+    en: { 'meta.title': 'Work · Cindy Lewis', 'tabs.label': 'Select a project', 'nav.work': 'Work', 'nav.about': 'About Me', 'nav.payments': 'Payments', 'nav.aiAgents': 'AI Agents' }
+  };
+
+  var currentLang = 'es';
+  var currentId = 'p1';
+
+  var tabs = document.querySelectorAll('.tab');
+  var stage = document.getElementById('stage');
+
+  function detailRow(d, i) {
+    var rev = i % 2 === 1 ? ' reverse' : '';
+    return '' +
+      '<div class="detail-row' + rev + '">' +
+        '<div class="detail-visual ph"><div class="ph-label">' + UI[currentLang].imgPending + '</div></div>' +
+        '<div class="detail-text"><h3>' + d.title + '</h3><p>' + d.text + '</p></div>' +
+      '</div>';
+  }
+
+  function heroBlock(d) {
+    if (d.heroImage) {
+      return '' +
+        '<div class="hero hero-photo">' +
+          '<img class="hero-img" src="' + d.heroImage + '" alt="">' +
+          '<div class="hero-tint"></div>' +
+          '<div class="hero-glow"></div>' +
+          '<div class="hero-topfade"></div>' +
+          '<div class="hero-inner"><p class="hero-tag">' + d.tag + '</p><h1>' + d.title + '</h1></div>' +
+        '</div>';
+    }
+    return '' +
+      '<div class="hero" style="background:' + d.gradient + ';">' +
+        '<div><p class="hero-tag">' + d.tag + '</p><h1>' + d.title + '</h1></div>' +
+      '</div>';
+  }
+
+  function render(d) {
+    var hrefLabel = d.hrefLabel || UI[currentLang].viewProject;
+    stage.innerHTML =
+      heroBlock(d) +
+      '<div class="scroll-cue"><div class="line"></div><span>' + UI[currentLang].scrollDown + '</span></div>' +
+      '<div class="statement"><h2>' + d.statement + '</h2><p class="italic-line">' + d.italicLine + '</p></div>' +
+      detailRow(d.details[0], 0) +
+      detailRow(d.details[1], 1) +
+      '<div class="badge-wrap"><div class="badge">' + d.badge + '</div></div>' +
+      '<div class="closing"><h2>' + d.closing + '</h2></div>' +
+      '<div class="video-block"><div class="ph"><div class="ph-label">' + UI[currentLang].videoPending + '</div><div class="play-btn"><svg viewBox="0 0 24 24" fill="#16181c"><path d="M8 5v14l11-7Z"/></svg></div></div></div>' +
+      '<div class="stage-cta"><a class="pill-btn" href="' + d.href + '">' + hrefLabel + '</a></div>';
+  }
+
+  function show(id) {
+    currentId = id;
+    stage.classList.remove('is-in');
+    setTimeout(function () {
+      render(DATA[currentLang][id]);
+      stage.classList.add('is-in');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 200);
+  }
+
+  tabs.forEach(function (tab) {
+    if (!tab.dataset.id) return; // tabs sin data-id son links reales (ej. Habitanto → habitanto.html) y navegan solos
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      show(tab.dataset.id);
+    });
+  });
+
+  function applyLang(lang) {
+    currentLang = (lang === 'en') ? 'en' : 'es';
+    document.documentElement.setAttribute('lang', currentLang);
+    var dict = I18N[currentLang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    var titleEl = document.querySelector('title[data-i18n]');
+    if (titleEl) document.title = dict[titleEl.getAttribute('data-i18n')] || document.title;
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.langBtn === currentLang);
+    });
+    try { localStorage.setItem('portfolioLang', currentLang); } catch (e) {}
+    render(DATA[currentLang][currentId]);
+    stage.classList.add('is-in');
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { applyLang(btn.dataset.langBtn); });
+  });
+
+  var savedLang = 'es';
+  try { savedLang = localStorage.getItem('portfolioLang') || 'es'; } catch (e) {}
+  applyLang(savedLang);
+
+  document.querySelectorAll('[data-dd]').forEach(function(dd) {
+    var trigger = dd.querySelector('.work-dd-trigger');
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      var open = dd.classList.toggle('wd-open');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.work-dd-wrap.wd-open').forEach(function(dd) {
+      if (!dd.contains(e.target)) {
+        dd.classList.remove('wd-open');
+        dd.querySelector('.work-dd-trigger').setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>
+</body>
+</html>
