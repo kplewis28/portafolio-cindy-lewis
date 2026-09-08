@@ -140,14 +140,52 @@
     .navbar { padding: 24px 22px; }
   }
 
-  /* ---- mobile: compact stacked navbar; reveal-on-scroll off so content is always visible ---- */
+  .nav-burger { display: none; }
+
+  /* ---- mobile: wordmark + hamburger; the links collapse into a dropdown panel.
+     reveal-on-scroll is also disabled so tall blocks are always visible ---- */
   @media (max-width: 720px) {
     .reveal { opacity: 1 !important; transform: none !important; }
-    .navbar { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px 20px; }
-    .navbar > a { align-self: flex-start; }
-    .navbar .nav-links { width: 100%; gap: 16px 18px; row-gap: 12px; justify-content: flex-start; }
-    .navbar .nav-links .lang-toggle { margin-left: auto; }
-    .navbar .nav-links .nav-linkedin { order: 10; }
+    .navbar { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; flex-wrap: nowrap; }
+    .nav-burger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; padding: 10px; margin: -8px -10px -8px 0;
+      background: none; border: 0; cursor: pointer; flex: 0 0 auto;
+    }
+    .nav-burger span { display: block; width: 100%; height: 2px; border-radius: 2px; background: #eaf0ff; transition: transform .2s ease, opacity .15s ease; }
+    .navbar.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .navbar.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    .navbar.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .navbar .nav-links {
+      position: absolute; top: 100%; left: 12px; right: 12px;
+      display: none;
+      flex-direction: column; align-items: stretch; gap: 0;
+      padding: 8px 14px 14px;
+      background: #0a0e1c; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border: 1px solid rgba(140,180,255,0.2); border-radius: 14px;
+      box-shadow: 0 26px 60px rgba(0,0,0,0.55);
+      z-index: 45;
+    }
+    .navbar.nav-open .nav-links { display: flex; }
+
+    .navbar .nav-links .nav-link,
+    .navbar .nav-links .work-dd-trigger {
+      padding: 13px 6px; font-size: 15px; width: 100%; text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .navbar .nav-links .nav-link.is-current,
+    .navbar .nav-links .work-dd-trigger.is-current { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .navbar .nav-links .work-dd-wrap { width: 100%; }
+    .navbar .nav-links .wd-caret { display: none; }
+    .navbar .nav-links .work-dropdown {
+      position: static; opacity: 1; visibility: visible; transform: none;
+      background: none; border: 0; box-shadow: none; margin: 0;
+      padding: 2px 0 6px 12px; min-width: 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .navbar .nav-links .wd-item { padding: 9px 6px; font-size: 13.5px; }
+    .navbar .nav-links .lang-toggle { align-self: flex-start; margin: 12px 0 4px; }
+    .navbar .nav-links .nav-linkedin { justify-content: center; margin-top: 10px; }
   }
 
   /* ---- first-visit language gate ---- */
@@ -184,6 +222,7 @@
     <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
     <div style="font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
   </a>
+  <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links">
     <div class="work-dd-wrap" data-dd>
       <button class="nav-link work-dd-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
@@ -267,8 +306,6 @@
   <div class="closing reveal">
     <p class="epilogue" data-i18n="closing.epilogue">He sido la persona que construye la cosa y la persona que tuvo que vivir con lo que se construyó. Esa sigue siendo la mayor ventaja que llevo a una sala: diseño como si las restricciones fueran reales, porque he estado en ambos lados de ellas.</p>
     <h2 data-i18n="closing.h2">Productos de IA que se sienten humanos, resuelven problemas reales y generan resultados medibles.</h2>
-    <p class="sign" data-i18n="closing.sign">Radicada en Bogotá</p>
-    <a class="pill-btn" href="./work.html" data-i18n="closing.cta">Ver el trabajo →</a>
   </div>
 </div>
 
@@ -294,6 +331,22 @@
   }
   window.addEventListener('scroll', updateProgress);
   updateProgress();
+
+  (function () {
+    var bar = document.querySelector('.navbar');
+    var burger = document.querySelector('.nav-burger');
+    if (bar && burger) {
+      var closeNav = function () { bar.classList.remove('nav-open'); burger.setAttribute('aria-expanded', 'false'); };
+      burger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = bar.classList.toggle('nav-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      bar.querySelectorAll('.nav-links a[href]').forEach(function (a) { a.addEventListener('click', closeNav); });
+      document.addEventListener('click', function (e) { if (bar.classList.contains('nav-open') && !bar.contains(e.target)) closeNav(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
+    }
+  })();
 
   document.querySelectorAll('[data-dd]').forEach(function(dd) {
     var trigger = dd.querySelector('.work-dd-trigger');
@@ -344,9 +397,7 @@
       'pull.quote': '"Cada restricción dentro de la que he diseñado (un escenario construido para una sola noche, un negocio que tuve que manejar yo misma) me enseñó la misma lección antes de que la llamara diseño: hacer que lo complicado se sienta obvio."',
       'toolkit.label': 'Herramientas y formas de trabajar',
       'closing.epilogue': 'He sido la persona que construye la cosa y la persona que tuvo que vivir con lo que se construyó. Esa sigue siendo la mayor ventaja que llevo a una sala: diseño como si las restricciones fueran reales, porque he estado en ambos lados de ellas.',
-      'closing.h2': 'Productos de IA que se sienten humanos, resuelven problemas reales y generan resultados medibles.',
-      'closing.sign': 'Radicada en Bogotá',
-      'closing.cta': 'Ver el trabajo →'
+      'closing.h2': 'Productos de IA que se sienten humanos, resuelven problemas reales y generan resultados medibles.'
     },
     en: {
       'meta.title': 'About · Cindy Lewis',
@@ -379,9 +430,7 @@
       'pull.quote': '"Every constraint I\'ve designed inside (a stage built for one night, a business I had to run myself) taught me the same lesson before I ever called it design: make the complicated thing feel obvious."',
       'toolkit.label': 'Tools & ways of working',
       'closing.epilogue': "I've been the person building the thing, and the person who had to live with what got built. That's still the biggest advantage I bring into a room: I design like the constraints are real, because I've been on both sides of them.",
-      'closing.h2': 'AI products that feel human, solve real problems, and generate measurable results.',
-      'closing.sign': 'Based in Bogotá',
-      'closing.cta': 'See the work →'
+      'closing.h2': 'AI products that feel human, solve real problems, and generate measurable results.'
     }
   };
 

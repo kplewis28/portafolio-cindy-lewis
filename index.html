@@ -284,6 +284,7 @@
   }
   .nav-linkedin { display: inline-flex; align-items: center; gap: 7px; }
   .nav-linkedin svg { width: 15px; height: 15px; flex: 0 0 auto; }
+  .nav-burger { display: none; }
   .work-dd-wrap { position: relative; }
   .work-dd-trigger {
     display: inline-flex; align-items: center; gap: 4px;
@@ -348,13 +349,51 @@
   .proj-title { font-size: 19px; letter-spacing: -0.005em; font-weight: 600; }
   .proj-desc { font-size: 12px; line-height: 1.4; opacity: 0.8; margin-top: 8px; }
 
-  /* ---- mobile / portrait-tablet hero: navbar becomes a compact stacked bar,
-     decorative stats/lines are hidden, and positionEye()'s matching branch lays
-     the eye + "Sobre mí"/"Mi trabajo" + taglines out as one centered stack ---- */
+  /* ---- mobile / portrait-tablet hero: the top bar collapses to wordmark + a
+     hamburger that opens a dropdown panel; decorative stats/lines are hidden and
+     positionEye()'s matching branch lays the eye + CTAs + taglines out as one
+     centered stack ---- */
   @media (max-width: 720px), (max-width: 900px) and (orientation: portrait) {
-    .hero-topbar { padding: 18px 20px !important; flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
-    .hero-topbar-links { width: 100%; gap: 18px !important; row-gap: 12px; flex-wrap: wrap; justify-content: flex-start !important; align-items: center; }
-    .hero-topbar-links .lang-toggle { margin-left: auto; }
+    .hero-topbar { padding: 18px 20px !important; flex-direction: row !important; align-items: center !important; gap: 12px !important; flex-wrap: nowrap !important; z-index: 41 !important; }
+    .nav-burger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; padding: 10px; margin: -8px -10px -8px 0;
+      background: none; border: 0; cursor: pointer; flex: 0 0 auto; z-index: 32;
+    }
+    .nav-burger span { display: block; width: 100%; height: 2px; border-radius: 2px; background: #eaf0ff; transition: transform .2s ease, opacity .15s ease; }
+    .hero-topbar.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hero-topbar.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    .hero-topbar.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero-topbar-links {
+      position: absolute !important; top: calc(100% - 2px); left: 12px; right: 12px;
+      display: none !important;
+      flex-direction: column !important; align-items: stretch !important; gap: 0 !important;
+      padding: 8px 14px 14px !important;
+      background: #0a0e1c; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border: 1px solid rgba(140,180,255,0.2); border-radius: 14px;
+      box-shadow: 0 26px 60px rgba(0,0,0,0.55);
+      z-index: 31;
+    }
+    .hero-topbar.nav-open .hero-topbar-links { display: flex !important; }
+
+    .hero-topbar-links > a[href],
+    .hero-topbar-links .work-dd-trigger {
+      padding: 13px 6px !important; font-size: 15px !important; width: 100%;
+      text-align: left; border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-topbar-links .work-dd-wrap { width: 100%; }
+    .hero-topbar-links .wd-caret { display: none; }
+    .hero-topbar-links .work-dropdown {
+      position: static !important; opacity: 1 !important; visibility: visible !important;
+      transform: none !important; background: none !important; border: 0 !important;
+      box-shadow: none !important; padding: 2px 0 6px 12px !important; margin: 0 !important;
+      min-width: 0 !important; border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-topbar-links .wd-item { padding: 9px 6px !important; font-size: 13.5px !important; }
+    .hero-topbar-links .lang-toggle { align-self: flex-start; margin: 12px 0 4px; }
+    .hero-topbar-links .nav-linkedin { justify-content: center; margin-top: 10px; }
+
     .hero-decor { display: none !important; }
     #pathOuter { pointer-events: none !important; }
     .path-cta-text { font-size: 14px !important; }
@@ -438,6 +477,7 @@
       <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
       <div style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
     </div>
+    <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="hero-topbar-links" style="display:flex; align-items:center; gap:36px;">
       <div class="work-dd-wrap" data-dd>
         <button class="work-dd-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
@@ -978,6 +1018,27 @@
       });
     }
 
+    // Mobile top bar: hamburger opens the links panel.
+    function bindNavBurger() {
+      var burger = document.querySelector('.nav-burger');
+      var bar = document.querySelector('.hero-topbar');
+      if (!burger || !bar || burger.dataset.burgerBound) return;
+      burger.dataset.burgerBound = '1';
+      function close() { bar.classList.remove('nav-open'); burger.setAttribute('aria-expanded', 'false'); }
+      burger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = bar.classList.toggle('nav-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      bar.querySelectorAll('.hero-topbar-links a[href]').forEach(function (a) {
+        a.addEventListener('click', close);
+      });
+      document.addEventListener('click', function (e) {
+        if (bar.classList.contains('nav-open') && !bar.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    }
+
     // The eye's "My Work" CTA opens a small menu to pick which project to view,
     // instead of going straight to work.html.
     function bindWorkChoice() {
@@ -1163,7 +1224,7 @@
     // settles, same defensive pattern positionEye() already uses below.
     function bindAbout() {
       bindAboutReveal(); bindRoadReveal(); bindRoadHover(); bindRoleCycler();
-      bindWorkDropdown(); bindWorkChoice(); bindLangToggle(); bindLangGate();
+      bindWorkDropdown(); bindWorkChoice(); bindLangToggle(); bindLangGate(); bindNavBurger();
       applyLang(window.__portfolioLang);
     }
     bindAbout();
