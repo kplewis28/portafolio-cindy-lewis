@@ -107,13 +107,31 @@
   .road-label h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #ffffff; margin: 0 0 8px; line-height: 1.25; }
   .road-label p { font-size: 13.5px; line-height: 1.55; color: rgba(224,231,255,0.82); margin: 0; }
   .road-fallback { display: none; }
+  .road-hint { display: none; }
+
+  /* ---- mobile: keep the winding graphic — it becomes a horizontal scroller
+     you drag through, instead of collapsing to a plain vertical list ---- */
   @media (max-width: 940px) {
-    .road-wrap { display: none; }
-    .road-fallback { display: grid; gap: 20px; margin: 0 0 56px; }
-    .road-fallback .road-label { border-left: 2px solid rgba(140,180,255,0.5); padding-left: 16px; }
-    .road-fallback .road-num { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 0.05em; color: #a8caff; margin: 0 0 8px; }
-    .road-fallback h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: #fff; margin: 0 0 8px; }
-    .road-fallback p { font-size: 14.5px; line-height: 1.6; color: rgba(224,231,255,0.85); margin: 0; }
+    #about { padding-left: 20px !important; padding-right: 20px !important; padding-top: 82px !important; }
+    .road-fallback { display: none !important; }
+    .road-hint {
+      display: block; font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(200,215,255,0.5); margin: 0 0 14px; transition: opacity 0.4s ease;
+    }
+    .road-hint.is-hidden { opacity: 0; }
+    .road-scroll {
+      overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+      margin: 0 -20px 44px; padding: 0 20px 10px;
+      scrollbar-width: none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 34px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 34px), transparent 100%);
+    }
+    .road-scroll::-webkit-scrollbar { display: none; }
+    .road-wrap { display: block; width: 860px; height: 470px; margin: 0; }
+    .road-label { width: 196px; }
+    .road-label h3 { font-size: 16.5px; }
+    .road-label p { font-size: 13px; }
   }
   @keyframes fiberFlicker { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.85; } }
   @keyframes lineGrowDown { 0% { opacity:0; transform: translateX(-50%) scaleY(0); } 18% { opacity:1; transform: translateX(-50%) scaleY(1); } 78% { opacity:1; transform: translateX(-50%) scaleY(1); } 100% { opacity:0; transform: translateX(-50%) scaleY(1); } }
@@ -598,6 +616,8 @@
       </div>
     </div>
 
+    <p class="road-hint" id="roadHint" data-i18n="road.hint">Desliza para recorrer →</p>
+    <div class="road-scroll" id="roadScroll">
     <div class="road-wrap" id="roadWrap">
       <svg class="road-svg" viewBox="0 0 900 560" preserveAspectRatio="none">
         <path id="roadPathRef" class="road-line" d="M40,330 Q170,205 320,265 Q480,345 600,275 Q730,205 860,325"/>
@@ -647,6 +667,7 @@
           <p data-i18n="road.4.p">Diseñando la plataforma que les permite a equipos no técnicos crear y desplegar sus propios agentes de IA.</p>
         </div>
       </div>
+    </div>
     </div>
 
     <div class="road-fallback">
@@ -904,16 +925,51 @@
 
     function bindRoadReveal() {
       var road = document.getElementById('roadWrap');
-      if (!road || road.classList.contains('is-visible')) return;
-      var roadIo = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            roadIo.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      roadIo.observe(road);
+      if (!road || road.dataset.revealBound) return;
+      road.dataset.revealBound = '1';
+      var scroller = document.getElementById('roadScroll');
+      var hint = document.getElementById('roadHint');
+
+      function reveal() {
+        if (road.classList.contains('is-visible')) return;
+        road.classList.add('is-visible');
+        window.removeEventListener('scroll', onScroll);
+        // on mobile the graphic is a horizontal scroller — nudge it once it's
+        // drawn so it's obvious you can drag through it
+        if (scroller && scroller.scrollWidth > scroller.clientWidth + 8) {
+          setTimeout(function () {
+            try {
+              scroller.scrollTo({ left: 46, behavior: 'smooth' });
+              setTimeout(function () { scroller.scrollTo({ left: 0, behavior: 'smooth' }); }, 650);
+            } catch (e) {}
+          }, 900);
+        }
+      }
+      function nearViewport() {
+        var r = road.getBoundingClientRect();
+        return r.top < (window.innerHeight || 800) * 0.9 && r.bottom > 0;
+      }
+      function onScroll() { if (nearViewport()) reveal(); }
+
+      // 1) IntersectionObserver — the nice scroll-triggered draw when it works
+      try {
+        var roadIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) { if (entry.isIntersecting) { reveal(); roadIo.disconnect(); } });
+        }, { threshold: 0.25 });
+        roadIo.observe(road);
+      } catch (e) {}
+      // 2) scroll fallback (IO is throttled/paused in some contexts)
+      window.addEventListener('scroll', onScroll, { passive: true });
+      if (nearViewport()) reveal();
+      // 3) last resort: never leave the graphic invisible
+      setTimeout(function () { reveal(); }, 3000);
+
+      if (scroller && hint && !scroller.dataset.hintBound) {
+        scroller.dataset.hintBound = '1';
+        scroller.addEventListener('scroll', function () {
+          if (scroller.scrollLeft > 24) hint.classList.add('is-hidden');
+        }, { passive: true });
+      }
     }
 
     function bindRoadHover() {
@@ -925,10 +981,19 @@
           el.classList.toggle('is-hover', on);
         });
       }
+      function clearAll() {
+        road.querySelectorAll('.is-hover').forEach(function (el) { el.classList.remove('is-hover'); });
+      }
       road.querySelectorAll('[data-stop]').forEach(function (el) {
         var stop = el.dataset.stop;
         el.addEventListener('mouseenter', function () { setHover(stop, true); });
         el.addEventListener('mouseleave', function () { setHover(stop, false); });
+        // touch / click: tap a stop to spotlight it (mouseenter never fires on touch)
+        el.addEventListener('click', function () {
+          var wasOn = el.classList.contains('is-hover');
+          clearAll();
+          if (!wasOn) setHover(stop, true);
+        });
       });
     }
 
@@ -1106,6 +1171,7 @@
         'road.4.num': '04 · Ahora',
         'road.4.h3': 'Construyendo Tangering AI',
         'road.4.p': 'Diseñando la plataforma que les permite a equipos no técnicos crear y desplegar sus propios agentes de IA.',
+        'road.hint': 'Desliza para recorrer el camino →',
         'about.whyTag': 'Por qué le importa a tu equipo',
         'about.why1': 'Entrego producto que funciona, no solo mockups: yo misma construyo con Claude Code.',
         'about.why2': 'He manejado mi propio negocio, así que diseño como si las restricciones fueran reales.',
@@ -1147,6 +1213,7 @@
         'road.4.num': '04 · Now',
         'road.4.h3': 'Building Tangering AI',
         'road.4.p': 'Designing the platform that lets non-technical teams create and deploy their own AI agents.',
+        'road.hint': 'Swipe to travel the path →',
         'about.whyTag': 'Why it matters to your team',
         'about.why1': 'I ship working product, not just mockups: I build with Claude Code myself.',
         'about.why2': "I've run my own business, so I design like the constraints are real.",
