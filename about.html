@@ -135,9 +135,26 @@
   .closing .sign { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: rgba(200,215,255,0.5); letter-spacing: 0.06em; margin: 0 0 26px; }
 
   @media (max-width: 720px) {
-    .wrap { padding: 0 22px; }
-    .hero { padding: 60px 0 12px; }
-    .navbar { padding: 24px 22px; }
+    .wrap { padding: 0 24px; }
+    /* only override the vertical padding here — the shorthand was wiping the
+       .wrap side padding, so the hero copy sat flush to the screen edge */
+    .hero { padding-top: 56px; padding-bottom: 10px; }
+    .navbar { padding: 20px 22px; }
+    .hero h1 { font-size: clamp(29px, 8.4vw, 40px); }
+    .hero .lede { font-size: 15.5px; line-height: 1.68; }
+    .story { padding-top: 44px; }
+    .story::before { left: 3px; }
+    .chapter { padding-left: 24px; padding-bottom: 40px; }
+    .chapter h2 { font-size: 19px; }
+    .chapter p { font-size: 14.5px; line-height: 1.7; }
+    .pull { padding-left: 18px; }
+    .pull blockquote { font-size: clamp(18px, 5.4vw, 21px); }
+    .toolkit { padding-top: 48px; }
+    .closing { margin-top: 48px; padding-bottom: 96px; }
+  }
+  @media (max-width: 360px) {
+    .wrap { padding: 0 18px; }
+    .chapter { padding-left: 22px; }
   }
 
   .nav-burger { display: none; }
