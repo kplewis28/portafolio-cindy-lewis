@@ -23,9 +23,9 @@ Two different page systems live side by side.
 - **`tangerine.html` and `habitanto.html` are full case studies** and share one template — see below.
 - **`about.html`** is the bio/timeline page. Treat it as the source of truth for job dates and role scope when writing case-study copy.
 
-### `.dc.html` interactive pages, powered by `support.js`
+### `x-dc` interactive pages, powered by `support.js`
 
-`El Ojo.dc.html` (animated home/landing page) and `Portfolio Concepts.dc.html` load `support.js`, a generated runtime (its own header says: *"GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`"*). It implements a custom `<x-dc>` element plus a `class Component extends DCLogic` pattern for embedding React-driven interactive components directly in the HTML.
+`index.html` (the animated eye home/landing page — this is the deployed site root; was `El Ojo.dc.html` before the Vercel deploy, renamed so `/` resolves) and `Portfolio Concepts.dc.html` load `support.js`, a generated runtime (its own header says: *"GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`"*). It implements a custom `<x-dc>` element plus a `class Component extends DCLogic` pattern for embedding React-driven interactive components directly in the HTML.
 
 The `dc-runtime` TypeScript source referenced in that comment is not part of this repo — `support.js` is a vendored build artifact. Don't hand-edit it; only touch the `<x-dc>...</x-dc>` markup and the `<script type="text/x-dc" data-dc-script">` block inside these two files.
 
