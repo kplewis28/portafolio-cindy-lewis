@@ -449,12 +449,21 @@
     try { localStorage.setItem('portfolioLang', lang); } catch (e) {}
   }
 
-  var savedLang = 'es', langChosen = false;
+  // Remember "already chose a language" in BOTH localStorage and a cookie, and
+  // accept either — some browsers (private mode, Safari storage caps, "clear
+  // site data on exit") drop one but keep the other.
+  function langAlreadyChosen() {
+    try { if (localStorage.getItem('portfolioLangChosen')) return true; } catch (e) {}
+    try { if (document.cookie.indexOf('plangChosen=1') !== -1) return true; } catch (e) {}
+    return false;
+  }
+
+  var savedLang = 'es';
   try { savedLang = localStorage.getItem('portfolioLang') || 'es'; } catch (e) {}
-  try { langChosen = !!localStorage.getItem('portfolioLangChosen'); } catch (e) {}
 
   function chooseLang(lang) {
     try { localStorage.setItem('portfolioLangChosen', '1'); } catch (e) {}
+    try { document.cookie = 'plangChosen=1;path=/;max-age=31536000;samesite=lax'; } catch (e) {}
     var g = document.getElementById('langGate');
     if (g) g.hidden = true;
     applyLang(lang);
@@ -465,7 +474,7 @@
   });
 
   var langGate = document.getElementById('langGate');
-  if (langGate && !langChosen) {
+  if (langGate && !langAlreadyChosen()) {
     langGate.hidden = false;
     langGate.querySelectorAll('[data-lang-choose]').forEach(function(btn) {
       btn.addEventListener('click', function() { chooseLang(btn.dataset.langChoose); });

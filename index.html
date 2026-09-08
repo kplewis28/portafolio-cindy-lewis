@@ -1157,12 +1157,26 @@
       }
     };
 
+    // Remember the "already chose a language" flag in both localStorage AND a
+    // cookie, and read either — some browsers (private mode, Safari's storage
+    // caps, "clear site data on exit") drop one but not the other.
+    function markLangChosen() {
+      window.__portfolioLangChosen = true;
+      try { localStorage.setItem('portfolioLangChosen', '1'); } catch (e) {}
+      try { document.cookie = 'plangChosen=1;path=/;max-age=31536000;samesite=lax'; } catch (e) {}
+    }
+    function langAlreadyChosen() {
+      if (window.__portfolioLangChosen) return true;
+      try { if (localStorage.getItem('portfolioLangChosen')) return true; } catch (e) {}
+      try { if (document.cookie.indexOf('plangChosen=1') !== -1) return true; } catch (e) {}
+      return false;
+    }
+
     function applyLang(lang, userChoice) {
       lang = (lang === 'en') ? 'en' : 'es';
       window.__portfolioLang = lang;
       if (userChoice) {
-        window.__portfolioLangChosen = true;
-        try { localStorage.setItem('portfolioLangChosen', '1'); } catch (e) {}
+        markLangChosen();
         var gate = document.getElementById('langGate');
         if (gate) gate.hidden = true;
       }
@@ -1200,7 +1214,7 @@
     function bindLangGate() {
       var gate = document.getElementById('langGate');
       if (!gate) return;
-      if (window.__portfolioLangChosen) { gate.hidden = true; return; }
+      if (langAlreadyChosen()) { gate.hidden = true; return; }
       gate.hidden = false;
       gate.querySelectorAll('[data-lang-choose]').forEach(function (btn) {
         if (btn.dataset.gateBound) return;
@@ -1209,11 +1223,10 @@
       });
     }
 
-    var savedLang = 'es', langChosen = false;
+    var savedLang = 'es';
     try { savedLang = localStorage.getItem('portfolioLang') || 'es'; } catch (e) {}
-    try { langChosen = !!localStorage.getItem('portfolioLangChosen'); } catch (e) {}
     window.__portfolioLang = (savedLang === 'en') ? 'en' : 'es';
-    window.__portfolioLangChosen = langChosen;
+    window.__portfolioLangChosen = langAlreadyChosen();
 
     // The x-dc runtime re-renders this whole tree once the canvas finishes mounting
     // (buildFibers -> setState({ready:true})), which replaces the DOM nodes an
