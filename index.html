@@ -42,6 +42,8 @@
   .brand-sub { font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:5px; }
   .hero-topbar-links { display:flex; align-items:center; gap:36px; }
   .nav-link { font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:var(--ink-2); text-decoration:none; transition: color .2s ease; }
+  /* where you are: current page link is ink + green underline, always visible */
+  .nav-link.is-current { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
   .nav-link:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
   .pill-btn {
     display: inline-block; padding: 11px 22px; border-radius: 999px;
@@ -133,6 +135,13 @@
   .hero-sub {
     margin: 0; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.5; color: var(--ink-2);
     opacity: 0; animation: heroIn 1s ease 0.9s forwards;
+  }
+  /* "Lewis" leans and carries more weight, echoing the Cindy *Lewis* wordmark.
+     Didact Gothic ships one regular weight and no italic, so: controlled skew + thicker stroke. */
+  .hero-name-em {
+    display: inline-block; transform: skewX(-11deg); transform-origin: 0 100%;
+    -webkit-text-stroke: 0.042em currentColor; paint-order: stroke fill;
+    margin-left: 0.02em;
   }
   .hero-role {
     display: flex; align-items: center; gap: 0.9em;
@@ -311,14 +320,17 @@
     .hero-topbar-links .nav-linkedin { justify-content: center; margin-top: 10px; }
 
     /* hero: name fills the width, strip hangs off the right edge above it */
-    .hero { padding: 96px 16px 90px; }
-    .hero-comp { font-size: 17.4vw; margin-left: 0; }
-    .hero-strip { min-width: 100%; margin: 0; }
+    .hero { min-height: 0; padding: 112px 20px 72px; }
+    .hero-comp { font-size: 15.6vw; margin-left: 0; }
+    /* taller crop on phones: the band's sides are white wall, so cut them and let the face grow */
+    .hero-strip { min-width: 100%; margin: 0; aspect-ratio: 2.25; object-fit: cover; object-position: 54% 60%;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); }
     .hero-bottom { display: flex; flex-direction: column; gap: 20px; margin-top: 0.3em; }
     .hero-role { font-size: 14px; letter-spacing: 0.12em; gap: 12px; }
-    .hero-sub-wrap { padding-left: 64px; margin-top: -14px; }
-    .hero-sub { font-size: 12px; }
-    .hero-arrow { width: 56px; height: 48px; margin: 0 -4px 0 2px; translate: 0 -12px; }
+    .hero-sub-wrap { padding-left: 52px; margin-top: -12px; }
+    .hero-sub { font-size: 12px; text-wrap: balance; }
+    .hero-arrow { width: 46px; height: 40px; margin: 0 -4px 0 0; translate: 0 -10px; }
     .hero-tools { margin-top: 0; padding-left: 0; gap: 6px; }
     .hero-tools li { font-size: 12px; padding: 6px 11px 6px 9px; }
   }
@@ -384,6 +396,17 @@
     .lang-gate-card { padding: 34px 24px; }
     .lang-gate-actions { flex-direction: column; }
   }
+
+  /* language switcher: a globe says "language" at a glance; full names on hover; a label in the mobile menu */
+  .lang-toggle { gap: 2px; }
+  .lang-label { display: inline-flex; align-items: center; gap: 6px; padding: 0 4px 0 8px; color: rgba(11,11,12,0.6); }
+  .lang-globe { width: 15px; height: 15px; flex: 0 0 auto; }
+  .lang-word { display: none; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .lang-toggle:hover .lang-label { color: #0b0b0c; }
+  @media (max-width: 720px), (max-width: 900px) and (orientation: portrait) {
+    .lang-word { display: inline; }
+    .lang-label { padding-right: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -409,7 +432,7 @@
   </a>
   <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="hero-topbar-links">
-    <a class="nav-link" href="/" data-i18n="nav.home">Inicio</a>
+    <a class="nav-link is-current" href="/" aria-current="page" data-i18n="nav.home">Inicio</a>
     <div class="work-dd-wrap" data-dd>
       <button class="work-dd-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
       <div class="work-dropdown">
@@ -418,9 +441,10 @@
       </div>
     </div>
     <a class="nav-link" href="./about.html" data-i18n="nav.about">Sobre mí</a>
-    <div class="lang-toggle">
-      <button class="lang-btn" type="button" data-lang-btn="es">ES</button>
-      <button class="lang-btn" type="button" data-lang-btn="en">EN</button>
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language" title="Cambiar idioma · Change language">
+      <span class="lang-label" aria-hidden="true"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span class="lang-word">Idioma · Language</span></span>
+      <button class="lang-btn" type="button" data-lang-btn="es" aria-label="Español" title="Español">ES</button>
+      <button class="lang-btn" type="button" data-lang-btn="en" aria-label="English" title="English">EN</button>
     </div>
     <a class="pill-btn nav-linkedin" href="https://www.linkedin.com/in/cindy-lewis-uxdesigner/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/></svg><span>LinkedIn</span></a>
   </nav>
@@ -429,7 +453,7 @@
 <section class="hero">
   <div class="hero-comp">
     <img class="hero-strip" src="./assets/cindy-eyes-rect.webp" alt="" aria-hidden="true">
-    <h1 class="hero-name">Cindy Lewis</h1>
+    <h1 class="hero-name">Cindy <span class="hero-name-em">Lewis</span></h1>
     <div class="hero-bottom">
       <div class="hero-id">
       <p class="hero-role"><svg class="hero-arrow" viewBox="0 0 90 76" aria-hidden="true"><path pathLength="1" d="M10 3c-3.5 9-5.2 19.5-2.6 29.8 3 11.7 12.4 21.2 25.3 25.2 12.9 4 27.6 2.6 41.6-2.2"/><path class="arrow-head" pathLength="1" d="M63.8 46.2c4.6 2.6 9.3 5.2 13.2 9.4-5.6 1.7-10.3 4.4-14.6 8.1"/></svg><span data-i18n="hero.role">Diseñadora de Producto IA</span></p>
