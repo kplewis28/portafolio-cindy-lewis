@@ -319,16 +319,15 @@
     .hero-topbar-links .lang-toggle { align-self: flex-start; margin: 12px 0 4px; }
     .hero-topbar-links .nav-linkedin { justify-content: center; margin-top: 10px; }
 
-    /* hero: name fills the width, strip hangs off the right edge above it */
-    .hero { min-height: 0; padding: 112px 20px 72px; }
-    .hero-comp { font-size: 15.6vw; margin-left: 0; }
-    /* taller crop on phones: the band's sides are white wall, so cut them and let the face grow */
-    .hero-strip { min-width: 100%; margin: 0; aspect-ratio: 2.25; object-fit: cover; object-position: 54% 60%;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); }
+    /* hero (mobile only): one block on the same 20px gutter as the navbar and the
+       sections below; the name, slanted "Lewis" included, spans exactly that width */
+    .hero { display: block; min-height: 0; padding: 104px 20px 64px; }
+    .hero-comp { width: 100%; margin-left: 0; font-size: calc((100vw - 40px) / 5.3); }
+    /* same band as desktop, just scaled to the gutter width (no extra crop) */
+    .hero-strip { min-width: 100%; margin: 0; }
     .hero-bottom { display: flex; flex-direction: column; gap: 20px; margin-top: 0.3em; }
     .hero-role { font-size: 14px; letter-spacing: 0.12em; gap: 12px; }
-    .hero-sub-wrap { padding-left: 52px; margin-top: -12px; }
+    .hero-sub-wrap { padding-left: 55px; margin-top: -12px; }   /* = where the role text starts */
     .hero-sub { font-size: 12px; text-wrap: balance; }
     .hero-arrow { width: 46px; height: 40px; margin: 0 -4px 0 0; translate: 0 -10px; }
     .hero-tools { margin-top: 0; padding-left: 0; gap: 6px; }
