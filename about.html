@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.title">Sobre mí · Cindy Lewis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  html, body { margin: 0; background: #0a0e1a; color: #eaf0ff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+  html, body { margin: 0; background: #ffffff; color: #151515; font-family: 'Inter', sans-serif; overflow-x: hidden; }
   a { color: inherit; }
 
-  .progress { position: fixed; top: 0; left: 0; height: 2.5px; width: 0%; background: linear-gradient(90deg, #4d78e0, #8cb4ff); z-index: 50; transition: width 0.1s linear; box-shadow: 0 0 12px rgba(140,180,255,0.6); }
+  .progress { position: fixed; top: 0; left: 0; height: 2.5px; width: 0%; background: linear-gradient(90deg, #6f6f6f, #424242); z-index: 50; transition: width 0.1s linear; box-shadow: 0 0 12px rgba(0,0,0,0.096); }
 
-  .bg-glow { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 90% 46% at 50% -8%, rgba(70,120,230,0.16) 0%, transparent 62%); }
+  .bg-glow { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 90% 46% at 50% -8%, rgba(111,111,111,0.16) 0%, transparent 62%); }
 
-  .navbar { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 36px 48px; box-sizing: border-box; flex-wrap: wrap; gap: 16px; background: rgba(10,14,26,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .navbar { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; padding: 36px 48px; box-sizing: border-box; flex-wrap: wrap; gap: 16px; background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(11,11,11,0.08); }
   .navbar .nav-links { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
-  .navbar .nav-links a.nav-link { font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85); text-decoration: none; }
-  .pill-btn { display: inline-block; padding: 11px 22px; border-radius: 999px; border: 1px solid rgba(140,180,255,0.45); background: rgba(60,100,220,0.18); color: #eaf0ff; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; }
+  .navbar .nav-links a.nav-link { font-size: 13px; font-weight: 500; color: rgba(28,28,28,0.85); text-decoration: none; }
+  .pill-btn { display: inline-block; padding: 11px 22px; border-radius: 999px; border: 1px solid rgba(66,66,66,0.45); background: rgba(121,121,121,0.18); color: #151515; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; }
   .nav-linkedin { display: inline-flex; align-items: center; gap: 7px; }
   .nav-linkedin svg { width: 15px; height: 15px; flex: 0 0 auto; }
 
   .work-dd-wrap { position: relative; }
   .work-dd-trigger {
     display: inline-flex; align-items: center; gap: 4px;
-    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(220,228,255,0.85);
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(28,28,28,0.85);
     background: none; border: none; padding: 0; margin: 0; cursor: pointer;
   }
   .wd-caret { font-size: 10px; opacity: 0.7; transition: transform 0.2s ease; }
@@ -34,9 +34,9 @@
   .work-dropdown {
     position: absolute; top: 100%; left: 0; margin-top: 14px; min-width: 230px;
     display: flex; flex-direction: column; gap: 2px;
-    background: rgba(15,20,35,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 8px;
-    box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(11,11,11,0.14); border-radius: 14px; padding: 8px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.08);
     opacity: 0; visibility: hidden; transform: translateY(-6px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
     z-index: 60;
@@ -47,30 +47,30 @@
   .wd-item {
     display: block; text-align: left;
     font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 500;
-    color: rgba(220,228,255,0.8); text-decoration: none;
+    color: rgba(28,28,28,0.8); text-decoration: none;
     padding: 10px 12px; border-radius: 8px;
     transition: background 0.2s ease, color 0.2s ease;
   }
-  .wd-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
-  .wd-item.is-current { color: #fff; background: rgba(60,100,220,0.22); }
+  .wd-item:hover { background: rgba(11,11,11,0.07); color: #0b0b0b; }
+  .wd-item.is-current { color: #0b0b0b; background: rgba(121,121,121,0.22); }
 
   .nav-link.is-current, .work-dd-trigger.is-current {
-    color: #fff;
+    color: #0b0b0b;
     padding-bottom: 4px;
-    border-bottom: 2px solid rgba(140,180,255,0.85);
+    border-bottom: 2px solid rgba(66,66,66,0.85);
   }
 
   .lang-toggle {
-    display: inline-flex; align-items: center; border: 1px solid rgba(140,180,255,0.35);
-    border-radius: 999px; padding: 3px; gap: 2px; background: rgba(255,255,255,0.03);
+    display: inline-flex; align-items: center; border: 1px solid rgba(66,66,66,0.35);
+    border-radius: 999px; padding: 3px; gap: 2px; background: rgba(11,11,11,0.03);
   }
   .lang-btn {
     font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; letter-spacing: 0.03em;
-    color: rgba(220,228,255,0.6); background: none; border: none; border-radius: 999px;
+    color: rgba(28,28,28,0.6); background: none; border: none; border-radius: 999px;
     padding: 6px 12px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
   }
-  .lang-btn.active { background: rgba(60,100,220,0.32); color: #eaf0ff; }
-  .lang-btn:not(.active):hover { color: rgba(220,228,255,0.85); }
+  .lang-btn.active { background: rgba(121,121,121,0.32); color: #151515; }
+  .lang-btn:not(.active):hover { color: rgba(28,28,28,0.85); }
 
   .content { position: relative; z-index: 2; }
 
@@ -82,57 +82,57 @@
 
   /* hero */
   .hero { padding: 88px 0 20px; text-align: left; }
-  .hero .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(200,215,255,0.55); margin: 0 0 18px; }
+  .hero .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(37,37,37,0.55); margin: 0 0 18px; }
   .hero h1 { font-size: clamp(34px, 6vw, 46px); letter-spacing: -0.015em; margin: 0 0 22px; line-height: 1.03; }
   .hero h1 .light { font-weight: 400; }
   .hero h1 .bold { font-weight: 700; font-style: italic; }
-  .hero .lede { font-size: 17px; line-height: 1.72; color: rgba(220,228,255,0.82); max-width: 560px; margin: 0; }
+  .hero .lede { font-size: 17px; line-height: 1.72; color: rgba(28,28,28,0.82); max-width: 560px; margin: 0; }
 
   /* timeline story */
   .story { position: relative; padding: 56px 0 8px; }
   .story::before {
     content: ''; position: absolute; left: 5px; top: 62px; bottom: 46px; width: 2px;
-    background: linear-gradient(180deg, rgba(140,180,255,0.5) 0%, rgba(140,180,255,0.5) 82%, rgba(140,180,255,0.08) 100%);
+    background: linear-gradient(180deg, rgba(66,66,66,0.5) 0%, rgba(66,66,66,0.5) 82%, rgba(66,66,66,0.08) 100%);
   }
   .chapter { position: relative; padding: 0 0 46px 34px; }
   .chapter:last-child { padding-bottom: 0; }
   .chapter::before {
     content: ''; position: absolute; left: 0; top: 4px; width: 12px; height: 12px; border-radius: 50%;
-    background: #0a0e1a; border: 2px solid rgba(140,180,255,0.6); box-shadow: 0 0 0 4px #0a0e1a;
+    background: #ffffff; border: 2px solid rgba(66,66,66,0.6); box-shadow: 0 0 0 4px rgba(0,0,0,0.16);
   }
   .chapter.current::before {
-    background: #8cb4ff; border-color: #8cb4ff;
-    box-shadow: 0 0 0 4px #0a0e1a, 0 0 14px 2px rgba(140,180,255,0.5);
+    background: #424242; border-color: #424242;
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.16), 0 0 14px 2px rgba(0,0,0,0.08);
   }
-  .chapter-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(168,200,255,0.9); margin: 0 0 8px; }
-  .chapter h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: #fff; margin: 0 0 12px; }
-  .chapter p { font-size: 15px; line-height: 1.72; color: rgba(224,231,255,0.8); margin: 0 0 12px; }
+  .chapter-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(53,53,53,0.9); margin: 0 0 8px; }
+  .chapter h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; color: #0b0b0b; margin: 0 0 12px; }
+  .chapter p { font-size: 15px; line-height: 1.72; color: rgba(26,26,26,0.8); margin: 0 0 12px; }
   .chapter p:last-child { margin-bottom: 0; }
 
   /* pull quote — capstone after the story */
-  .pull { margin: 44px 0 0; padding: 4px 0 4px 22px; border-left: 3px solid rgba(140,180,255,0.55); }
+  .pull { margin: 44px 0 0; padding: 4px 0 4px 22px; border-left: 3px solid rgba(66,66,66,0.55); }
   .pull blockquote {
     font-family: 'Inter', sans-serif; font-size: clamp(19px, 2.5vw, 23px); font-weight: 600;
-    line-height: 1.45; letter-spacing: -0.01em; color: #fff; margin: 0;
+    line-height: 1.45; letter-spacing: -0.01em; color: #0b0b0b; margin: 0;
   }
 
   /* toolkit — icon chips, same language as the home page */
   .toolkit { padding: 60px 0 0; }
-  .toolkit-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(200,215,255,0.5); margin: 0 0 18px; }
+  .toolkit-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(37,37,37,0.5); margin: 0 0 18px; }
   .tools-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .tools-list li {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 8px 15px 8px 12px; border-radius: 999px;
-    border: 1px solid rgba(140,180,255,0.22); background: rgba(255,255,255,0.03);
-    font-size: 13.5px; font-weight: 500; color: rgba(224,231,255,0.9);
+    border: 1px solid rgba(66,66,66,0.22); background: rgba(11,11,11,0.03);
+    font-size: 13.5px; font-weight: 500; color: rgba(26,26,26,0.9);
   }
-  .tools-list svg { width: 15px; height: 15px; flex: 0 0 auto; fill: rgba(180,205,255,0.92); }
+  .tools-list svg { width: 15px; height: 15px; flex: 0 0 auto; fill: rgba(47,47,47,0.92); }
 
   /* closing */
-  .closing { margin-top: 60px; padding: 44px 0 130px; border-top: 1px solid rgba(140,180,255,0.14); }
-  .closing .epilogue { font-size: 15px; line-height: 1.72; color: rgba(220,228,255,0.7); margin: 0 0 22px; }
-  .closing h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.4; margin: 0 0 22px; color: #fff; }
-  .closing .sign { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: rgba(200,215,255,0.5); letter-spacing: 0.06em; margin: 0 0 26px; }
+  .closing { margin-top: 60px; padding: 44px 0 130px; border-top: 1px solid rgba(66,66,66,0.14); }
+  .closing .epilogue { font-size: 15px; line-height: 1.72; color: rgba(28,28,28,0.7); margin: 0 0 22px; }
+  .closing h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.4; margin: 0 0 22px; color: #0b0b0b; }
+  .closing .sign { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: rgba(37,37,37,0.5); letter-spacing: 0.06em; margin: 0 0 26px; }
 
   @media (max-width: 720px) {
     .wrap { padding: 0 24px; }
@@ -169,7 +169,7 @@
       width: 44px; height: 44px; padding: 10px; margin: -8px -10px -8px 0;
       background: none; border: 0; cursor: pointer; flex: 0 0 auto;
     }
-    .nav-burger span { display: block; width: 100%; height: 2px; border-radius: 2px; background: #eaf0ff; transition: transform .2s ease, opacity .15s ease; }
+    .nav-burger span { display: block; width: 100%; height: 2px; border-radius: 2px; background: #151515; transition: transform .2s ease, opacity .15s ease; }
     .navbar.nav-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .navbar.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
     .navbar.nav-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -179,9 +179,9 @@
       display: none;
       flex-direction: column; align-items: stretch; gap: 0;
       padding: 8px 14px 14px;
-      background: #0a0e1c; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
-      border: 1px solid rgba(140,180,255,0.2); border-radius: 14px;
-      box-shadow: 0 26px 60px rgba(0,0,0,0.55);
+      background: #ffffff; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border: 1px solid rgba(66,66,66,0.2); border-radius: 14px;
+      box-shadow: 0 26px 60px rgba(0,0,0,0.088);
       z-index: 45;
     }
     .navbar.nav-open .nav-links { display: flex; }
@@ -189,16 +189,16 @@
     .navbar .nav-links .nav-link,
     .navbar .nav-links .work-dd-trigger {
       padding: 13px 6px; font-size: 15px; width: 100%; text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(11,11,11,0.07);
     }
     .navbar .nav-links .nav-link.is-current,
-    .navbar .nav-links .work-dd-trigger.is-current { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .navbar .nav-links .work-dd-trigger.is-current { border-bottom: 1px solid rgba(11,11,11,0.07); }
     .navbar .nav-links .work-dd-wrap { width: 100%; }
     .navbar .nav-links .wd-caret { display: none; }
     .navbar .nav-links .work-dropdown {
       position: static; opacity: 1; visibility: visible; transform: none;
       background: none; border: 0; box-shadow: none; margin: 0;
-      padding: 2px 0 6px 12px; min-width: 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 2px 0 6px 12px; min-width: 0; border-bottom: 1px solid rgba(11,11,11,0.07);
     }
     .navbar .nav-links .wd-item { padding: 9px 6px; font-size: 13.5px; }
     .navbar .nav-links .lang-toggle { align-self: flex-start; margin: 12px 0 4px; }
@@ -206,18 +206,18 @@
   }
 
   /* ---- site footer ---- */
-  .site-footer { position: relative; z-index: 20; border-top: 1px solid rgba(140,180,255,0.16); background: #080b14; padding: 58px 28px 40px; font-family: 'Inter', sans-serif; }
+  .site-footer { position: relative; z-index: 20; border-top: 1px solid rgba(66,66,66,0.16); background: #ffffff; padding: 58px 28px 40px; font-family: 'Inter', sans-serif; }
   .site-footer .footer-inner { max-width: 1040px; margin: 0 auto; }
   .site-footer .footer-grid { display: flex; flex-wrap: wrap; gap: 38px 64px; align-items: flex-start; }
   .site-footer .footer-brand { flex: 1 1 300px; min-width: 0; }
-  .site-footer .footer-name { font-size: 19px; letter-spacing: -0.005em; color: #eaf0ff; margin: 0 0 10px; }
+  .site-footer .footer-name { font-size: 19px; letter-spacing: -0.005em; color: #151515; margin: 0 0 10px; }
   .site-footer .footer-name em { font-weight: 700; font-style: italic; }
-  .site-footer .footer-tagline { font-size: 13px; line-height: 1.65; color: rgba(210,222,255,0.6); margin: 0; max-width: 340px; }
+  .site-footer .footer-tagline { font-size: 13px; line-height: 1.65; color: rgba(33,33,33,0.6); margin: 0; max-width: 340px; }
   .site-footer .footer-col { display: flex; flex-direction: column; gap: 11px; }
-  .site-footer .footer-h { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(200,215,255,0.42); margin: 0 0 3px; }
-  .site-footer .footer-col a { font-size: 13.5px; color: rgba(220,228,255,0.76); text-decoration: none; transition: color 0.2s ease; width: -moz-fit-content; width: fit-content; }
-  .site-footer .footer-col a:hover { color: #fff; }
-  .site-footer .footer-fine { max-width: 1040px; margin: 40px auto 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.03em; color: rgba(200,215,255,0.38); }
+  .site-footer .footer-h { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(37,37,37,0.42); margin: 0 0 3px; }
+  .site-footer .footer-col a { font-size: 13.5px; color: rgba(28,28,28,0.76); text-decoration: none; transition: color 0.2s ease; width: -moz-fit-content; width: fit-content; }
+  .site-footer .footer-col a:hover { color: #0b0b0b; }
+  .site-footer .footer-fine { max-width: 1040px; margin: 40px auto 0; padding-top: 22px; border-top: 1px solid rgba(11,11,11,0.06); font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.03em; color: rgba(37,37,37,0.38); }
   @media (max-width: 720px) {
     .site-footer { padding: 44px 22px 36px; }
     .site-footer .footer-grid { gap: 30px 44px; }
@@ -227,16 +227,54 @@
 
   /* ---- first-visit language gate ---- */
   .lang-gate[hidden] { display: none !important; }
-  .lang-gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; background: rgba(6,10,24,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: langGateIn 0.4s ease both; }
+  .lang-gate { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: langGateIn 0.4s ease both; }
   @keyframes langGateIn { from { opacity: 0; } to { opacity: 1; } }
-  .lang-gate-card { max-width: 420px; width: 100%; text-align: center; border: 1px solid rgba(140,180,255,0.28); border-radius: 16px; background: rgba(12,18,42,0.95); padding: 40px 34px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
-  .lang-gate-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(200,215,255,0.5); margin: 0 0 14px; }
-  .lang-gate-card h2 { font-family: 'Inter', system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; color: #eaf0ff; margin: 0; }
-  .lang-gate-card h2 .alt { display: block; font-size: 15px; font-weight: 400; color: rgba(220,228,255,0.62); margin-top: 4px; }
+  .lang-gate-card { max-width: 420px; width: 100%; text-align: center; border: 1px solid rgba(66,66,66,0.28); border-radius: 16px; background: rgba(255,255,255,0.95); padding: 40px 34px; box-shadow: 0 30px 80px rgba(0,0,0,0.08); }
+  .lang-gate-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(37,37,37,0.5); margin: 0 0 14px; }
+  .lang-gate-card h2 { font-family: 'Inter', system-ui, sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.4; color: #151515; margin: 0; }
+  .lang-gate-card h2 .alt { display: block; font-size: 15px; font-weight: 400; color: rgba(28,28,28,0.62); margin-top: 4px; }
   .lang-gate-actions { display: flex; gap: 12px; margin-top: 26px; }
-  .lang-gate-actions button { flex: 1; cursor: pointer; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.01em; color: #eaf0ff; background: rgba(140,180,255,0.12); border: 1px solid rgba(140,180,255,0.4); border-radius: 10px; padding: 13px 10px; transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease; }
-  .lang-gate-actions button:hover { background: rgba(140,180,255,0.24); border-color: rgba(160,195,255,0.7); transform: translateY(-1px); }
+  .lang-gate-actions button { flex: 1; cursor: pointer; font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.01em; color: #151515; background: rgba(66,66,66,0.12); border: 1px solid rgba(66,66,66,0.4); border-radius: 10px; padding: 13px 10px; transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease; }
+  .lang-gate-actions button:hover { background: rgba(66,66,66,0.24); border-color: rgba(56,56,56,0.7); transform: translateY(-1px); }
   @media (max-width: 460px) { .lang-gate-card { padding: 34px 24px; } .lang-gate-actions { flex-direction: column; } }
+
+  /* ---- shared light theme: keep nav / footer / controls identical to the home (index.html) ---- */
+  body { background: #ffffff; color: #0b0b0c; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #0b0b0c; color: #ffffff; }
+  .bg-glow { display: none !important; }
+  .navbar { background: rgba(255,255,255,0.92); border-bottom: 0 !important; box-shadow: none !important; }
+  .pill-btn, .nav-pill {
+    border: 1px solid #0b0b0c !important; background: #0b0b0c !important; color: #ffffff !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    transition: background .2s ease, color .2s ease;
+  }
+  .pill-btn:hover, .nav-pill:hover { background: transparent !important; color: #0b0b0c !important; }
+  .lang-toggle { border-color: rgba(11,11,12,0.3) !important; background: #ffffff !important; }
+  .lang-btn.active { background: #0b0b0c !important; color: #ffffff !important; }
+  .work-dropdown { background: #ffffff; border-color: rgba(11,11,12,0.12); box-shadow: 0 24px 50px rgba(0,0,0,0.08); }
+  .wd-item:hover, .wd-item.is-current { background: #f5f5f3; color: #0b0b0c; }
+  .nav-burger span { background: #0b0b0c; }
+  .site-footer { background: #f5f5f3 !important; border-top: 1px solid rgba(11,11,12,0.12) !important; }
+  .lang-gate { background: rgba(255,255,255,0.72) !important; }
+  .lang-gate-card { background: #ffffff !important; border-color: rgba(11,11,12,0.12) !important; box-shadow: 0 30px 80px rgba(0,0,0,0.1) !important; }
+  .lang-gate-actions button { background: #ffffff !important; color: #0b0b0c !important; border-color: rgba(11,11,12,0.3) !important; }
+  .lang-gate-actions button:hover { background: #0b0b0c !important; color: #ffffff !important; }
+
+  /* ---- shared brand: same type + the neon green of the glasses for highlights (all pages) ---- */
+  :root { --accent: #35e80c; --accent-soft: rgba(53,232,12,0.22); --display: 'Didact Gothic', 'Century Gothic', sans-serif; }
+  ::selection { background: var(--accent); color: #0b0b0c; }
+  .progress, #progress { background: var(--accent) !important; }
+  .nav-link.is-current, .work-dd-trigger.is-current { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; border-bottom-color: transparent !important; }
+  h1, .section h2, .chapter h2, .statement h2, .closing h2, .closing-inner blockquote, .pull blockquote, .hero h1, .hero-title {
+    font-family: var(--display) !important; font-weight: 400 !important; -webkit-text-stroke: 0.012em currentColor;
+  }
+  .footer-col a:hover, a.nav-link:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+  .chapter::before { box-shadow: none !important; border-color: rgba(11,11,12,0.35) !important; }
+  .chapter.current::before { background: var(--accent) !important; border-color: #0b0b0c !important; box-shadow: 0 0 0 4px var(--accent-soft) !important; }
+  .detail-toggle { color: #0b0b0c !important; text-decoration-color: var(--accent) !important; text-decoration-thickness: 2px !important; }
+  .lede strong { background: linear-gradient(transparent 58%, var(--accent-soft) 58%); padding: 0 2px; }
+  .tab.active { box-shadow: 0 0 0 2px var(--accent), 0 6px 18px rgba(0,0,0,0.08) !important; }
 </style>
 <script>
 /* if a language was already chosen (localStorage or cookie), hide the first-visit
@@ -261,8 +299,8 @@
 <div class="content">
 <div class="navbar">
   <a href="/" style="text-decoration:none; color:inherit; display:block;">
-    <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#eaf0ff; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
-    <div style="font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(200,215,255,0.6); margin-top:5px;">UX/UI Designer</div>
+    <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#151515; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
+    <div style="font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(37,37,37,0.6); margin-top:5px;" data-i18n="nav.brandSub">Portafolio</div>
   </a>
   <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links">
@@ -286,7 +324,7 @@
 <header class="hero wrap reveal">
   <p class="eyebrow" data-i18n="hero.eyebrow">Mi historia</p>
   <h1><span class="light">Cindy </span><span class="bold">Lewis</span></h1>
-  <p class="lede" data-i18n="hero.lede">Antes de diseñar productos de IA, diseñaba cosas que se podían tocar. Resulta que el instinto detrás de ambas es el mismo: seis roles, tres disciplinas, un mismo hilo.</p>
+  <p class="lede" data-i18n="hero.lede">Antes de diseñar productos de IA, diseñaba cosas que se podían tocar. Resulta que el instinto detrás de ambas es el mismo: siete roles, tres disciplinas, un mismo hilo.</p>
 </header>
 
 <div class="wrap">
@@ -323,10 +361,16 @@
       <p data-i18n="ch4.p1">Diseñé dos apps a la vez: una para administradores que manejan pagos, cobranza y reservas de zonas comunes, y otra para residentes que solo intentan que un mensaje llegue. Hice las pruebas de usuario yo misma y me senté con marketing para que el producto y el mensaje nunca se separaran. Fue la primera vez que me llamé diseñadora de producto en vez de diseñadora UX, y se quedó.</p>
     </article>
 
-    <article class="chapter current reveal" id="ch5">
-      <p class="chapter-meta" data-i18n="ch5.meta">Jun 2024 – Presente · Tangering AI</p>
-      <h2 data-i18n="ch5.h2">Dónde estoy ahora</h2>
-      <p data-i18n="ch5.p1">Diseño la plataforma que les permite a equipos no técnicos construir, probar y desplegar sus propios agentes de IA: convertir flujos que son genuinamente difíciles de explicar en algo que se siente obvio. Sigo trabajando como siempre lo he hecho: prototipo rápido en Figma y Make, valido con usuarios reales y entrego flujos listos para desarrollo en V0 para que nada se pierda entre el diseño y el código.</p>
+    <article class="chapter reveal" id="ch5">
+      <p class="chapter-meta" data-i18n="ch5.meta">Jun 2024 – 2026 · Tangering AI</p>
+      <h2 data-i18n="ch5.h2">Diseñar para quien no es técnico</h2>
+      <p data-i18n="ch5.p1">Diseñé la plataforma que les permite a equipos no técnicos construir, probar y desplegar sus propios agentes de IA: convertir flujos genuinamente difíciles de explicar en algo que se siente obvio. Trabajé como siempre lo he hecho: prototipo rápido en Figma y Make, validación con usuarios reales y flujos listos para desarrollo en V0, para que nada se perdiera entre el diseño y el código.</p>
+    </article>
+
+    <article class="chapter current reveal" id="ch6">
+      <p class="chapter-meta" data-i18n="ch6.meta">2026 – Presente · Freelance</p>
+      <h2 data-i18n="ch6.h2">Dónde estoy ahora</h2>
+      <p data-i18n="ch6.p1">Hoy diseño y construyo soluciones personalizadas para empresas como freelance: entiendo cómo funciona de verdad el negocio, lo convierto en un producto con IA y lo construyo yo misma con Claude Code, de la idea al producto funcionando.</p>
     </article>
   </div>
 
@@ -437,7 +481,7 @@
     es: {
       'meta.title': 'Sobre mí · Cindy Lewis',
       'nav.work': 'Trabajo',
-      'nav.home': 'Inicio',
+      'nav.home': 'Inicio', 'nav.brandSub': 'Portafolio',
       'nav.about': 'Sobre mí',
       'nav.payments': 'Pagos',
       'nav.aiAgents': 'Agentes de IA',
@@ -446,7 +490,7 @@
       'footer.contact': 'Contacto',
       'footer.rights': '\u00a9 2026 Cindy Lewis',
       'hero.eyebrow': 'Mi historia',
-      'hero.lede': 'Antes de diseñar productos de IA, diseñaba cosas que se podían tocar. Resulta que el instinto detrás de ambas es el mismo: seis roles, tres disciplinas, un mismo hilo.',
+      'hero.lede': 'Antes de diseñar productos de IA, diseñaba cosas que se podían tocar. Resulta que el instinto detrás de ambas es el mismo: siete roles, tres disciplinas, un mismo hilo.',
       'ch0.meta': '2006 – 2011',
       'ch0.h2': 'Dónde empezó',
       'ch0.p1': 'Estudié diseño industrial en la Universidad del Norte: no pantallas, sino objetos, materiales y la forma en que la gente realmente manipula las cosas con las manos. Todavía no lo sabía, pero el instinto que definiría todo lo que vino después ya estaba ahí: mirar cómo alguien usa algo de verdad y luego hacerlo mejor.',
@@ -464,9 +508,12 @@
       'ch4.meta': 'Feb – Sep 2024 · Habitanto',
       'ch4.h2': 'Aprender qué significa de verdad "producto"',
       'ch4.p1': 'Diseñé dos apps a la vez: una para administradores que manejan pagos, cobranza y reservas de zonas comunes, y otra para residentes que solo intentan que un mensaje llegue. Hice las pruebas de usuario yo misma y me senté con marketing para que el producto y el mensaje nunca se separaran. Fue la primera vez que me llamé diseñadora de producto en vez de diseñadora UX, y se quedó.',
-      'ch5.meta': 'Jun 2024 – Presente · Tangering AI',
-      'ch5.h2': 'Dónde estoy ahora',
-      'ch5.p1': 'Diseño la plataforma que les permite a equipos no técnicos construir, probar y desplegar sus propios agentes de IA: convertir flujos que son genuinamente difíciles de explicar en algo que se siente obvio. Sigo trabajando como siempre lo he hecho: prototipo rápido en Figma y Make, valido con usuarios reales y entrego flujos listos para desarrollo en V0 para que nada se pierda entre el diseño y el código.',
+      'ch5.meta': 'Jun 2024 – 2026 · Tangering AI',
+      'ch5.h2': 'Diseñar para quien no es técnico',
+      'ch6.meta': '2026 – Presente · Freelance',
+      'ch6.h2': 'Dónde estoy ahora',
+      'ch6.p1': 'Hoy diseño y construyo soluciones personalizadas para empresas como freelance: entiendo cómo funciona de verdad el negocio, lo convierto en un producto con IA y lo construyo yo misma con Claude Code, de la idea al producto funcionando.',
+      'ch5.p1': 'Diseñé la plataforma que les permite a equipos no técnicos construir, probar y desplegar sus propios agentes de IA: convertir flujos genuinamente difíciles de explicar en algo que se siente obvio. Trabajé como siempre lo he hecho: prototipo rápido en Figma y Make, validación con usuarios reales y flujos listos para desarrollo en V0, para que nada se perdiera entre el diseño y el código.',
       'pull.quote': '"Cada restricción dentro de la que he diseñado (un escenario construido para una sola noche, un negocio que tuve que manejar yo misma) me enseñó la misma lección antes de que la llamara diseño: hacer que lo complicado se sienta obvio."',
       'toolkit.label': 'Herramientas y formas de trabajar',
       'closing.epilogue': 'He sido la persona que construye la cosa y la persona que tuvo que vivir con lo que se construyó. Esa sigue siendo la mayor ventaja que llevo a una sala: diseño como si las restricciones fueran reales, porque he estado en ambos lados de ellas.',
@@ -475,7 +522,7 @@
     en: {
       'meta.title': 'About · Cindy Lewis',
       'nav.work': 'Work',
-      'nav.home': 'Home',
+      'nav.home': 'Home', 'nav.brandSub': 'Portfolio',
       'nav.about': 'About Me',
       'nav.payments': 'Payments',
       'nav.aiAgents': 'AI Agents',
@@ -484,7 +531,7 @@
       'footer.contact': 'Contact',
       'footer.rights': '\u00a9 2026 Cindy Lewis',
       'hero.eyebrow': 'My story',
-      'hero.lede': 'Before I designed AI products, I designed things you could touch. Turns out the instinct behind both is the same one: six roles, three disciplines, one thread.',
+      'hero.lede': 'Before I designed AI products, I designed things you could touch. Turns out the instinct behind both is the same one: seven roles, three disciplines, one thread.',
       'ch0.meta': '2006 – 2011',
       'ch0.h2': 'Where it started',
       'ch0.p1': "I studied industrial design at Universidad del Norte: not screens, but objects, materials, and how people actually handle things with their hands. I didn't know it yet, but the instinct that would define everything after was already there: watch how someone really uses a thing, then make it better.",
@@ -502,9 +549,12 @@
       'ch4.meta': 'Feb – Sep 2024 · Habitanto',
       'ch4.h2': 'Learning what "product" really means',
       'ch4.p1': 'I designed two apps at once: one for admins running payments, collections and common-area reservations, one for residents just trying to get a message through. I ran the user testing myself and sat with marketing so the product and the message never drifted apart. It was the first time I called myself a product designer instead of a UX designer, and it stuck.',
-      'ch5.meta': 'Jun 2024 – Present · Tangering AI',
-      'ch5.h2': 'Where I am now',
-      'ch5.p1': 'I design the platform that lets non-technical teams build, test and deploy their own AI agents: turning workflows that are genuinely hard to explain into something that feels obvious. I still work the way I always have: prototype fast in Figma and Make, validate with real users, then hand off developer-ready flows in V0 so nothing gets lost between design and code.',
+      'ch5.meta': 'Jun 2024 – 2026 · Tangering AI',
+      'ch5.h2': 'Designing for non-technical teams',
+      'ch6.meta': '2026 – Present · Freelance',
+      'ch6.h2': 'Where I am now',
+      'ch6.p1': 'Today I design and build custom solutions for companies as a freelancer: I learn how the business actually runs, turn it into an AI-powered product, and build it myself with Claude Code, from idea to working product.',
+      'ch5.p1': 'I designed the platform that lets non-technical teams build, test and deploy their own AI agents: turning workflows that are genuinely hard to explain into something that feels obvious. I worked the way I always have: prototype fast in Figma and Make, validate with real users, then hand off developer-ready flows in V0 so nothing got lost between design and code.',
       'pull.quote': '"Every constraint I\'ve designed inside (a stage built for one night, a business I had to run myself) taught me the same lesson before I ever called it design: make the complicated thing feel obvious."',
       'toolkit.label': 'Tools & ways of working',
       'closing.epilogue': "I've been the person building the thing, and the person who had to live with what got built. That's still the biggest advantage I bring into a room: I design like the constraints are real, because I've been on both sides of them.",

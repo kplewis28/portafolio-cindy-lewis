@@ -17,17 +17,17 @@ Two different page systems live side by side.
 
 ### Plain static pages (most of the site)
 
-`work.html`, `about.html`, `tangerine.html`, `habitanto.html` — each is one self-contained file: inline `<style>`, inline `<script>` at the bottom, no shared stylesheet.
+`index.html` (home), `work.html`, `about.html`, `tangerine.html`, `habitanto.html` — each is one self-contained file: inline `<style>`, inline `<script>` at the bottom, no shared stylesheet.
 
-- **`work.html` is the project hub.** A tab UI reads a single JS object `data` (keys `p0`–`p3`, one per project) and renders the active one into `#stage` via `render(d)`. Each entry has `tag`, `title`, `heroImage`, `statement`, `italicLine`, `details[]`, `badge`, `closing`, `href`, `hrefLabel`. Projects with a finished case study point `href` at their own file (e.g. `./habitanto.html`); projects without one yet point at an anchor inside `El Ojo.dc.html` (e.g. `./El%20Ojo.dc.html#stone-art-precision`) and carry `[Placeholder — …]` copy in `details[]`.
+- **`work.html` is the project hub.** A tab UI reads a JS object `DATA[lang]` (`p0` Habitanto, `p1` Tangering — default; `work.html#habitanto` opens `p0`) and renders the active one into `#stage` via `render(d)`. Each entry has `tag`, `title`, `statement`, `italicLine` (rendered as a plain lead line), `details[]` (shown as numbered hairline-top points), optional `heroDevice` (laptop PNG) or `heroPhones[]` (phone PNGs) for the hero, optional `shot` (one wide real screenshot) or `shots[]` (a row of phone screenshots) + `shotCaption`, `badge` (rendered as a mono eyebrow above the closing), `closing`, `href`, `hrefLabel`. The body is one left-aligned column (`.work-body`); there are no placeholder boxes or pending-video blocks any more — if a real capture doesn't exist, leave `shot` out.
 - **`tangerine.html` and `habitanto.html` are full case studies** and share one template — see below.
 - **`about.html`** is the bio/timeline page. Treat it as the source of truth for job dates and role scope when writing case-study copy.
 
 ### `x-dc` interactive pages, powered by `support.js`
 
-`index.html` (the animated eye home/landing page — this is the deployed site root; was `El Ojo.dc.html` before the Vercel deploy, renamed so `/` resolves) and `Portfolio Concepts.dc.html` load `support.js`, a generated runtime (its own header says: *"GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`"*). It implements a custom `<x-dc>` element plus a `class Component extends DCLogic` pattern for embedding React-driven interactive components directly in the HTML.
+Only `Portfolio Concepts.dc.html` still loads `support.js` (`index.html` used to be the animated-eye `x-dc` page but is now a plain static page: name + photo-strip hero, roles row, road). `support.js` is a generated runtime (its own header says: *"GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`"*). It implements a custom `<x-dc>` element plus a `class Component extends DCLogic` pattern for embedding React-driven interactive components directly in the HTML.
 
-The `dc-runtime` TypeScript source referenced in that comment is not part of this repo — `support.js` is a vendored build artifact. Don't hand-edit it; only touch the `<x-dc>...</x-dc>` markup and the `<script type="text/x-dc" data-dc-script">` block inside these two files.
+The `dc-runtime` TypeScript source referenced in that comment is not part of this repo — `support.js` is a vendored build artifact. Don't hand-edit it; only touch the `<x-dc>...</x-dc>` markup and the `<script type="text/x-dc" data-dc-script">` block inside that file.
 
 ## Case-study page template (`tangerine.html` / `habitanto.html`)
 
@@ -42,12 +42,7 @@ When starting a new full case study (Stone Art Precision and ProfitPeek still ne
 - closing `.pull` pull-quote block, then a `.close` section with a single `mailto:` CTA
 - a reading-progress bar (`#progress`, updated on scroll) and `.reveal` fade-ins on scroll, same JS pattern in both files
 
-Each case study picks its own accent color and heading font but shares `'IBM Plex Mono'` for body/eyebrow/UI chrome — keep that split for any new case study rather than reusing one project's palette:
-
-| | accent | heading font |
-|---|---|---|
-| `habitanto.html` | `#1450e6` | Inter |
-| `tangerine.html` | `#d9480f` | Space Grotesk |
+All pages share one brand (set 2026-09-30): white background (`#fff`, surfaces `#f5f5f3`), black ink (`#0b0b0c`), display headings (h1/h2/pull quotes) in `'Didact Gothic'`, body/UI in `'Inter'`, eyebrows/meta in `'IBM Plex Mono'`. The only accent is the neon green of Cindy's glasses, `#35e80c` (`--accent`), used for **details only** — progress bar, current-item markers, active tab ring, link underlines, selection, marker-style highlights. Never use it as text color on white (unreadable); text stays ink. Case studies no longer get their own accent color or heading font. Each non-home page carries the shared rules in the "shared light theme" / "shared brand" blocks at the end of its `<style>`; new pages should copy those blocks.
 
 ## Assets
 
