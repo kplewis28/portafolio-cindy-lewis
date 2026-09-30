@@ -20,6 +20,7 @@ Two different page systems live side by side.
 `index.html` (home), `work.html`, `about.html`, `tangerine.html`, `habitanto.html` — each is one self-contained file: inline `<style>`, inline `<script>` at the bottom, no shared stylesheet.
 
 - **`work.html` is the project hub.** A tab UI reads a JS object `DATA[lang]` (`p0` Habitanto, `p1` Tangering — default; `work.html#habitanto` opens `p0`) and renders the active one into `#stage` via `render(d)`. Each entry has `tag`, `title`, `statement`, `italicLine` (rendered as a plain lead line), `details[]` (shown as numbered hairline-top points), optional `heroDevice` (laptop PNG) or `heroPhones[]` (phone PNGs) for the hero, optional `shot` (one wide real screenshot) or `shots[]` (a row of phone screenshots) + `shotCaption`, `badge` (rendered as a mono eyebrow above the closing), `closing`, `href`, `hrefLabel`. The body is one left-aligned column (`.work-body`); there are no placeholder boxes or pending-video blocks any more — if a real capture doesn't exist, leave `shot` out.
+- **`soluciones.html` ("Soluciones a medida" / "Custom solutions")** is the freelance page: static sections for ÚNA (una.eco — captures in `assets/una/`), Stone Art Precision (internal client app — phone screenshots in `assets/stone/` with every client name and the owner's name covered by gray bars; never publish unredacted ones) and ProfitPeek (Cindy's own product, profitpeek.site — captures in `assets/profitpeek/`). Built from `work.html`'s shell (same navbar/footer/lang logic); copy lives in its `I18N` dict. Linked from every page's Trabajo dropdown and footer (`nav.custom`).
 - **`tangerine.html` and `habitanto.html` are full case studies** and share one template — see below.
 - **`about.html`** is the bio/timeline page. Treat it as the source of truth for job dates and role scope when writing case-study copy.
 
@@ -31,7 +32,7 @@ The `dc-runtime` TypeScript source referenced in that comment is not part of thi
 
 ## Case-study page template (`tangerine.html` / `habitanto.html`)
 
-When starting a new full case study (Stone Art Precision and ProfitPeek still need one — see Pending work), copy the structure of one of these two files rather than starting from scratch:
+When starting a new full case study (Stone Art Precision and ÚNA only have summaries so far — see Pending work), copy the structure of one of these two files rather than starting from scratch:
 
 - navbar linking back to `about.html` / `work.html` plus a LinkedIn pill
 - hero: eyebrow, `<h1>`, lede paragraph
@@ -58,4 +59,4 @@ All pages share one brand (set 2026-09-30): white background (`#fff`, surfaces `
 
 ## Pending work
 
-`p2` (Stone Art Precision) and `p3` (ProfitPeek) in `work.html` still route to placeholder anchors inside `El Ojo.dc.html` and have unfinished `details[]` copy. They need their own full case-study pages built from the template above once source material (Figma files, specs, etc.) is available.
+Stone Art Precision, ÚNA and ProfitPeek are covered as summaries on `soluciones.html`; none has a full case study yet.
