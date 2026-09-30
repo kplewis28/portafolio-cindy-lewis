@@ -239,95 +239,33 @@
   #about .about-bg-glow, #about .about-bg-lines { display: none; }
   .about-content { position: relative; z-index: 1; }
 
-  .about-head { margin: 0 0 56px; }
-
-  /* seven roles laid out as one editorial row: a hairline on top, number, role, years */
-  .roles-grid {
-    list-style: none; margin: 0 0 80px; padding: 0;
-    display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 32px 20px;
+  /* heading on the left (sticky), the seven roles as a readable vertical list on the right */
+  .about-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; margin: 0 0 96px; }
+  .about-head { padding-top: 14px; }
+  .roles-grid { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+  .roles-grid li {
+    display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: baseline; gap: 16px;
+    padding: 18px 0; border-top: 1px solid var(--line);
   }
-  .roles-grid li { display: flex; flex-direction: column; border-top: 1px solid var(--line-strong); padding-top: 16px; }
-  .roles-grid li.is-now { border-top: 2px solid var(--ink); padding-top: 15px; }
-  .role-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 14px; }
-  .role-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; line-height: 1.32; letter-spacing: -0.005em; color: var(--ink); margin: 0 0 8px; }
-  .role-years { margin-top: auto !important; display: flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.04em; color: var(--muted); margin: 0; }
+  .role-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); margin: 0; }
+  .role-title { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; color: var(--ink); margin: 0; }
+  .role-years { display: flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--muted); margin: 0; white-space: nowrap; }
+  .roles-grid li.is-now { border-top: 2px solid var(--ink); padding-top: 17px; }
   .roles-grid li.is-now .role-years { color: var(--ink); }
   .roles-grid li.is-now .role-years::before {
     content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-soft);
   }
-  @media (max-width: 1100px) { .roles-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (max-width: 760px) { .roles-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 520px) { .about-head { margin-bottom: 40px; } .roles-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 18px; margin-bottom: 56px; } }
+  @media (max-width: 860px) {
+    .about-split { grid-template-columns: 1fr; gap: 36px; margin-bottom: 64px; }
+    .about-head { padding-top: 0; }
+    .roles-grid li { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; padding: 15px 0; }
+    .role-title { font-size: 15.5px; }
+    .role-years { font-size: 11px; }
+  }
 
-  /* ---- road: winding path with 4 stops; labels sit clear of the curve, connectors never cross text ---- */
-  .road-wrap { position: relative; width: 100%; height: 560px; margin: 0 0 56px; }
-  .road-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .road-line {
-    fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round;
-    stroke-dasharray: 1500; stroke-dashoffset: 1500;
-    transition: stroke-dashoffset 1.8s cubic-bezier(.2,.8,.2,1) 0.15s;
-  }
-  .road-wrap.is-visible .road-line { stroke-dashoffset: 0; }
-  .road-connector {
-    stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 2 6; stroke-linecap: round;
-    opacity: 0; transition: opacity 0.5s ease;
-  }
-  .road-wrap.is-visible .road-connector { opacity: 1; }
-  .road-connector.is-hover { stroke: var(--ink); }
-  .road-dot-glow {
-    fill: rgba(11,11,12,0.08); opacity: 0; transform: scale(0); transform-origin: center; cursor: pointer;
-    transition: opacity 0.4s ease, transform 0.35s cubic-bezier(.34,1.56,.64,1);
-  }
-  .road-dot {
-    fill: var(--ink); opacity: 0; transform: scale(0); transform-origin: center; cursor: pointer;
-    transition: opacity 0.4s cubic-bezier(.34,1.56,.64,1), transform 0.35s cubic-bezier(.34,1.56,.64,1), fill 0.25s ease;
-  }
-  .road-wrap.is-visible .road-dot, .road-wrap.is-visible .road-dot-glow { opacity: 1; transform: scale(1); }
-  .road-dot.is-hover { transform: scale(1.5); }
-  .road-dot-glow.is-hover { transform: scale(1.6); }
-  .road-pulse { fill: var(--accent); }
-  .road-label-anchor { position: absolute; }
-  .road-label {
-    opacity: 0; width: 235px; padding-left: 16px;
-    border-left: 2px solid var(--line); cursor: pointer;
-    transition: opacity 0.6s ease, border-color 0.25s ease;
-  }
-  .road-label.rl-right {
-    padding-left: 0; padding-right: 16px; text-align: right;
-    border-left: none; border-right: 2px solid var(--line);
-  }
-  .road-wrap.is-visible .road-label { opacity: 1; }
-  .road-label.is-hover { border-color: var(--ink); }
-  .road-num { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing: 0.05em; color: var(--muted); margin: 0 0 8px; transition: color 0.25s ease; }
-  .road-label h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 8px; line-height: 1.25; }
-  .road-label p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); margin: 0; }
-  .road-fallback { display: none; }
-  .road-hint { display: none; }
-
-  /* ---- mobile: keep the winding graphic — it becomes a horizontal scroller
-     you drag through, instead of collapsing to a plain vertical list ---- */
   @media (max-width: 940px) {
     #about { padding-left: 20px !important; padding-right: 20px !important; padding-top: 56px !important; }
-    .road-fallback { display: none !important; }
-    .road-hint {
-      display: block; font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin: 0 0 14px; transition: opacity 0.4s ease;
-    }
-    .road-hint.is-hidden { opacity: 0; }
-    .road-scroll {
-      overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
-      margin: 0 -20px 44px; padding: 0 20px 10px;
-      scrollbar-width: none;
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 34px), transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 34px), transparent 100%);
-    }
-    .road-scroll::-webkit-scrollbar { display: none; }
-    .road-wrap { display: block; width: 860px; height: 470px; margin: 0; }
-    .road-label { width: 196px; }
-    .road-label h3 { font-size: 16.5px; }
-    .road-label p { font-size: 13px; }
   }
 
   /* ---- mobile top bar: wordmark + hamburger that opens a dropdown panel ---- */
@@ -545,96 +483,21 @@
   <div class="about-bg-lines"></div>
   <div class="about-content" style="max-width:1040px; margin:0 auto; text-align:left;">
     <p class="cases-cue" data-i18n="hero.scroll">Conóceme</p>
-    <div class="about-head">
-      <h2 class="about-reveal" data-i18n="about.h2" style="font-family:'Didact Gothic','Century Gothic',sans-serif; font-size:clamp(36px,5.6vw,68px); font-weight:400; letter-spacing:-0.015em; -webkit-text-stroke:0.012em var(--ink); line-height:1; color:var(--ink); margin:0; transition-delay:0.08s;">Siete roles.<br>Un instinto.</h2>
-      <p class="about-reveal" data-i18n="about.sub" style="font-size:18px; line-height:1.6; color:var(--ink-2); max-width:440px; margin:20px 0 0; transition-delay:0.16s;">Hacer que lo complicado se sienta obvio.</p>
-    </div>
+    <div class="about-split">
+      <div class="about-head">
+        <h2 class="about-reveal" data-i18n="about.h2" style="font-family:'Didact Gothic','Century Gothic',sans-serif; font-size:clamp(36px,5.6vw,68px); font-weight:400; letter-spacing:-0.015em; -webkit-text-stroke:0.012em var(--ink); line-height:1; color:var(--ink); margin:0; transition-delay:0.08s;">Siete roles.<br>Un instinto.</h2>
+        <p class="about-reveal" data-i18n="about.sub" style="font-size:18px; line-height:1.6; color:var(--ink-2); max-width:440px; margin:20px 0 0; transition-delay:0.16s;">Hacer que lo complicado se sienta obvio.</p>
+      </div>
 
-    <ol class="roles-grid about-reveal" id="rolesGrid" style="transition-delay:0.24s;">
-      <li><p class="role-num">01</p><p class="role-title">Diseñadora industrial</p><p class="role-years">2006–2011</p></li>
-      <li><p class="role-num">02</p><p class="role-title">Diseñadora de eventos y estructuras</p><p class="role-years">2014–2015</p></li>
-      <li><p class="role-num">03</p><p class="role-title">Fundadora, Reserva Nevada</p><p class="role-years">2015–2019</p></li>
-      <li><p class="role-num">04</p><p class="role-title">Diseñadora web freelance</p><p class="role-years">2023</p></li>
-      <li><p class="role-num">05</p><p class="role-title">Diseñadora de producto, Habitanto</p><p class="role-years">2024</p></li>
-      <li><p class="role-num">06</p><p class="role-title">Diseñadora de producto, Tangering AI</p><p class="role-years">2024–2026</p></li>
-      <li class="is-now"><p class="role-num">07</p><p class="role-title">Diseñadora y constructora de producto, freelance</p><p class="role-years">Ahora</p></li>
-    </ol>
-
-    <p class="road-hint" id="roadHint" data-i18n="road.hint">Desliza para recorrer →</p>
-    <div class="road-scroll" id="roadScroll">
-    <div class="road-wrap" id="roadWrap">
-      <svg class="road-svg" viewBox="0 0 900 560" preserveAspectRatio="none">
-        <path id="roadPathRef" class="road-line" d="M40,330 Q170,205 320,265 Q480,345 600,275 Q730,205 860,325"/>
-        <line class="road-connector" data-stop="0" x1="40" y1="168" x2="40" y2="330" style="transition-delay:0.4s;"/>
-        <line class="road-connector" data-stop="1" x1="320" y1="265" x2="320" y2="392" style="transition-delay:0.9s;"/>
-        <line class="road-connector" data-stop="2" x1="600" y1="168" x2="600" y2="275" style="transition-delay:1.4s;"/>
-        <line class="road-connector" data-stop="3" x1="860" y1="325" x2="860" y2="392" style="transition-delay:1.9s;"/>
-        <circle class="road-dot-glow" data-stop="0" cx="40" cy="330" r="17" style="transition-delay:0.2s;"/>
-        <circle class="road-dot" data-stop="0" cx="40" cy="330" r="7" style="transition-delay:0.2s;"/>
-        <circle class="road-dot-glow" data-stop="1" cx="320" cy="265" r="17" style="transition-delay:0.7s;"/>
-        <circle class="road-dot" data-stop="1" cx="320" cy="265" r="7" style="transition-delay:0.7s;"/>
-        <circle class="road-dot-glow" data-stop="2" cx="600" cy="275" r="17" style="transition-delay:1.2s;"/>
-        <circle class="road-dot" data-stop="2" cx="600" cy="275" r="7" style="transition-delay:1.2s;"/>
-        <circle class="road-dot-glow" data-stop="3" cx="860" cy="325" r="17" style="transition-delay:1.7s;"/>
-        <circle class="road-dot" data-stop="3" cx="860" cy="325" r="7" style="transition-delay:1.7s;"/>
-        <circle class="road-pulse" r="4">
-          <animateMotion dur="7s" begin="2s" repeatCount="indefinite" rotate="auto">
-            <mpath href="#roadPathRef"/>
-          </animateMotion>
-        </circle>
-      </svg>
-      <div class="road-label-anchor" style="left:4.4%; top:0;">
-        <div class="road-label" data-stop="0" style="transition-delay:0.3s;">
-          <p class="road-num" data-i18n="road.1.num">01 · Dónde empezó</p>
-          <h3 data-i18n="road.1.h3">Raíces en diseño industrial</h3>
-          <p data-i18n="road.1.p">Antes de las pantallas diseñaba objetos: observando cómo la gente manipula las cosas con las manos. Ese instinto nunca se fue.</p>
-        </div>
-      </div>
-      <div class="road-label-anchor" style="left:35.6%; bottom:0;">
-        <div class="road-label" data-stop="1" style="transition-delay:0.8s;">
-          <p class="road-num" data-i18n="road.2.num">02 · 2015–2019</p>
-          <h3 data-i18n="road.2.h3">Manejé mi propia empresa</h3>
-          <p data-i18n="road.2.p">Tres años manejando Reserva Nevada me enseñaron más sobre restricciones reales que cualquier curso de diseño.</p>
-        </div>
-      </div>
-      <div class="road-label-anchor" style="left:66.7%; top:0;">
-        <div class="road-label rl-right" data-stop="2" style="transform:translateX(-100%); transition-delay:1.3s;">
-          <p class="road-num" data-i18n="road.3.num">03 · Feb–Sep 2024</p>
-          <h3 data-i18n="road.3.h3">Lancé Habitanto</h3>
-          <p data-i18n="road.3.p">Un sistema completo de pagos que residentes y administradores usan de verdad: la primera vez que me llamé diseñadora de producto.</p>
-        </div>
-      </div>
-      <div class="road-label-anchor" style="left:95.6%; bottom:0;">
-        <div class="road-label rl-right" data-stop="3" style="transform:translateX(-100%); transition-delay:1.8s;">
-          <p class="road-num" data-i18n="road.4.num">04 · 2024 – Ahora</p>
-          <h3 data-i18n="road.4.h3">De Tangering AI a soluciones propias</h3>
-          <p data-i18n="road.4.p">Diseñé la plataforma de agentes de IA de Tangering AI; hoy diseño y construyo soluciones a la medida para empresas como freelance.</p>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="road-fallback">
-      <div class="road-label">
-        <p class="road-num" data-i18n="road.1.num">01 · Dónde empezó</p>
-        <h3 data-i18n="road.1.h3">Raíces en diseño industrial</h3>
-        <p data-i18n="road.1.p">Antes de las pantallas diseñaba objetos: observando cómo la gente manipula las cosas con las manos. Ese instinto nunca se fue.</p>
-      </div>
-      <div class="road-label">
-        <p class="road-num" data-i18n="road.2.num">02 · 2015–2019</p>
-        <h3 data-i18n="road.2.h3">Manejé mi propia empresa</h3>
-        <p data-i18n="road.2.p">Tres años manejando Reserva Nevada me enseñaron más sobre restricciones reales que cualquier curso de diseño.</p>
-      </div>
-      <div class="road-label">
-        <p class="road-num" data-i18n="road.3.num">03 · Feb–Sep 2024</p>
-        <h3 data-i18n="road.3.h3">Lancé Habitanto</h3>
-        <p data-i18n="road.3.p">Un sistema completo de pagos que residentes y administradores usan de verdad: la primera vez que me llamé diseñadora de producto.</p>
-      </div>
-      <div class="road-label">
-        <p class="road-num" data-i18n="road.4.num">04 · 2024 – Ahora</p>
-        <h3 data-i18n="road.4.h3">De Tangering AI a soluciones propias</h3>
-        <p data-i18n="road.4.p">Diseñé la plataforma de agentes de IA de Tangering AI; hoy diseño y construyo soluciones a la medida para empresas como freelance.</p>
-      </div>
+      <ol class="roles-grid about-reveal" id="rolesGrid" style="transition-delay:0.24s;">
+        <li><p class="role-num">01</p><p class="role-title">Diseñadora industrial</p><p class="role-years">2006–2011</p></li>
+        <li><p class="role-num">02</p><p class="role-title">Diseñadora de eventos y estructuras</p><p class="role-years">2014–2015</p></li>
+        <li><p class="role-num">03</p><p class="role-title">Fundadora, Reserva Nevada</p><p class="role-years">2015–2019</p></li>
+        <li><p class="role-num">04</p><p class="role-title">Diseñadora web freelance</p><p class="role-years">2023</p></li>
+        <li><p class="role-num">05</p><p class="role-title">Diseñadora de producto, Habitanto</p><p class="role-years">2024</p></li>
+        <li><p class="role-num">06</p><p class="role-title">Diseñadora de producto, Tangering AI</p><p class="role-years">2024–2026</p></li>
+        <li class="is-now"><p class="role-num">07</p><p class="role-title">Diseñadora y constructora de producto, freelance</p><p class="role-years">Ahora</p></li>
+      </ol>
     </div>
 
     <p class="about-reveal" data-i18n="about.whyTag" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:0 0 18px;">Por qué le importa a tu equipo</p>
@@ -691,80 +554,6 @@
         });
       }, { threshold: 0.15 });
       els.forEach(function (el) { if (!el.classList.contains('is-visible')) aboutIo.observe(el); });
-    }
-
-    function bindRoadReveal() {
-      var road = document.getElementById('roadWrap');
-      if (!road || road.dataset.revealBound) return;
-      road.dataset.revealBound = '1';
-      var scroller = document.getElementById('roadScroll');
-      var hint = document.getElementById('roadHint');
-
-      function reveal() {
-        if (road.classList.contains('is-visible')) return;
-        road.classList.add('is-visible');
-        window.removeEventListener('scroll', onScroll);
-        // on mobile the graphic is a horizontal scroller — nudge it once it's
-        // drawn so it's obvious you can drag through it
-        if (scroller && scroller.scrollWidth > scroller.clientWidth + 8) {
-          setTimeout(function () {
-            try {
-              scroller.scrollTo({ left: 46, behavior: 'smooth' });
-              setTimeout(function () { scroller.scrollTo({ left: 0, behavior: 'smooth' }); }, 650);
-            } catch (e) {}
-          }, 900);
-        }
-      }
-      function nearViewport() {
-        var r = road.getBoundingClientRect();
-        return r.top < (window.innerHeight || 800) * 0.9 && r.bottom > 0;
-      }
-      function onScroll() { if (nearViewport()) reveal(); }
-
-      // 1) IntersectionObserver — the nice scroll-triggered draw when it works
-      try {
-        var roadIo = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) { if (entry.isIntersecting) { reveal(); roadIo.disconnect(); } });
-        }, { threshold: 0.25 });
-        roadIo.observe(road);
-      } catch (e) {}
-      // 2) scroll fallback (IO is throttled/paused in some contexts)
-      window.addEventListener('scroll', onScroll, { passive: true });
-      if (nearViewport()) reveal();
-      // 3) last resort: never leave the graphic invisible
-      setTimeout(function () { reveal(); }, 3000);
-
-      if (scroller && hint && !scroller.dataset.hintBound) {
-        scroller.dataset.hintBound = '1';
-        scroller.addEventListener('scroll', function () {
-          if (scroller.scrollLeft > 24) hint.classList.add('is-hidden');
-        }, { passive: true });
-      }
-    }
-
-    function bindRoadHover() {
-      var road = document.getElementById('roadWrap');
-      if (!road || road.dataset.hoverBound) return;
-      road.dataset.hoverBound = '1';
-      function setHover(stop, on) {
-        road.querySelectorAll('[data-stop="' + stop + '"]').forEach(function (el) {
-          el.classList.toggle('is-hover', on);
-        });
-      }
-      function clearAll() {
-        road.querySelectorAll('.is-hover').forEach(function (el) { el.classList.remove('is-hover'); });
-      }
-      road.querySelectorAll('[data-stop]').forEach(function (el) {
-        var stop = el.dataset.stop;
-        el.addEventListener('mouseenter', function () { setHover(stop, true); });
-        el.addEventListener('mouseleave', function () { setHover(stop, false); });
-        // touch / click: tap a stop to spotlight it (mouseenter never fires on touch)
-        el.addEventListener('click', function () {
-          var wasOn = el.classList.contains('is-hover');
-          clearAll();
-          if (!wasOn) setHover(stop, true);
-        });
-      });
     }
 
     var ROLES = {
@@ -872,19 +661,6 @@
         'case.2.title': '4 intentos de enseñarle a una IA su propio trabajo',
         'about.h2': 'Siete roles.<br>Un instinto.',
         'about.sub': 'Hacer que lo complicado se sienta obvio.',
-        'road.1.num': '01 · Dónde empezó',
-        'road.1.h3': 'Raíces en diseño industrial',
-        'road.1.p': 'Antes de las pantallas diseñaba objetos: observando cómo la gente manipula las cosas con las manos. Ese instinto nunca se fue.',
-        'road.2.num': '02 · 2015–2019',
-        'road.2.h3': 'Manejé mi propia empresa',
-        'road.2.p': 'Tres años manejando Reserva Nevada me enseñaron más sobre restricciones reales que cualquier curso de diseño.',
-        'road.3.num': '03 · Feb–Sep 2024',
-        'road.3.h3': 'Lancé Habitanto',
-        'road.3.p': 'Un sistema completo de pagos que residentes y administradores usan de verdad: la primera vez que me llamé diseñadora de producto.',
-        'road.4.num': '04 · 2024 – Ahora',
-        'road.4.h3': 'De Tangering AI a soluciones propias',
-        'road.4.p': 'Diseñé la plataforma de agentes de IA de Tangering AI; hoy diseño y construyo soluciones a la medida para empresas como freelance.',
-        'road.hint': 'Desliza para recorrer el camino →',
         'about.whyTag': 'Por qué le importa a tu equipo',
         'about.why1': 'Entrego producto que funciona, no solo mockups: yo misma construyo con Claude Code.',
         'about.why2': 'He manejado mi propio negocio, así que diseño como si las restricciones fueran reales.',
@@ -917,19 +693,6 @@
         'case.2.title': '4 attempts at teaching an AI its own job',
         'about.h2': 'Seven roles.<br>One instinct.',
         'about.sub': 'Make the complicated thing feel obvious.',
-        'road.1.num': '01 · Where it started',
-        'road.1.h3': 'Industrial design roots',
-        'road.1.p': 'Before screens, I designed objects: watching how people actually handle things with their hands. That instinct never left.',
-        'road.2.num': '02 · 2015–2019',
-        'road.2.h3': 'Ran my own company',
-        'road.2.p': 'Three years running Reserva Nevada taught me more about real constraints than any design course did.',
-        'road.3.num': '03 · Feb–Sep 2024',
-        'road.3.h3': 'Shipped Habitanto',
-        'road.3.p': 'A full payments system real residents and property admins use: the first time I called myself a product designer.',
-        'road.4.num': '04 · 2024 – Now',
-        'road.4.h3': 'From Tangering AI to my own practice',
-        'road.4.p': 'I designed Tangering AI’s agent platform; today I design and build custom solutions for companies as a freelancer.',
-        'road.hint': 'Swipe to travel the path →',
         'about.whyTag': 'Why it matters to your team',
         'about.why1': 'I ship working product, not just mockups: I build with Claude Code myself.',
         'about.why2': "I've run my own business, so I design like the constraints are real.",
@@ -1011,7 +774,7 @@
     window.__portfolioLangChosen = langAlreadyChosen();
 
     function bindAbout() {
-      bindAboutReveal(); bindRoadReveal(); bindRoadHover(); bindRoleCycler();
+      bindAboutReveal(); bindRoleCycler();
       bindWorkDropdown(); bindLangToggle(); bindLangGate(); bindNavBurger();
       applyLang(window.__portfolioLang);
     }
