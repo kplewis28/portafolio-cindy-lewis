@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.title">De perseguir pagos a que el sistema cobre solo · Habitanto · Cindy Lewis</title>
+<meta name="description" content="Caso de estudio: cómo Cindy Lewis rediseñó el sistema de pagos de Habitanto, del checkout del residente a la cobranza del administrador.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cindy Lewis">
+<meta property="og:title" content="De perseguir pagos a que el sistema cobre solo · Habitanto · Cindy Lewis">
+<meta property="og:description" content="Caso de estudio: cómo Cindy Lewis rediseñó el sistema de pagos de Habitanto, del checkout del residente a la cobranza del administrador.">
+<meta property="og:locale" content="es_CO">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -554,7 +562,7 @@
   .detail-toggle { color: #0b0b0c !important; text-decoration-color: var(--accent) !important; text-decoration-thickness: 2px !important; }
   .lede strong { background: linear-gradient(transparent 58%, var(--accent-soft) 58%); padding: 0 2px; }
   .tab.active { box-shadow: 0 0 0 2px var(--accent), 0 6px 18px rgba(0,0,0,0.08) !important; }
-  .hero-glow, .hero-browser-glow { display: none !important; }   /* no colour haze over photos: green is for details only */
+  .hero-glow, html[lang] .hero-browser-glow { display: none !important; }   /* no colour haze over photos: green is for details only */
 
   /* numbered section index: same editorial language as the home's roles row */
   .strip { gap: 22px 20px !important; }
@@ -605,6 +613,35 @@
     .lang-word { display: inline; }
     .lang-label { padding-right: 8px; }
   }
+
+  /* ---- EN-only note under screenshots whose UI is in Spanish ---- */
+  html[lang] p.ui-es-note { display: none; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; line-height: 1.45; letter-spacing: 0.01em; color: rgba(11,11,12,0.5); opacity: 1; max-width: none; margin: 8px 4px 0; text-align: inherit; }
+  html[lang="en"] p.ui-es-note { display: block; }
+  html[lang] .hero-phones p.ui-es-note, html[lang] .hero-browser p.ui-es-note { position: absolute; left: -20px; right: -20px; bottom: -52px; text-align: center; margin: 0; }
+  html[lang] .media p.ui-es-note, html[lang] .section > p.ui-es-note, html[lang] .wide > p.ui-es-note { text-align: center; }
+  html[lang] .flow-block p.ui-es-note { text-align: left; }
+  html[lang="en"] .attempt-media.media-row { flex-wrap: wrap; }
+  html[lang="en"] .attempt-media.media-row > .media { flex: 1 1 0; }
+  @media (max-width: 620px) { html[lang="en"] .attempt-media.media-row { flex-wrap: nowrap; } html[lang="en"] .attempt-media.media-row > .media { flex: 0 0 auto; } }
+  html[lang] .attempt-media.media-row > p.ui-es-note { flex: 0 0 100%; text-align: center; margin-top: 0; }
+
+  /* ---- case arc (problem → decision → result) + results list ---- */
+  .arc { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .arc li a { display: block; height: 100%; padding: 18px 0 0; border-top: 1px solid rgba(11,11,12,0.16); color: inherit; text-decoration: none; transition: border-color 0.2s ease; }
+  .arc li a:hover { border-top-color: #35e80c; }
+  .section .arc .arc-n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(11,11,12,0.55); margin: 0 0 10px; opacity: 1; }
+  .section .arc h3 { font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; line-height: 1.35; margin: 0 0 8px; color: #0b0b0c; }
+  .section .arc .arc-p { font-size: 13.5px; line-height: 1.6; margin: 0; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 32px 0 28px; }
+  .stat-n { display: block; font-family: 'Didact Gothic', 'Century Gothic', sans-serif; font-size: 52px; line-height: 1; color: #0b0b0c; margin: 0 0 10px; }
+  .section .stat-l { display: block; font-size: 13.5px; line-height: 1.5; margin: 0; color: rgba(26,26,26,0.75); }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr; gap: 18px; } .stat-n { font-size: 44px; } }
+  .result-list { list-style: none; margin: 28px 0 0; padding: 0; }
+  .result-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 14px 0; border-top: 1px solid rgba(11,11,12,0.1); font-size: 14px; line-height: 1.55; color: rgba(26,26,26,0.92); }
+  .result-list li:last-child { border-bottom: 1px solid rgba(11,11,12,0.1); }
+  .result-list .r-value { flex: 0 1 55%; text-align: right; font-weight: 600; color: #0b0b0c; }
+  @media (max-width: 720px) { .result-list .r-value { text-align: left; } }
+  @media (max-width: 720px) { .arc { grid-template-columns: 1fr; gap: 10px; } .result-list li { flex-direction: column; gap: 6px; } }
 </style>
 <script>
 /* if a language was already chosen (localStorage or cookie), hide the first-visit
@@ -625,13 +662,13 @@
 </div>
 <div class="progress" id="progress"></div>
 <div class="navbar">
-  <a href="/" style="text-decoration:none; color:inherit; display:block;">
+  <a href="./index.html" style="text-decoration:none; color:inherit; display:block;">
     <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#151515; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
     <div style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(37,37,37,0.6); margin-top:5px;" data-i18n="nav.brandSub">Portafolio</div>
   </a>
   <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links">
-    <a class="nav-link" href="/" data-i18n="nav.home">Inicio</a>
+    <a class="nav-link" href="./index.html" data-i18n="nav.home">Inicio</a>
     <div class="work-dd-wrap" data-dd>
       <button class="nav-link work-dd-trigger is-current" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
       <div class="work-dropdown">
@@ -651,7 +688,7 @@
 </div>
 
 <div class="hero-photo">
-  <img class="hero-img" src="./assets/habitanto-hero.webp" alt="">
+  <img class="hero-img" src="./assets/habitanto-hero.webp" alt="" aria-hidden="true">
   <div class="hero-tint"></div>
   <div class="hero-glow"></div>
   <div class="hero-topfade"></div>
@@ -672,6 +709,7 @@
         <img class="hero-phone-img" src="./assets/habitanto-hero-phone.png" alt="Mockup de un iPhone mostrando la Home de la app residente de Habitanto, con el saldo pendiente y el botón Pagar ahora" data-i18n-alt="heroPhone.residentAlt">
         <span class="hero-phone-tag" data-i18n="heroPhone.residentTag">App Residente</span>
       </div>
+      <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
     </div>
   </div>
 </div>
@@ -689,8 +727,19 @@
 </div>
 
 <div class="container">
+  <div class="section reveal" id="resumen">
+    <p class="section-tag" data-i18n="arc.tag">El caso en tres partes</p>
+    <ol class="arc">
+      <li><a href="#contexto"><p class="arc-n" data-i18n="arc.1.n">01 · El problema</p><h3 data-i18n="arc.1.h">Cobrar dependía de perseguir a alguien</h3><p class="arc-p" data-i18n="arc.1.p">El administrador cobraba a mano, unidad por unidad, y el residente pagaba un cargo a la vez sin ver cuánto debía en total.</p></a></li>
+      <li><a href="#activacion"><p class="arc-n" data-i18n="arc.2.n">02 · La decisión</p><h3 data-i18n="arc.2.h">Pedir el pago automático en el momento justo</h3><p class="arc-p" data-i18n="arc.2.p">Los banners con incentivos no movieron a nadie. Llevé el pedido a un modal justo después de un pago manual, cuando la fricción todavía se siente.</p></a></li>
+      <li><a href="#resultado"><p class="arc-n" data-i18n="arc.3.n">03 · El resultado</p><h3 data-i18n="arc.3.h">Un solo pago para el residente, un link para el administrador</h3><p class="arc-p" data-i18n="arc.3.p">Menos pasos manuales de los dos lados de la transacción.</span></p></a></li>
+    </ol>
+  </div>
+</div>
+
+<div class="container">
   <div class="section reveal" id="contexto">
-    <p class="section-tag" data-i18n="contexto.tag">El contexto</p>
+    <p class="section-tag" data-i18n="contexto.tag">01 · El problema</p>
     <h2 data-i18n="contexto.h2">Cobrar dependía de perseguir a alguien</h2>
     <p data-i18n="contexto.p1">Habitanto administra condominios: la cuota mensual (la "expensa"), el seguro, cuotas extraordinarias, consumo de gas. Cuando llegué, cobrar todo eso era, en la práctica, trabajo manual del administrador: identificar quién debía, contactarlo, explicarle cómo pagar, y volver a intentarlo si no respondía.</p>
     <p data-i18n="contexto.p2">Del lado del residente el problema era el espejo: pagar significaba entrar a resolver un cargo a la vez, sin una vista clara de cuánto debía en total ni una forma simple de ponerse al día. Dos personas resolviendo el mismo problema de dinero, cada una a ciegas de lo que hacía la otra.</p>
@@ -724,6 +773,7 @@
       <img src="./assets/habitanto/proceso-flujo-escenario3.png" alt="Flujo mapeado en Figma: pagar cuenta, gestionar métodos de pago y consultar historial de pagos" data-i18n-alt="flow.s3.alt">
     </div>
     <p class="caption left" data-i18n="flow.s3.cap">Escenario 3: pagar una cuenta, gestionar los métodos de pago disponibles y revisar el historial con pagos rechazados y aprobados.</p>
+    <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
   </div>
 </div>
 
@@ -750,6 +800,7 @@
         <div class="media">
           <div class="shot narrow natural-ratio"><img src="./assets/habitanto/residente-cuentas-pendientes-pago.png" alt="Pantalla Cuentas pendientes con banner de incentivo del pago automático, deuna como método de pago y botón Pagar ahora" data-i18n-alt="cuentas.alt"></div>
           <p class="caption" data-i18n="cuentas.cap">Checkout consolidado: se marca qué cuentas pagar, con el banner de incentivo del pago automático y "deuna" como método de pago adicional.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
       </div>
     </div>
@@ -786,6 +837,7 @@
           <div class="shot narrow"><img src="./assets/habitanto/residente-historial.png?v=2" alt="Historial de pagos con estados aprobado y rechazado por servicio" data-i18n-alt="serviciosVer.alt3"></div>
           <p class="caption" data-i18n="serviciosVer.cap3">Historial con estado por tipo de servicio.</p>
         </div>
+        <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
       </div>
     </div>
   </div>
@@ -819,6 +871,25 @@
         <span class="verdict win" data-i18n="intento2.verdict">Pedirlo en el momento correcto cambió la conversación</span>
       </div>
     </div>
+    <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section reveal" id="resultado">
+    <p class="section-tag" data-i18n="res.tag">03 · El resultado</p>
+    <h2 data-i18n="res.h2">Qué cambió</h2>
+    <p data-i18n="res.p">Del lado del residente, pagar pasó de resolver un cargo a la vez a un solo checkout con todo lo pendiente. Del lado del administrador, cobrar pasó de llamar uno por uno a mandar un link de pago desde el panel de mora. Y el pedido del pago automático dejó de ser un banner que nadie tocaba: ahora aparece justo cuando la persona acaba de pagar a mano.</p>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">2</span><span class="stat-l" data-i18n="res.s1">apps rediseñadas de punta a punta: residente y administrador</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l" data-i18n="res.s2">servicios del hogar en el marketplace: agua, luz, gas, TV, internet y telefonía</span></div>
+      <div class="stat"><span class="stat-n">3</span><span class="stat-l" data-i18n="res.s3">variantes de banner probadas antes de llegar al modal que sí funcionó</span></div>
+    </div>
+    <ul class="result-list">
+      <li><span data-i18n="res.r1">Pagar</span><span class="r-value" data-i18n="res.v1">De resolver un cargo a la vez a un solo checkout</span></span></li>
+      <li><span data-i18n="res.r2">Cobrar</span><span class="r-value" data-i18n="res.v2">De llamar a cada residente a mandar un link de pago</span></span></li>
+      <li><span data-i18n="res.r3">Pago automático</span><span class="r-value" data-i18n="res.v3">De un banner que nadie tocaba a un pedido en el momento justo</span></span></li>
+    </ul>
   </div>
 </div>
 
@@ -853,6 +924,7 @@
           <div class="shot narrow modal-card"><img src="./assets/habitanto/residente-modal-no-desactivar.png" alt="Modal No puedes desactivar el pago automático con fecha exacta de desbloqueo" data-i18n-alt="ciclo.alt3"></div>
           <p class="caption" data-i18n="ciclo.cap3">El límite de 12 meses, explicado con fecha exacta.</p>
         </div>
+        <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
       </div>
     </div>
   </div>
@@ -900,6 +972,7 @@
           </div>
         </div>
       </div>
+      <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
     </div>
   </div>
 </div>
@@ -915,6 +988,7 @@
       <div class="attempt-media">
         <div class="media">
           <div class="shot narrow modal-card"><img src="./assets/habitanto/admin-mensaje-bilingue.png?v=2" alt="Modal de confirmación: Link de pago enviado" data-i18n-alt="mensaje.alt"></div>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
       </div>
     </div>
@@ -946,6 +1020,7 @@
           <div class="shot narrow"><img src="./assets/habitanto/residente-reservas-pendiente.png" alt="Detalle de reserva en estado pendiente por aprobación" data-i18n-alt="reservas.alt2"></div>
           <p class="caption" data-i18n="reservas.cap2">Estado "pendiente por aprobación": el residente sabe exactamente dónde está su solicitud.</p>
         </div>
+        <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
       </div>
     </div>
   </div>
@@ -963,6 +1038,7 @@
         <div class="media">
           <div class="shot narrow natural-ratio"><img src="./assets/habitanto/admin-reservas-listado-todas.png" alt="Listado completo de reservas del administrador con estados confirmada y rechazada" data-i18n-alt="confirmar.alt"></div>
           <p class="caption" data-i18n="confirmar.cap">Todas las reservaciones: estado de cada una en un solo lugar.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
       </div>
     </div>
@@ -986,6 +1062,7 @@
           <div class="shot narrow"><img src="./assets/habitanto/residente-comunidad-detalle.png?v=2" alt="Detalle de un anuncio de venta con foto del producto, descripción y datos de contacto del vendedor" data-i18n-alt="comunidad.alt2"></div>
           <p class="caption" data-i18n="comunidad.cap2">Detalle de la publicación con foto y contacto directo.</p>
         </div>
+        <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
       </div>
     </div>
   </div>
@@ -1003,6 +1080,7 @@
         <div class="media">
           <div class="shot narrow natural-ratio"><img src="./assets/habitanto/residente-invitacion-qr.png?v=2" alt="Tarjeta de invitación con código QR, dirección, número de usos permitidos y vigencia" data-i18n-alt="invitaciones.alt"></div>
           <p class="caption" data-i18n="invitaciones.cap">Invitación con QR, lista para compartir.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
       </div>
     </div>
@@ -1039,7 +1117,7 @@
       </div>
       <nav class="footer-col">
         <p class="footer-h" data-i18n="footer.explore">Explorar</p>
-        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="./index.html" data-i18n="nav.home">Inicio</a>
         <a href="./about.html" data-i18n="nav.about">Sobre m&iacute;</a>
         <a href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
         <a href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
@@ -1128,10 +1206,32 @@
       'strip.05': 'Activar el automático',
       'strip.06': 'Cerrar el círculo',
       'strip.07': 'Toda la plataforma',
-      'contexto.tag': 'El contexto',
+      'contexto.tag': '01 · El problema',
       'contexto.h2': 'Cobrar dependía de perseguir a alguien',
       'contexto.p1': 'Habitanto administra condominios: la cuota mensual (la "expensa"), el seguro, cuotas extraordinarias, consumo de gas. Cuando llegué, cobrar todo eso era, en la práctica, trabajo manual del administrador: identificar quién debía, contactarlo, explicarle cómo pagar, y volver a intentarlo si no respondía.',
       'contexto.p2': 'Del lado del residente el problema era el espejo: pagar significaba entrar a resolver un cargo a la vez, sin una vista clara de cuánto debía en total ni una forma simple de ponerse al día. Dos personas resolviendo el mismo problema de dinero, cada una a ciegas de lo que hacía la otra.',
+      'arc.tag': 'El caso en tres partes',
+      'arc.1.n': '01 · El problema',
+      'arc.1.h': 'Cobrar dependía de perseguir a alguien',
+      'arc.1.p': 'El administrador cobraba a mano, unidad por unidad, y el residente pagaba un cargo a la vez sin ver cuánto debía en total.',
+      'arc.2.n': '02 · La decisión',
+      'arc.2.h': 'Pedir el pago automático en el momento justo',
+      'arc.2.p': 'Los banners con incentivos no movieron a nadie. Llevé el pedido a un modal justo después de un pago manual, cuando la fricción todavía se siente.',
+      'arc.3.n': '03 · El resultado',
+      'arc.3.h': 'Un solo pago para el residente, un link para el administrador',
+      'arc.3.p': 'Menos pasos manuales de los dos lados de la transacción.',
+      'res.tag': '03 · El resultado',
+      'res.h2': 'Qué cambió',
+      'res.p': 'Del lado del residente, pagar pasó de resolver un cargo a la vez a un solo checkout con todo lo pendiente. Del lado del administrador, cobrar pasó de llamar uno por uno a mandar un link de pago desde el panel de mora. Y el pedido del pago automático dejó de ser un banner que nadie tocaba: ahora aparece justo cuando la persona acaba de pagar a mano.',
+      'res.r1': 'Pagar',
+      'res.r2': 'Cobrar',
+      'res.r3': 'Pago automático',
+      'res.v1': 'De resolver un cargo a la vez a un solo checkout',
+      'res.v2': 'De llamar a cada residente a mandar un link de pago',
+      'res.v3': 'De un banner que nadie tocaba a un pedido en el momento justo',
+      'res.s1': 'apps rediseñadas de punta a punta: residente y administrador',
+      'res.s2': 'servicios del hogar en el marketplace: agua, luz, gas, TV, internet y telefonía',
+      'res.s3': 'variantes de banner probadas antes de llegar al modal que sí funcionó',
       'proceso.tag': 'Pieza 01 · El proceso',
       'proceso.h2': 'Antes de una sola pantalla final, mapeamos cada camino',
       'proceso.p1': 'Un flujo de pagos no es una pantalla, es un árbol de decisiones: ¿la suscripción ya está activa o no? ¿el pago es de contado o diferido? ¿tiene tarjetas guardadas o necesita agregar una? ¿el pago se aprueba o se rechaza? Antes de diseñar la versión final, documentamos cada escenario completo, pantalla por pantalla, para no descubrir un caso sin resolver a mitad de la implementación.',
@@ -1273,10 +1373,32 @@
       'strip.05': 'Turning on autopay',
       'strip.06': 'Closing the loop',
       'strip.07': 'The whole platform',
-      'contexto.tag': 'The context',
+      'contexto.tag': '01 · The problem',
       'contexto.h2': 'Getting paid meant chasing someone down',
       'contexto.p1': 'Habitanto manages condo buildings: the monthly HOA fee, insurance, special assessments, gas usage. When I joined, collecting all of that was, in practice, manual work for the property manager: figuring out who owed money, reaching out, explaining how to pay, and trying again if they didn\'t respond.',
       'contexto.p2': "On the resident's side, it was the mirror problem: paying meant dealing with one charge at a time, with no clear view of the total owed or an easy way to catch up. Two people solving the same money problem, each one blind to what the other was doing.",
+      'arc.tag': 'The case in three parts',
+      'arc.1.n': '01 · The problem',
+      'arc.1.h': 'Collecting meant chasing someone',
+      'arc.1.p': 'Property managers collected by hand, unit by unit, and residents paid one charge at a time without seeing what they owed in total.',
+      'arc.2.n': '02 · The decision',
+      'arc.2.h': 'Ask for autopay at the right moment',
+      'arc.2.p': 'Incentive banners didn\'t move anyone. I moved the ask to a modal right after a manual payment, while the friction is still fresh.',
+      'arc.3.n': '03 · The result',
+      'arc.3.h': 'One payment for residents, one link for managers',
+      'arc.3.p': 'Fewer manual steps on both sides of the transaction.',
+      'res.tag': '03 · The result',
+      'res.h2': 'What changed',
+      'res.p': 'On the resident side, paying went from settling one charge at a time to a single checkout with everything pending. On the manager side, collecting went from calling people one by one to sending a payment link from the overdue panel. And the autopay ask stopped being a banner nobody touched: it now shows up right after someone has just paid by hand.',
+      'res.r1': 'Paying',
+      'res.r2': 'Collecting',
+      'res.r3': 'Autopay',
+      'res.v1': 'From settling one charge at a time to a single checkout',
+      'res.v2': 'From calling each resident to sending a payment link',
+      'res.v3': 'From a banner nobody touched to an ask at the right moment',
+      'res.s1': 'apps redesigned end to end: resident and property manager',
+      'res.s2': 'home services in the marketplace: water, power, gas, TV, internet and phone',
+      'res.s3': 'banner variants tested before landing on the modal that worked',
       'proceso.tag': 'Piece 01 · The process',
       'proceso.h2': 'Before a single final screen, we mapped every path',
       'proceso.p1': "A payment flow isn't a screen, it's a decision tree: is the subscription already active or not? Is the payment upfront or in installments? Does the person have saved cards or need to add one? Does the payment get approved or rejected? Before designing the final version, we documented every full scenario, screen by screen, so we wouldn't find an unresolved edge case halfway through development.",

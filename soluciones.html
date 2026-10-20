@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.title">Soluciones a medida · Cindy Lewis</title>
+<meta name="description" content="Soluciones a medida que Cindy Lewis diseñó y construyó de punta a punta: ÚNA, Stone Art Precision y ProfitPeek.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cindy Lewis">
+<meta property="og:title" content="Soluciones a medida · Cindy Lewis">
+<meta property="og:description" content="Soluciones a medida que Cindy Lewis diseñó y construyó de punta a punta: ÚNA, Stone Art Precision y ProfitPeek.">
+<meta property="og:locale" content="es_CO">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -328,6 +336,7 @@
   .sol-hero { max-width: 820px; margin: 0 0 64px; padding-top: 24px; }
   .sol-hero h1 { font-size: clamp(48px, 6.4vw, 88px); line-height: 1; letter-spacing: -0.02em; margin: 0 0 24px; }
   .sol-hero .sol-lead { font-size: 18px; max-width: 620px; }
+  .sol-hero .sol-lead.sol-model { font-size: 16px; margin-top: 16px; color: rgba(11,11,12,0.6); }
   .sol-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0 0 96px; }
   /* each index item: preview tile, then hairline + number / name / type */
   .sol-index a { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 4px; align-items: baseline; text-decoration: none; color: #0b0b0c; }
@@ -400,6 +409,7 @@
     .sol-visual-phones img { border-radius: 12px; }
     .sol-points { grid-template-columns: 1fr; gap: 24px; }
   }
+
 </style>
 <script>
 /* if a language was already chosen (localStorage or cookie), hide the first-visit
@@ -419,13 +429,13 @@
   </div>
 </div>
 <div class="navbar">
-  <a href="/" style="text-decoration:none; color:inherit; display:block;">
+  <a href="./index.html" style="text-decoration:none; color:inherit; display:block;">
     <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#151515; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
     <div style="font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(37,37,37,0.6); margin-top:5px;" data-i18n="nav.brandSub">Portafolio</div>
   </a>
   <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links">
-    <a class="nav-link" href="/" data-i18n="nav.home">Inicio</a>
+    <a class="nav-link" href="./index.html" data-i18n="nav.home">Inicio</a>
     <div class="work-dd-wrap" data-dd>
       <button class="nav-link work-dd-trigger is-current" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
       <div class="work-dropdown">
@@ -451,13 +461,14 @@
       <p class="sol-eyebrow" data-i18n="sol.eyebrow">Freelance · 3 proyectos</p>
       <h1 data-i18n="sol.h1">Soluciones a medida</h1>
       <p class="sol-lead" data-i18n="sol.lead">Productos que diseño y construyo de principio a fin para negocios reales: entiendo cómo funcionan de verdad, lo convierto en una herramienta y la construyo yo misma con Claude Code.</p>
+      <p class="sol-lead sol-model" data-i18n="sol.model">Trabajo freelance de extremo a extremo: me encargo del diseño y de la construcción, así que nada se pierde en un traspaso entre quien diseña y quien programa. Tengo disponibilidad para proyectos remotos.</p>
     </div>
   </header>
 
   <nav class="sol-index" aria-label="Proyectos" data-i18n-aria="sol.indexAria">
     <a href="#una"><span class="si-prev si-prev-web"><img src="./assets/una/una-encuentro.webp" alt="" loading="lazy"></span><span class="si-n">01</span><span class="si-t">ÚNA</span><span class="si-d" data-i18n="sol.idx1">Sitio + postulación</span></a>
     <a href="#stone-art-precision"><span class="si-prev si-prev-phone"><img src="./assets/stone/stone-estadisticas.webp" alt="" loading="lazy"></span><span class="si-n">02</span><span class="si-t">Stone Art Precision</span><span class="si-d" data-i18n="sol.idx2">App interna</span></a>
-    <a href="#profitpeek"><span class="si-prev si-prev-phone"><img src="./assets/profitpeek/pp-analisis.webp" alt="" loading="lazy"></span><span class="si-n">03</span><span class="si-t">ProfitPeek</span><span class="si-d" data-i18n="sol.idx3">Producto propio</span></a>
+    <a href="#profitpeek"><span class="si-prev si-prev-phone"><img src="./assets/profitpeek/pp-negocios.webp" alt="" loading="lazy"></span><span class="si-n">03</span><span class="si-t">ProfitPeek</span><span class="si-d" data-i18n="sol.idx3">Producto propio</span></a>
   </nav>
 
   <!-- 01 · ÚNA -->
@@ -522,22 +533,22 @@
   <article class="sol-project" id="profitpeek">
     <div class="sol-intro">
       <p class="sol-meta" data-i18n="pp.meta">03 · Producto propio · ProfitPeek</p>
-      <h2 data-i18n="pp.h2">Un cuaderno de ganancias para quienes venden lo que hacen</h2>
-      <p class="sol-text" data-i18n="pp.text">ProfitPeek es mi propio producto: una app para vendedoras de Etsy y pequeñas tiendas que muestra la ganancia real después de comisiones, materiales, envíos y gastos, sin hojas de cálculo.</p>
+      <h2 data-i18n="pp.h2">Para quien lleva varios negocios a la vez: cuál gana y cuál pierde</h2>
+      <p class="sol-text" data-i18n="pp.text">ProfitPeek es mi propio producto: una app para personas con dos a cinco negocios que muestra, mes a mes, cuál deja plata, cuál está costando y cuánto puedes pagarte. Lo diseñé y lo construí de punta a punta.</p>
     </div>
 
     <figure class="sol-visual sol-visual-phones">
-      <img src="./assets/profitpeek/pp-productos.webp" alt="Catálogo de productos con costo, precio y margen de cada uno" data-i18n-alt="pp.alt1" loading="lazy">
-      <img src="./assets/profitpeek/pp-plataformas.webp" alt="Comisiones por plataforma: Instagram, TikTok Shop y tienda online" data-i18n-alt="pp.alt2" loading="lazy">
-      <img src="./assets/profitpeek/pp-analisis.webp" alt="Análisis del mes: ganancia neta, ventas, comisiones y a dónde va cada dólar" data-i18n-alt="pp.alt3" loading="lazy">
-      <img src="./assets/profitpeek/pp-historial.webp" alt="Historial de ventas por día con la ganancia neta de cada venta" data-i18n-alt="pp.alt4" loading="lazy">
-      <figcaption data-i18n="pp.caption">La app en uso: productos, comisiones por plataforma, análisis del mes e historial de ventas.</figcaption>
+      <img src="./assets/profitpeek/pp-inicio.webp" alt="Inicio de la app: botón para anotar hablando, el mes en curso y cuánto puedes pagarte" data-i18n-alt="pp.alt1" loading="lazy">
+      <img src="./assets/profitpeek/pp-voz.webp" alt="Captura por voz escuchando: &quot;a client paid me 350k for a logo&quot;" data-i18n-alt="pp.alt2" loading="lazy">
+      <img src="./assets/profitpeek/pp-negocios.webp" alt="Tus negocios del mes: cuánto puedes pagarte y qué negocio es rentable o está perdiendo plata" data-i18n-alt="pp.alt3" loading="lazy">
+      <img src="./assets/profitpeek/pp-compartidos.webp" alt="Gastos compartidos como internet o Claude, repartidos entre negocios con reglas de porcentaje" data-i18n-alt="pp.alt4" loading="lazy">
+      <figcaption data-i18n="pp.caption">La app en uso: inicio, captura por voz, tus negocios del mes y gastos compartidos.</figcaption>
     </figure>
 
     <div class="sol-points">
-      <div class="sol-point"><p class="sol-num">01</p><h3 data-i18n="pp.p1.h">Ganancia real por venta</h3><p data-i18n="pp.p1.t">Aplica sola la comisión de cada canal (Etsy, Instagram, TikTok, en persona o mayoreo) para ver lo que de verdad queda.</p></div>
-      <div class="sol-point"><p class="sol-num">02</p><h3 data-i18n="pp.p2.h">Qué productos valen la pena</h3><p data-i18n="pp.p2.t">El margen de cada producto en colores de verde a rojo, para decidir qué seguir haciendo sin adivinar.</p></div>
-      <div class="sol-point"><p class="sol-num">03</p><h3 data-i18n="pp.p3.h">En tres idiomas</h3><p data-i18n="pp.p3.t">Español, inglés y alemán, con un plan gratis para empezar y uno Pro cuando la tienda crece.</p></div>
+      <div class="sol-point"><p class="sol-num">01</p><h3 data-i18n="pp.p1.h">Anotar hablando</h3><p data-i18n="pp.p1.t">Tocas el micrófono y dices "me pagaron 350 mil por un logo": la IA lo convierte en un movimiento con monto, negocio y fecha. También se puede escribir o llenar a mano.</p></div>
+      <div class="sol-point"><p class="sol-num">02</p><h3 data-i18n="pp.p2.h">Cuánto puedes pagarte</h3><p data-i18n="pp.p2.t">Suma lo que entró y salió de todos tus negocios y te dice cuánto puedes pagarte este mes, con cada negocio marcado como rentable o perdiendo plata.</p></div>
+      <div class="sol-point"><p class="sol-num">03</p><h3 data-i18n="pp.p3.h">Gastos compartidos</h3><p data-i18n="pp.p3.t">Internet, teléfono o suscripciones se reparten entre negocios con reglas de porcentaje, para ver lo que cada uno cuesta de verdad. Cada mes se exporta a CSV.</p></div>
     </div>
 
     <div class="sol-foot">
@@ -564,7 +575,7 @@
       </div>
       <nav class="footer-col">
         <p class="footer-h" data-i18n="footer.explore">Explorar</p>
-        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="./index.html" data-i18n="nav.home">Inicio</a>
         <a href="./about.html" data-i18n="nav.about">Sobre m&iacute;</a>
         <a href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
         <a href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
@@ -588,6 +599,7 @@
       'footer.tagline': 'Diseñadora de Producto e IA', 'footer.explore': 'Explorar', 'footer.contact': 'Contacto', 'footer.rights': '© 2026 Cindy Lewis',
       'sol.eyebrow': 'Freelance · 3 proyectos', 'sol.h1': 'Soluciones a medida',
       'sol.lead': 'Productos que diseño y construyo de principio a fin para negocios reales: entiendo cómo funcionan de verdad, lo convierto en una herramienta y la construyo yo misma con Claude Code.',
+      'sol.model': 'Trabajo freelance de extremo a extremo: me encargo del diseño y de la construcción, así que nada se pierde en un traspaso entre quien diseña y quien programa. Tengo disponibilidad para proyectos remotos.',
       'sol.stackAria': 'Tecnología', 'sol.indexAria': 'Proyectos', 'sol.idx1': 'Sitio + postulación', 'sol.idx2': 'App interna', 'sol.idx3': 'Producto propio',
       'una.meta': '01 · Sitio web + plataforma de postulación · ÚNA',
       'una.h2': 'Un sitio para encuentros liderados por pueblos indígenas, con postulación, admisión y pago',
@@ -612,16 +624,16 @@
       'stone.p2.h': 'Piedras por pieza', 'stone.p2.t': 'Cada pieza lleva sus piedras (tipo, tamaño y cantidad) y pasan directo a la factura, sin volver a escribirlas.',
       'stone.p3.h': 'Factura suiza lista para imprimir', 'stone.p3.t': 'En francos suizos, con el IVA y el redondeo suizo calculados solos.',
       'pp.meta': '03 · Producto propio · ProfitPeek',
-      'pp.h2': 'Un cuaderno de ganancias para quienes venden lo que hacen',
-      'pp.text': 'ProfitPeek es mi propio producto: una app para vendedoras de Etsy y pequeñas tiendas que muestra la ganancia real después de comisiones, materiales, envíos y gastos, sin hojas de cálculo.',
-      'pp.alt1': 'Catálogo de productos con costo, precio y margen de cada uno',
-      'pp.alt2': 'Comisiones por plataforma: Instagram, TikTok Shop y tienda online',
-      'pp.alt3': 'Análisis del mes: ganancia neta, ventas, comisiones y a dónde va cada dólar',
-      'pp.alt4': 'Historial de ventas por día con la ganancia neta de cada venta',
-      'pp.caption': 'La app en uso: productos, comisiones por plataforma, análisis del mes e historial de ventas.',
-      'pp.p1.h': 'Ganancia real por venta', 'pp.p1.t': 'Aplica sola la comisión de cada canal (Etsy, Instagram, TikTok, en persona o mayoreo) para ver lo que de verdad queda.',
-      'pp.p2.h': 'Qué productos valen la pena', 'pp.p2.t': 'El margen de cada producto en colores de verde a rojo, para decidir qué seguir haciendo sin adivinar.',
-      'pp.p3.h': 'En tres idiomas', 'pp.p3.t': 'Español, inglés y alemán, con un plan gratis para empezar y uno Pro cuando la tienda crece.',
+      'pp.h2': 'Para quien lleva varios negocios a la vez: cuál gana y cuál pierde',
+      'pp.text': 'ProfitPeek es mi propio producto: una app para personas con dos a cinco negocios que muestra, mes a mes, cuál deja plata, cuál está costando y cuánto puedes pagarte. Lo diseñé y lo construí de punta a punta.',
+      'pp.alt1': 'Inicio de la app: botón para anotar hablando, el mes en curso y cuánto puedes pagarte',
+      'pp.alt2': 'Captura por voz escuchando: "a client paid me 350k for a logo"',
+      'pp.alt3': 'Tus negocios del mes: cuánto puedes pagarte y qué negocio es rentable o está perdiendo plata',
+      'pp.alt4': 'Gastos compartidos como internet o Claude, repartidos entre negocios con reglas de porcentaje',
+      'pp.caption': 'La app en uso: inicio, captura por voz, tus negocios del mes y gastos compartidos.',
+      'pp.p1.h': 'Anotar hablando', 'pp.p1.t': 'Tocas el micrófono y dices "me pagaron 350 mil por un logo": la IA lo convierte en un movimiento con monto, negocio y fecha. También se puede escribir o llenar a mano.',
+      'pp.p2.h': 'Cuánto puedes pagarte', 'pp.p2.t': 'Suma lo que entró y salió de todos tus negocios y te dice cuánto puedes pagarte este mes, con cada negocio marcado como rentable o perdiendo plata.',
+      'pp.p3.h': 'Gastos compartidos', 'pp.p3.t': 'Internet, teléfono o suscripciones se reparten entre negocios con reglas de porcentaje, para ver lo que cada uno cuesta de verdad. Cada mes se exporta a CSV.',
       'pp.link': 'Ver el sitio en vivo',
       'sol.close.eyebrow': '¿Tienes un proceso que se hace a mano?', 'sol.close.h2': 'Lo diseño y lo construyo contigo.', 'sol.close.cta': 'Hablemos →'
     },
@@ -630,6 +642,7 @@
       'footer.tagline': 'Product & AI Designer', 'footer.explore': 'Explore', 'footer.contact': 'Contact', 'footer.rights': '© 2026 Cindy Lewis',
       'sol.eyebrow': 'Freelance · 3 projects', 'sol.h1': 'Custom solutions',
       'sol.lead': 'Products I design and build end to end for real businesses: I learn how they actually work, turn that into a tool, and build it myself with Claude Code.',
+      'sol.model': 'I work freelance end to end: I handle both the design and the build, so nothing gets lost in a handoff between designer and developer. I\'m available for remote projects.',
       'sol.stackAria': 'Tech stack', 'sol.indexAria': 'Projects', 'sol.idx1': 'Site + application', 'sol.idx2': 'Internal app', 'sol.idx3': 'My own product',
       'una.meta': '01 · Website + application platform · ÚNA',
       'una.h2': 'A site for Indigenous-led gatherings, with application, admission and payment',
@@ -654,16 +667,16 @@
       'stone.p2.h': 'Stones per piece', 'stone.p2.t': 'Each piece carries its stones (type, size and quantity) and they flow straight into the invoice, no retyping.',
       'stone.p3.h': 'A print-ready Swiss invoice', 'stone.p3.t': 'In Swiss francs, with VAT and Swiss rounding calculated automatically.',
       'pp.meta': '03 · My own product · ProfitPeek',
-      'pp.h2': 'A profit notebook for people who sell what they make',
-      'pp.text': 'ProfitPeek is my own product: an app for Etsy sellers and small shops that shows real profit after fees, materials, shipping and expenses, no spreadsheets.',
-      'pp.alt1': 'Product catalog with cost, price and margin for each one',
-      'pp.alt2': 'Fees per platform: Instagram, TikTok Shop and online store',
-      'pp.alt3': 'Monthly analysis: net profit, sales, fees and where every dollar goes',
-      'pp.alt4': 'Sales history by day with the net profit of each sale',
-      'pp.caption': 'The app in use: products, fees per platform, monthly analysis and sales history.',
-      'pp.p1.h': 'Real profit per sale', 'pp.p1.t': 'It applies each channel\'s fee automatically (Etsy, Instagram, TikTok, in person or wholesale) to show what you actually keep.',
-      'pp.p2.h': 'Which products are worth it', 'pp.p2.t': 'Every product\'s margin, color coded green to red, so you decide what to keep making without guessing.',
-      'pp.p3.h': 'In three languages', 'pp.p3.t': 'Spanish, English and German, with a free plan to start and Pro when the shop grows.',
+      'pp.h2': 'For people running several businesses at once: which one earns and which one loses',
+      'pp.text': 'ProfitPeek is my own product: an app for people with two to five businesses that shows, month by month, which one makes money, which one is costing money, and how much you can pay yourself. I designed and built it end to end.',
+      'pp.alt1': 'App home: tap-and-talk capture button, the current month and how much you can pay yourself',
+      'pp.alt2': 'Voice capture listening: "a client paid me 350k for a logo"',
+      'pp.alt3': 'This month\'s businesses: how much you can pay yourself and which business is profitable or losing money',
+      'pp.alt4': 'Shared expenses like internet or Claude, split across businesses with percentage rules',
+      'pp.caption': 'The app in use: home, voice capture, your businesses this month and shared expenses.',
+      'pp.p1.h': 'Log it by talking', 'pp.p1.t': 'Tap the mic and say "a client paid me 350k for a logo": AI turns it into an entry with amount, business and date. You can also type it or fill it in by hand.',
+      'pp.p2.h': 'How much you can pay yourself', 'pp.p2.t': 'It adds up what came in and went out across all your businesses and tells you how much you can pay yourself this month, with each business marked profitable or losing money.',
+      'pp.p3.h': 'Shared expenses', 'pp.p3.t': 'Internet, phone or subscriptions get split across businesses with percentage rules, so you see what each one really costs. Every month exports to CSV.',
       'pp.link': 'View the live site',
       'sol.close.eyebrow': 'Have a process that\'s still done by hand?', 'sol.close.h2': 'I\'ll design it and build it with you.', 'sol.close.cta': 'Let\'s talk →'
     }

@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.title">Cindy Lewis · Diseñadora de Producto e IA</title>
+<meta name="description" content="Portafolio de Cindy Lewis, diseñadora de producto e IA. Diseño y construyo productos y agentes de IA con Claude Code, de la idea al producto funcionando.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cindy Lewis">
+<meta property="og:title" content="Cindy Lewis · Diseñadora de Producto e IA">
+<meta property="og:description" content="Portafolio de Cindy Lewis, diseñadora de producto e IA. Diseño y construyo productos y agentes de IA con Claude Code, de la idea al producto funcionando.">
+<meta property="og:locale" content="es_CO">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
 <script>
 /* if a language was already chosen (localStorage or cookie), hide the first-visit
    gate before it can ever render — survives reloads */
@@ -259,6 +267,7 @@
   .role-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); margin: 0; }
   .role-title { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; line-height: 1.35; letter-spacing: -0.005em; color: var(--ink); margin: 0; }
   .role-years { display: flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: var(--muted); margin: 0; white-space: nowrap; }
+  .role-desc { grid-column: 2 / -1; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.55; color: var(--muted); margin: -8px 0 0; max-width: 46ch; }
   .roles-grid li.is-now { border-top: 2px solid var(--ink); padding-top: 17px; }
   .roles-grid li.is-now .role-years { color: var(--ink); }
   .roles-grid li.is-now .role-years::before {
@@ -425,13 +434,13 @@
 </div>
 
 <header class="hero-topbar">
-  <a class="brand" href="/">
+  <a class="brand" href="./index.html">
     <div class="brand-name">Cindy <em>Lewis</em></div>
     <div class="brand-sub" data-i18n="nav.brandSub">Portafolio</div>
   </a>
   <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <nav class="hero-topbar-links">
-    <a class="nav-link is-current" href="/" aria-current="page" data-i18n="nav.home">Inicio</a>
+    <a class="nav-link is-current" href="./index.html" aria-current="page" data-i18n="nav.home">Inicio</a>
     <div class="work-dd-wrap" data-dd>
       <button class="work-dd-trigger" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
       <div class="work-dropdown">
@@ -452,11 +461,11 @@
 
 <section class="hero">
   <div class="hero-comp">
-    <img class="hero-strip" src="./assets/cindy-eyes-rect.webp" alt="" aria-hidden="true">
+    <img class="hero-strip" src="./assets/cindy-eyes-rect.webp" alt="Cindy Lewis con sus lentes verdes" data-i18n-alt="alt.eyes">
     <h1 class="hero-name">Cindy <span class="hero-name-em">Lewis</span></h1>
     <div class="hero-bottom">
       <div class="hero-id">
-      <p class="hero-role"><svg class="hero-arrow" viewBox="0 0 90 76" aria-hidden="true"><path pathLength="1" d="M10 3c-3.5 9-5.2 19.5-2.6 29.8 3 11.7 12.4 21.2 25.3 25.2 12.9 4 27.6 2.6 41.6-2.2"/><path class="arrow-head" pathLength="1" d="M63.8 46.2c4.6 2.6 9.3 5.2 13.2 9.4-5.6 1.7-10.3 4.4-14.6 8.1"/></svg><span data-i18n="hero.role">Diseñadora de Producto IA</span></p>
+      <p class="hero-role"><svg class="hero-arrow" viewBox="0 0 90 76" aria-hidden="true"><path pathLength="1" d="M10 3c-3.5 9-5.2 19.5-2.6 29.8 3 11.7 12.4 21.2 25.3 25.2 12.9 4 27.6 2.6 41.6-2.2"/><path class="arrow-head" pathLength="1" d="M63.8 46.2c4.6 2.6 9.3 5.2 13.2 9.4-5.6 1.7-10.3 4.4-14.6 8.1"/></svg><span data-i18n="hero.role">Diseñadora de Producto e IA</span></p>
         <div class="hero-sub-wrap"><p class="hero-sub" data-i18n="hero.sub">Creo agentes y productos de IA con Claude Code</p></div>
       </div>
       <ul class="hero-tools" aria-label="Herramientas" data-i18n-aria="hero.toolsAria">
@@ -477,8 +486,8 @@
     <div class="cases-grid">
       <a class="case-card about-reveal" href="./habitanto.html">
         <span class="case-visual case-visual-phones">
-          <img src="./assets/habitanto-hero-phone-admin.png" alt="" loading="lazy">
-          <img src="./assets/habitanto-hero-phone.png" alt="" loading="lazy">
+          <img src="./assets/habitanto-hero-phone-admin.png" alt="Mockup de la app de administrador de Habitanto con las unidades en mora" data-i18n-alt="alt.habAdmin" loading="lazy">
+          <img src="./assets/habitanto-hero-phone.png" alt="Mockup de la app de residente de Habitanto con el saldo pendiente y el botón Pagar ahora" data-i18n-alt="alt.habRes" loading="lazy">
         </span>
         <span class="case-body">
           <span class="case-meta" data-i18n="case.1.meta">01 · Pagos · Habitanto</span>
@@ -489,7 +498,7 @@
       </a>
       <a class="case-card about-reveal" href="./tangerine.html" style="transition-delay:0.1s;">
         <span class="case-visual">
-          <img class="case-laptop" src="./assets/tangerine-hero-macbook-clean.png" alt="" loading="lazy">
+          <img class="case-laptop" src="./assets/tangerine-hero-macbook-clean.png" alt="MacBook con el constructor de agentes de Tangering" data-i18n-alt="alt.tanMac" loading="lazy">
         </span>
         <span class="case-body">
           <span class="case-meta" data-i18n="case.2.meta">02 · Agentes de IA · Tangering</span>
@@ -510,17 +519,18 @@
     <div class="about-split">
       <div class="about-head">
         <h2 class="about-reveal" data-i18n="about.h2" style="font-family:'Didact Gothic','Century Gothic',sans-serif; font-size:clamp(36px,5.6vw,68px); font-weight:400; letter-spacing:-0.015em; -webkit-text-stroke:0.012em var(--ink); line-height:1; color:var(--ink); margin:0; transition-delay:0.08s;">Siete roles.<br>Un instinto.</h2>
-        <p class="about-reveal" data-i18n="about.sub" style="font-size:18px; line-height:1.6; color:var(--ink-2); max-width:440px; margin:20px 0 0; transition-delay:0.16s;">Hacer que lo complicado se sienta obvio.</p>
+        <p class="about-reveal" data-i18n="about.sub" style="font-size:18px; line-height:1.6; color:var(--ink-2); max-width:440px; margin:20px 0 0; transition-delay:0.16s;">Entender el proceso real y convertirlo en un producto de IA que la gente sí usa.</p>
+        <p class="about-reveal" data-i18n="about.bridge" style="font-size:15px; line-height:1.65; color:var(--muted); max-width:440px; margin:14px 0 0; transition-delay:0.2s;">El diseño industrial me enseñó a observar cómo la gente usa las cosas de verdad; los eventos, que todo tiene que funcionar a la primera, en vivo. Hoy hago lo mismo con productos de IA: los diseño, los construyo y los pruebo con personas reales.</p>
       </div>
 
       <ol class="roles-grid about-reveal" id="rolesGrid" style="transition-delay:0.24s;">
         <li><p class="role-num">01</p><p class="role-title">Diseñadora industrial</p><p class="role-years">2006–2011</p></li>
         <li><p class="role-num">02</p><p class="role-title">Diseñadora de eventos y estructuras</p><p class="role-years">2014–2015</p></li>
         <li><p class="role-num">03</p><p class="role-title">Fundadora, Reserva Nevada</p><p class="role-years">2015–2019</p></li>
-        <li><p class="role-num">04</p><p class="role-title">Diseñadora web freelance</p><p class="role-years">2023</p></li>
+        <li><p class="role-num">04</p><p class="role-title">Diseñadora web freelance</p><p class="role-years">2023</p><p class="role-desc">Hice desde cero el sitio de Nativo Foods, sentada con el cliente para entender lo que de verdad necesitaba.</p></li>
         <li><p class="role-num">05</p><p class="role-title">Diseñadora de producto, Habitanto</p><p class="role-years">2024</p></li>
         <li><p class="role-num">06</p><p class="role-title">Diseñadora de producto, Tangering AI</p><p class="role-years">2024–2026</p></li>
-        <li class="is-now"><p class="role-num">07</p><p class="role-title">Diseñadora y constructora de producto, freelance</p><p class="role-years">Ahora</p></li>
+        <li class="is-now"><p class="role-num">07</p><p class="role-title">Diseñadora y constructora de producto, freelance</p><p class="role-years">Ahora</p><p class="role-desc">Diseño y construyo soluciones de IA a medida para empresas como ÚNA y Stone Art Precision, además de mi propio producto, ProfitPeek.</p></li>
       </ol>
     </div>
 
@@ -529,7 +539,7 @@
       <li data-i18n="about.why1">Entrego producto que funciona, no solo mockups: yo misma construyo con Claude Code.</li>
       <li data-i18n="about.why2">He manejado mi propio negocio, así que diseño como si las restricciones fueran reales.</li>
       <li data-i18n="about.why3">Hago las pruebas de usuario yo misma y uso lo que aprendo para iterar y ajustar el producto a la necesidad real de la gente, no a la que suponíamos.</li>
-      <li data-i18n="about.why4">Hoy diseño y construyo soluciones de IA a la medida para empresas, desde entender el proceso real hasta el producto funcionando.</li>
+      <li data-i18n="about.why4">Trabajo freelance de extremo a extremo: diseño y construyo el producto yo misma, sin traspasos entre diseño y desarrollo. Tengo disponibilidad para proyectos remotos.</li>
     </ul>
 
 
@@ -548,7 +558,7 @@
       </div>
       <nav class="footer-col">
         <p class="footer-h" data-i18n="footer.explore">Explorar</p>
-        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="./index.html" data-i18n="nav.home">Inicio</a>
         <a href="./about.html" data-i18n="nav.about">Sobre m&iacute;</a>
         <a href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
         <a href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
@@ -586,19 +596,19 @@
         { num: '01', title: 'Diseñadora industrial', sub: '2006–2011' },
         { num: '02', title: 'Diseñadora de eventos y estructuras', sub: '2014–2015' },
         { num: '03', title: 'Fundadora, Reserva Nevada', sub: '2015–2019' },
-        { num: '04', title: 'Diseñadora web freelance', sub: '2023' },
+        { num: '04', title: 'Diseñadora web freelance', sub: '2023', desc: 'Hice desde cero el sitio de Nativo Foods, sentada con el cliente para entender lo que de verdad necesitaba.' },
         { num: '05', title: 'Diseñadora de producto, Habitanto', sub: '2024' },
         { num: '06', title: 'Diseñadora de producto, Tangering AI', sub: '2024–2026' },
-        { num: '07', title: 'Diseñadora y constructora de producto, freelance', sub: 'Ahora' }
+        { num: '07', title: 'Diseñadora y constructora de producto, freelance', sub: 'Ahora', desc: 'Diseño y construyo soluciones de IA a medida para empresas como ÚNA y Stone Art Precision, además de mi propio producto, ProfitPeek.' }
       ],
       en: [
         { num: '01', title: 'Industrial Designer', sub: '2006–2011' },
         { num: '02', title: 'Event & Structure Designer', sub: '2014–2015' },
         { num: '03', title: 'Founder, Reserva Nevada', sub: '2015–2019' },
-        { num: '04', title: 'Freelance Web Designer', sub: '2023' },
+        { num: '04', title: 'Freelance Web Designer', sub: '2023', desc: 'Built Nativo Foods\' website from scratch, sitting with the client to work out what they actually needed.' },
         { num: '05', title: 'Product Designer, Habitanto', sub: '2024' },
         { num: '06', title: 'Product Designer, Tangering AI', sub: '2024–2026' },
-        { num: '07', title: 'Freelance Product Designer &amp; Builder', sub: 'Now' }
+        { num: '07', title: 'Freelance Product Designer &amp; Builder', sub: 'Now', desc: 'I design and build custom AI solutions for companies like ÚNA and Stone Art Precision, plus my own product, ProfitPeek.' }
       ]
     };
     function curLang() { return (window.__portfolioLang === 'en') ? 'en' : 'es'; }
@@ -614,7 +624,8 @@
           return '<li' + (i === list.length - 1 ? ' class="is-now"' : '') + '>' +
             '<p class="role-num">' + r.num + '</p>' +
             '<p class="role-title">' + r.title + '</p>' +
-            '<p class="role-years">' + r.sub + '</p></li>';
+            '<p class="role-years">' + r.sub + '</p>' +
+            (r.desc ? '<p class="role-desc">' + r.desc + '</p>' : '') + '</li>';
         }).join('');
       }
       paint();
@@ -672,7 +683,7 @@
         'footer.explore': 'Explorar',
         'footer.contact': 'Contacto',
         'footer.rights': '\u00a9 2026 Cindy Lewis',
-        'hero.role': 'Diseñadora de Producto IA',
+        'hero.role': 'Diseñadora de Producto e IA',
         'hero.sub': 'Creo agentes y productos de IA con Claude Code',
         'hero.toolsAria': 'Herramientas',
         'hero.scroll': 'Conóceme',
@@ -685,12 +696,17 @@
         'case.2.meta': '02 · Agentes de IA · Tangering',
         'case.2.title': '4 intentos de enseñarle a una IA su propio trabajo',
         'about.h2': 'Siete roles.<br>Un instinto.',
-        'about.sub': 'Hacer que lo complicado se sienta obvio.',
+        'about.sub': 'Entender el proceso real y convertirlo en un producto de IA que la gente sí usa.',
+        'about.bridge': 'El diseño industrial me enseñó a observar cómo la gente usa las cosas de verdad; los eventos, que todo tiene que funcionar a la primera, en vivo. Hoy hago lo mismo con productos de IA: los diseño, los construyo y los pruebo con personas reales.',
+        'alt.eyes': 'Cindy Lewis con sus lentes verdes',
+        'alt.habAdmin': 'Mockup de la app de administrador de Habitanto con las unidades en mora',
+        'alt.habRes': 'Mockup de la app de residente de Habitanto con el saldo pendiente y el botón Pagar ahora',
+        'alt.tanMac': 'MacBook con el constructor de agentes de Tangering',
         'about.whyTag': 'Por qué le importa a tu equipo',
         'about.why1': 'Entrego producto que funciona, no solo mockups: yo misma construyo con Claude Code.',
         'about.why2': 'He manejado mi propio negocio, así que diseño como si las restricciones fueran reales.',
         'about.why3': 'Hago las pruebas de usuario yo misma y uso lo que aprendo para iterar y ajustar el producto a la necesidad real de la gente, no a la que suponíamos.',
-        'about.why4': 'Hoy diseño y construyo soluciones de IA a la medida para empresas, desde entender el proceso real hasta el producto funcionando.',
+        'about.why4': 'Trabajo freelance de extremo a extremo: diseño y construyo el producto yo misma, sin traspasos entre diseño y desarrollo. Tengo disponibilidad para proyectos remotos.',
         'about.readFull': 'Leer la historia completa →'
       },
       en: {
@@ -704,7 +720,7 @@
         'footer.explore': 'Explore',
         'footer.contact': 'Contact',
         'footer.rights': '\u00a9 2026 Cindy Lewis',
-        'hero.role': 'AI Product Designer',
+        'hero.role': 'Product &amp; AI Designer',
         'hero.sub': 'Building AI agents &amp; products with Claude Code',
         'hero.toolsAria': 'Tools',
         'hero.scroll': 'Meet me',
@@ -717,12 +733,17 @@
         'case.2.meta': '02 · AI agents · Tangering',
         'case.2.title': '4 attempts at teaching an AI its own job',
         'about.h2': 'Seven roles.<br>One instinct.',
-        'about.sub': 'Make the complicated thing feel obvious.',
+        'about.sub': 'Understand the real process, then turn it into an AI product people actually use.',
+        'about.bridge': 'Industrial design taught me to watch how people really use things; events taught me that everything has to work the first time, live. Today I do the same with AI products: I design them, build them and test them with real people.',
+        'alt.eyes': 'Cindy Lewis in her green glasses',
+        'alt.habAdmin': 'Mockup of Habitanto\'s admin app showing overdue units',
+        'alt.habRes': 'Mockup of Habitanto\'s resident app with the pending balance and the Pay now button',
+        'alt.tanMac': 'MacBook showing Tangering\'s agent builder',
         'about.whyTag': 'Why it matters to your team',
         'about.why1': 'I ship working product, not just mockups: I build with Claude Code myself.',
         'about.why2': "I've run my own business, so I design like the constraints are real.",
         'about.why3': 'I run user testing myself and use what I learn to iterate and adjust the product toward what people actually need, not what we assumed.',
-        'about.why4': 'Today I design and build custom AI solutions for companies, from understanding the real process to the working product.',
+        'about.why4': 'I work freelance end to end: I design and build the product myself, with no handoff between design and development. I\'m available for remote projects.',
         'about.readFull': 'Read the full story →'
       }
     };
@@ -755,6 +776,10 @@
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         var key = el.getAttribute('data-i18n');
         if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (dict[key] !== undefined) el.setAttribute('alt', dict[key]);
       });
       document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
         var key = el.getAttribute('data-i18n-aria');

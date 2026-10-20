@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-i18n="meta.title">De la libertad a la precisión · Tangering AI · Cindy Lewis</title>
+<meta name="description" content="Caso de estudio: 4 intentos de enseñarle a una IA su propio trabajo en Tangering AI, la plataforma de agentes para equipos sin conocimiento técnico.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cindy Lewis">
+<meta property="og:title" content="De la libertad a la precisión · Tangering AI · Cindy Lewis">
+<meta property="og:description" content="Caso de estudio: 4 intentos de enseñarle a una IA su propio trabajo en Tangering AI, la plataforma de agentes para equipos sin conocimiento técnico.">
+<meta property="og:locale" content="es_CO">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -586,7 +594,7 @@
   .detail-toggle { color: #0b0b0c !important; text-decoration-color: var(--accent) !important; text-decoration-thickness: 2px !important; }
   .lede strong { background: linear-gradient(transparent 58%, var(--accent-soft) 58%); padding: 0 2px; }
   .tab.active { box-shadow: 0 0 0 2px var(--accent), 0 6px 18px rgba(0,0,0,0.08) !important; }
-  .hero-glow, .hero-browser-glow { display: none !important; }   /* no colour haze over photos: green is for details only */
+  .hero-glow, html[lang] .hero-browser-glow { display: none !important; }   /* no colour haze over photos: green is for details only */
 
   /* numbered section index: same editorial language as the home's roles row */
   .strip { gap: 22px 20px !important; }
@@ -637,6 +645,30 @@
     .lang-word { display: inline; }
     .lang-label { padding-right: 8px; }
   }
+
+  /* ---- EN-only note under screenshots whose UI is in Spanish ---- */
+  html[lang] p.ui-es-note { display: none; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; line-height: 1.45; letter-spacing: 0.01em; color: rgba(11,11,12,0.5); opacity: 1; max-width: none; margin: 8px 4px 0; text-align: inherit; }
+  html[lang="en"] p.ui-es-note { display: block; }
+  html[lang] .hero-browser p.ui-es-note { position: absolute; left: 0; right: 0; bottom: -28px; text-align: center; margin: 0; }
+  html[lang] .sustain-text-panel p.ui-es-note { margin: 6px 0 0; }
+
+  /* ---- case arc (problem → decision → result) + results list ---- */
+  .arc { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .arc li a { display: block; height: 100%; padding: 18px 0 0; border-top: 1px solid rgba(11,11,12,0.16); color: inherit; text-decoration: none; transition: border-color 0.2s ease; }
+  .arc li a:hover { border-top-color: #35e80c; }
+  .section .arc .arc-n { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(11,11,12,0.55); margin: 0 0 10px; opacity: 1; }
+  .section .arc h3 { font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; line-height: 1.35; margin: 0 0 8px; color: #0b0b0c; }
+  .section .arc .arc-p { font-size: 13.5px; line-height: 1.6; margin: 0; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 32px 0 28px; }
+  .stat-n { display: block; font-family: 'Didact Gothic', 'Century Gothic', sans-serif; font-size: 52px; line-height: 1; color: #0b0b0c; margin: 0 0 10px; }
+  .section .stat-l { display: block; font-size: 13.5px; line-height: 1.5; margin: 0; color: rgba(26,26,26,0.75); }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr; gap: 18px; } .stat-n { font-size: 44px; } }
+  .result-list { list-style: none; margin: 28px 0 0; padding: 0; }
+  .result-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 14px 0; border-top: 1px solid rgba(11,11,12,0.1); font-size: 14px; line-height: 1.55; color: rgba(26,26,26,0.92); }
+  .result-list li:last-child { border-bottom: 1px solid rgba(11,11,12,0.1); }
+  .result-list .r-value { flex: 0 1 55%; text-align: right; font-weight: 600; color: #0b0b0c; }
+  @media (max-width: 720px) { .result-list .r-value { text-align: left; } }
+  @media (max-width: 720px) { .arc { grid-template-columns: 1fr; gap: 10px; } .result-list li { flex-direction: column; gap: 6px; } }
 </style>
 <script>
 /* if a language was already chosen (localStorage or cookie), hide the first-visit
@@ -657,13 +689,13 @@
 </div>
 <div class="progress" id="progress"></div>
 <div class="navbar">
-  <a href="/" style="text-decoration:none; color:inherit; display:block;">
+  <a href="./index.html" style="text-decoration:none; color:inherit; display:block;">
     <div style="font-family:'Inter',sans-serif; font-size:20px; letter-spacing:-0.005em; color:#151515; line-height:1;"><span style="font-weight:400; font-style:normal;">Cindy </span><span style="font-weight:700; font-style:italic;">Lewis</span></div>
     <div style="font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:rgba(37,37,37,0.6); margin-top:5px;" data-i18n="nav.brandSub">Portafolio</div>
   </a>
   <button class="nav-burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="nav-links">
-    <a class="nav-link" href="/" data-i18n="nav.home">Inicio</a>
+    <a class="nav-link" href="./index.html" data-i18n="nav.home">Inicio</a>
     <div class="work-dd-wrap" data-dd>
       <button class="nav-link work-dd-trigger is-current" type="button" aria-haspopup="true" aria-expanded="false"><span data-i18n="nav.work">Trabajo</span> <span class="wd-caret">▾</span></button>
       <div class="work-dropdown">
@@ -683,7 +715,7 @@
 </div>
 
 <div class="hero-photo">
-  <img class="hero-img" src="./assets/tangerine-hero.webp" alt="">
+  <img class="hero-img" src="./assets/tangerine-hero.webp" alt="" aria-hidden="true">
   <div class="hero-tint"></div>
   <div class="hero-glow"></div>
   <div class="hero-topfade"></div>
@@ -698,6 +730,7 @@
       <div class="hero-browser-glow"></div>
       <img class="hero-mac-img" src="./assets/tangerine-hero-macbook-clean.png" alt="MacBook mostrando el constructor de agentes de Tangering, con la pantalla de bienvenida y las plantillas de Agente de Ventas, Confirmaciones y Soporte" data-i18n-alt="heroMac.alt">
       <span class="hero-browser-tag" data-i18n="heroMac.tag">Constructor de agentes</span>
+      <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
     </div>
   </div>
 </div>
@@ -712,8 +745,19 @@
 </div>
 
 <div class="container">
-  <div class="section reveal">
-    <p class="section-tag" data-i18n="contexto.tag">El contexto</p>
+  <div class="section reveal" id="resumen">
+    <p class="section-tag" data-i18n="arc.tag">El caso en tres partes</p>
+    <ol class="arc">
+      <li><a href="#contexto"><p class="arc-n" data-i18n="arc.1.n">01 · El problema</p><h3 data-i18n="arc.1.h">Agentes de IA sin patrones de diseño</h3><p class="arc-p" data-i18n="arc.1.p">Equipos sin conocimiento técnico necesitaban crear agentes que llaman y escriben por ellos, en una categoría que todavía no tenía patrones probados.</p></a></li>
+      <li><a href="#attempt-1"><p class="arc-n" data-i18n="arc.2.n">02 · La decisión</p><h3 data-i18n="arc.2.h">4 intentos de enseñarle a una IA su propio trabajo</h3><p class="arc-p" data-i18n="arc.2.p">El formulario libre hacía alucinar al agente; el canvas de nodos era demasiado complejo; el chat guiado terminaba en un diagrama que nadie entendía. El cuarto intento fue un agente que crea agentes.</p></a></li>
+      <li><a href="#resultado"><p class="arc-n" data-i18n="arc.3.n">03 · El resultado</p><h3 data-i18n="arc.3.h">Precisión y simplicidad, sin esconder nada</h3><p class="arc-p" data-i18n="arc.3.p">Crear un agente es una conversación, y todo lo que hace queda auditable en cinco pestañas.</span></p></a></li>
+    </ol>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section reveal" id="contexto">
+    <p class="section-tag" data-i18n="contexto.tag">01 · El problema</p>
     <h2 data-i18n="contexto.h2">Una categoría que todavía no existía</h2>
     <p data-i18n="contexto.p1">Cuando empezamos, los agentes de IA conversacionales aún no eran una categoría establecida. No había patrones de diseño probados a los que recurrir. Al mismo tiempo, las empresas cargaban con costos altísimos en llamadas y mensajería de atención al cliente, con alta demanda de una solución y prácticamente ninguna madura en el mercado.</p>
     <p data-i18n="contexto.p2">Ese vacío era la oportunidad, pero también significaba que cada decisión de diseño era, literalmente, una hipótesis sin precedente que validar.</p>
@@ -807,6 +851,7 @@
           <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/julieta-resumen-confirmacion.png" alt="Pantalla de resumen del agente Julieta: canal, voz, tipo, objetivo, flujo de la conversación en 4 pasos, información que recibe y captura, capacidades y tono, con opción de confirmar o cambiar algo" data-i18n-alt="a4.summaryAlt"></div>
         </div>
         <p class="caption" data-i18n="a4.cap">Conversación real del constructor de agentes, desde la primera pregunta hasta el resumen final antes de crear el agente.</p>
+        <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
       </div>
     </div>
   </div>
@@ -864,6 +909,7 @@
         </div>
       </div>
     </div>
+    <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
   </div>
 
 <div class="container">
@@ -885,6 +931,7 @@
   <div class="wide" style="margin-bottom: 64px;">
     <div class="shot"><div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div><img src="./assets/tangering/campana-hibrida-flujo.png" alt="Configuración real de una Campaña Híbrida en Tangering, paso &quot;Configurar flujo&quot;: en &quot;Si no responden&quot; el Paso 1 manda un mensaje de WhatsApp con el agente de ventas y espera 2 horas; a la derecha, la Vista en vivo muestra la secuencia por contacto: mensaje de WhatsApp, si no hay respuesta escala a llamada de voz, reinicia con 24h de espera entre ciclos y sale del flujo tras 5 intentos" data-i18n-alt="lastmile.shotAlt"></div>
     <p class="caption" data-i18n="lastmile.cap">La interfaz real de configuración: el paso "Si no responden" hace que la campaña empiece por WhatsApp y escale sola a llamada de voz, con tiempos de espera y reglas de transición editables, y la secuencia por contacto se actualiza en vivo a la derecha.</p>
+    <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
   </div>
 </div>
 
@@ -951,40 +998,65 @@
           <h3 data-i18n="sustain.calls.h3">Llamadas</h3>
           <p data-i18n="sustain.calls.p">Transcripción en tiempo real con confianza e intención detectada por turno, para escuchar la llamada en curso sin interrumpirla.</p>
           <p class="caption" data-i18n="sustain.proofCalls.img1Cap">Una llamada activa en modo escucha: transcripción en tiempo real con confianza e intención detectada en cada turno.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
         <div class="sustain-text-panel" data-screen="call-2">
           <h3 data-i18n="sustain.calls.h3">Llamadas</h3>
           <p data-i18n="sustain.calls.p">Transcripción en tiempo real con confianza e intención detectada por turno, para escuchar la llamada en curso sin interrumpirla.</p>
           <p class="caption" data-i18n="sustain.proofCalls.img2Cap">El historial de llamadas incluye un análisis generado por IA sobre el estado de cada llamada, con la opción de corregirlo si quedó mal clasificado.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
         <div class="sustain-text-panel" data-screen="chat-1">
           <h3 data-i18n="sustain.chats.h3">Chats en vivo</h3>
           <p data-i18n="sustain.chats.p">Variables de contexto detectadas en cada turno, registro de qué herramienta usó el agente y cuándo, y un botón para tomar control humano de la conversación sin cortarla.</p>
           <p class="caption" data-i18n="sustain.proofChats.img1Cap">Chat en vivo: variables de contexto detectadas y registro de qué herramienta usó el bot y cuándo, con una solicitud de agente humano en curso.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
         <div class="sustain-text-panel" data-screen="chat-2">
           <h3 data-i18n="sustain.chats.h3">Chats en vivo</h3>
           <p data-i18n="sustain.chats.p">Variables de contexto detectadas en cada turno, registro de qué herramienta usó el agente y cuándo, y un botón para tomar control humano de la conversación sin cortarla.</p>
           <p class="caption" data-i18n="sustain.proofChats.img2Cap">El botón para tomar control humano de la conversación sin cortarla, y devolverla al bot cuando ya no hace falta.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
         <div class="sustain-text-panel" data-screen="camp-1">
           <h3 data-i18n="sustain.card2.h3">Campañas</h3>
           <p data-i18n="sustain.card2.p">Priorización arrastrable entre campañas activas, tipo Voz o Híbrido según el caso, base de contactos por CSV y reglas de marcación configurables por campaña.</p>
           <p class="caption" data-i18n="sustain.proof2.img1Cap">Todas las campañas activas, con tipo (Voz o Híbrida), agente asignado, progreso y prioridad arrastrable.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
         <div class="sustain-text-panel" data-screen="camp-2">
           <h3 data-i18n="sustain.card2.h3">Campañas</h3>
           <p data-i18n="sustain.card2.p">Priorización arrastrable entre campañas activas, tipo Voz o Híbrido según el caso, base de contactos por CSV y reglas de marcación configurables por campaña.</p>
           <p class="caption" data-i18n="sustain.proof2.img2Cap">Crear una campaña nueva: primero se elige el agente (que define las columnas del CSV) y la zona horaria de los contactos.</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
         <div class="sustain-text-panel" data-screen="rep-1">
           <h3 data-i18n="sustain.card3.h3">Reportes</h3>
           <p data-i18n="sustain.card3.p">No solo datos generales de la llamada, también datos que el agente extrae de la conversación con IA: fecha de pago prometida, monto, motivo de no pago, calificación del servicio.</p>
           <p class="caption" data-i18n="sustain.proof3.img1Cap">El constructor de reportes: columnas de datos generales y datos extraídos por IA (fecha de pago prometida, monto, motivo de no pago, calificación del servicio).</p>
+          <p class="ui-es-note" lang="en">Interface shown in Spanish — the product supports English as well.</p>
         </div>
       </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section reveal" id="resultado">
+    <p class="section-tag" data-i18n="res.tag">03 · El resultado</p>
+    <h2 data-i18n="res.h2">Qué cambió</h2>
+    <p data-i18n="res.p">Después de tres intentos fallidos, el constructor quedó 100% conversacional y totalmente auditable: quien crea el agente lo describe hablando, lo prueba en vivo por voz o por chat, y puede abrir el prompt, las herramientas y el modelo cuando quiera. Cada fallo dejó una regla que sigue en el producto: estructura en vez de libertad total (intento 1) y el lenguaje del negocio en vez de diagramas técnicos (intentos 2 y 3).</p>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">4</span><span class="stat-l" data-i18n="res.s1">intentos hasta dar con el constructor que funcionó</span></div>
+      <div class="stat"><span class="stat-n">5</span><span class="stat-l" data-i18n="res.s2">pestañas donde cada agente queda auditable: prompt, herramientas, modelo, conocimiento y configuración</span></div>
+      <div class="stat"><span class="stat-n">2</span><span class="stat-l" data-i18n="res.s3">canales por campaña híbrida: empieza por WhatsApp y escala a llamada</span></div>
+    </div>
+    <ul class="result-list">
+      <li><span data-i18n="res.r1">Crear un agente</span><span class="r-value" data-i18n="res.v1">De un formulario o un diagrama a una conversación</span></span></li>
+      <li><span data-i18n="res.r2">Control</span><span class="r-value" data-i18n="res.v2">Prompt, herramientas y modelo siempre auditables</span></span></li>
+      <li><span data-i18n="res.r3">Intentos hasta acertar</span><span class="r-value" data-i18n="res.v3">4, y cada fallo dejó una regla en el producto</span></span></li>
+    </ul>
   </div>
 </div>
 
@@ -1007,7 +1079,7 @@
       </div>
       <nav class="footer-col">
         <p class="footer-h" data-i18n="footer.explore">Explorar</p>
-        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="./index.html" data-i18n="nav.home">Inicio</a>
         <a href="./about.html" data-i18n="nav.about">Sobre m&iacute;</a>
         <a href="./habitanto.html" data-i18n="nav.payments">Pagos</a>
         <a href="./tangerine.html" data-i18n="nav.aiAgents">Agentes de IA</a>
@@ -1207,10 +1279,32 @@
       'strip.2.n': 'Intento 2', 'strip.2.t': 'El flujo infinito', 'strip.2.mark': 'Muy complejo',
       'strip.3.n': 'Intento 3', 'strip.3.t': 'Chat + diagrama', 'strip.3.mark': 'No entendían',
       'strip.4.n': 'Intento 4', 'strip.4.t': 'El agente que crea agentes', 'strip.4.mark': 'Funcionó',
-      'contexto.tag': 'El contexto',
+      'contexto.tag': '01 · El problema',
       'contexto.h2': 'Una categoría que todavía no existía',
       'contexto.p1': 'Cuando empezamos, los agentes de IA conversacionales aún no eran una categoría establecida. No había patrones de diseño probados a los que recurrir. Al mismo tiempo, las empresas cargaban con costos altísimos en llamadas y mensajería de atención al cliente, con alta demanda de una solución y prácticamente ninguna madura en el mercado.',
       'contexto.p2': 'Ese vacío era la oportunidad, pero también significaba que cada decisión de diseño era, literalmente, una hipótesis sin precedente que validar.',
+      'arc.tag': 'El caso en tres partes',
+      'arc.1.n': '01 · El problema',
+      'arc.1.h': 'Agentes de IA sin patrones de diseño',
+      'arc.1.p': 'Equipos sin conocimiento técnico necesitaban crear agentes que llaman y escriben por ellos, en una categoría que todavía no tenía patrones probados.',
+      'arc.2.n': '02 · La decisión',
+      'arc.2.h': '4 intentos de enseñarle a una IA su propio trabajo',
+      'arc.2.p': 'El formulario libre hacía alucinar al agente; el canvas de nodos era demasiado complejo; el chat guiado terminaba en un diagrama que nadie entendía. El cuarto intento fue un agente que crea agentes.',
+      'arc.3.n': '03 · El resultado',
+      'arc.3.h': 'Precisión y simplicidad, sin esconder nada',
+      'arc.3.p': 'Crear un agente es una conversación, y todo lo que hace queda auditable en cinco pestañas.',
+      'res.tag': '03 · El resultado',
+      'res.h2': 'Qué cambió',
+      'res.p': 'Después de tres intentos fallidos, el constructor quedó 100% conversacional y totalmente auditable: quien crea el agente lo describe hablando, lo prueba en vivo por voz o por chat, y puede abrir el prompt, las herramientas y el modelo cuando quiera. Cada fallo dejó una regla que sigue en el producto: estructura en vez de libertad total (intento 1) y el lenguaje del negocio en vez de diagramas técnicos (intentos 2 y 3).',
+      'res.r1': 'Crear un agente',
+      'res.r2': 'Control',
+      'res.r3': 'Intentos hasta acertar',
+      'res.v1': 'De un formulario o un diagrama a una conversación',
+      'res.v2': 'Prompt, herramientas y modelo siempre auditables',
+      'res.v3': '4, y cada fallo dejó una regla en el producto',
+      'res.s1': 'intentos hasta dar con el constructor que funcionó',
+      'res.s2': 'pestañas donde cada agente queda auditable: prompt, herramientas, modelo, conocimiento y configuración',
+      'res.s3': 'canales por campaña híbrida: empieza por WhatsApp y escala a llamada',
       'a1.tag': 'Intento 01',
       'a1.h2': 'El formulario',
       'a1.p1': 'La primera versión dejaba que el usuario describiera su agente con texto libre: qué debía hacer, cómo debía responder. Parecía la forma más simple de empezar.',
@@ -1331,10 +1425,32 @@
       'strip.2.n': 'Attempt 2', 'strip.2.t': 'The infinite flow', 'strip.2.mark': 'Too complex',
       'strip.3.n': 'Attempt 3', 'strip.3.t': 'Chat + diagram', 'strip.3.mark': "Users didn't get it",
       'strip.4.n': 'Attempt 4', 'strip.4.t': 'The agent that creates agents', 'strip.4.mark': 'It worked',
-      'contexto.tag': 'The context',
+      'contexto.tag': '01 · The problem',
       'contexto.h2': "A category that didn't exist yet",
       'contexto.p1': "When we started, conversational AI agents weren't yet an established category. There were no proven design patterns to fall back on. At the same time, companies were carrying steep costs in customer service calls and messaging, with high demand for a solution and practically nothing mature on the market.",
       'contexto.p2': 'That gap was the opportunity, but it also meant every design decision was, literally, an unprecedented hypothesis to validate.',
+      'arc.tag': 'The case in three parts',
+      'arc.1.n': '01 · The problem',
+      'arc.1.h': 'AI agents with no design patterns yet',
+      'arc.1.p': 'Non-technical teams needed to build agents that call and message on their behalf, in a category with no proven patterns yet.',
+      'arc.2.n': '02 · The decision',
+      'arc.2.h': '4 attempts at teaching an AI its own job',
+      'arc.2.p': 'The free-text form made agents hallucinate; the node canvas was too complex; the guided chat ended in a diagram nobody understood. The fourth attempt was an agent that builds agents.',
+      'arc.3.n': '03 · The result',
+      'arc.3.h': 'Precision and simplicity, with nothing hidden',
+      'arc.3.p': 'Building an agent is a conversation, and everything it does stays auditable across five tabs.',
+      'res.tag': '03 · The result',
+      'res.h2': 'What changed',
+      'res.p': 'After three failed attempts, the builder became 100% conversational and fully auditable: whoever creates the agent describes it by talking, tests it live by voice or chat, and can open the prompt, the tools and the model whenever they want. Each failure left a rule that is still in the product: structure instead of total freedom (attempt 1), and the language of the business instead of technical diagrams (attempts 2 and 3).',
+      'res.r1': 'Building an agent',
+      'res.r2': 'Control',
+      'res.r3': 'Attempts to get it right',
+      'res.v1': 'From a form or a diagram to a conversation',
+      'res.v2': 'Prompt, tools and model always auditable',
+      'res.v3': '4, and each failure left a rule in the product',
+      'res.s1': 'attempts until landing on the builder that worked',
+      'res.s2': 'tabs where every agent stays auditable: prompt, tools, model, knowledge and config',
+      'res.s3': 'channels per hybrid campaign: starts on WhatsApp, escalates to a call',
       'a1.tag': 'Attempt 01',
       'a1.h2': 'The form',
       'a1.p1': 'The first version let the user describe their agent in free text: what it should do, how it should respond. It seemed like the simplest way to start.',
